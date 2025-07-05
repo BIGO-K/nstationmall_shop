@@ -1,0 +1,88 @@
+@charset 'utf-8';
+
+@use 'setting/var';
+@use 'helper/mixin';
+
+/**
+ * 모듈 forward
+ * font-face
+**/
+
+
+//< 모듈 forward
+// 셋팅
+@forward 'setting/reset';
+
+// 컴포넌트
+@forward 'component/block';
+@forward 'component/bom';
+@forward 'component/button';
+@forward 'component/form';
+@forward 'component/grid';
+@forward 'component/image';
+@forward 'component/list';
+@forward 'component/monticon';
+@forward 'component/part';
+@forward 'component/text';
+
+// 레이아웃
+@forward 'layout/cover';
+@forward 'layout/footer';
+@forward 'layout/header';
+@forward 'layout/modal';
+@forward 'layout/nav';
+@forward 'layout/popup';
+@forward 'layout/side';
+// @forward 'layout/print';
+
+// 페이지
+@forward 'page/cs';
+@forward 'page/error';
+@forward 'page/mypage';
+@forward 'page/order';
+@forward 'page/sign';
+@forward 'page/term';
+@forward 'page/brand';
+@forward 'page/etc';
+@forward 'page/event';
+@forward 'page/main';
+@forward 'page/product';
+@forward 'page/prodetail';
+
+//< 커스텀
+@forward 'custom/component/grid';
+@forward 'custom/component/form';
+@forward 'custom/component/part';
+@forward 'custom/component/text';
+@forward 'custom/component/image';
+@forward 'custom/layout/header';
+@forward 'custom/layout/footer';
+@forward 'custom/layout/nav';
+@forward 'custom/layout/modal';
+@forward 'custom/page/cs';
+@forward 'custom/page/error';
+@forward 'custom/page/mypage';
+@forward 'custom/page/order';
+@forward 'custom/page/sign';
+@forward 'custom/page/prodetail';
+@forward 'custom/page/product';
+@forward 'custom/page/event';
+//> 커스텀
+
+//< font-face (마지막 파라미터 기본 값은 woff2 woff 입니다.)
+//- noto sans kr
+@include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Regular', 400);
+// @include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Thin', 100);
+@include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Light', 300);
+@include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Medium', 500);
+@include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Bold', 700);
+// @include mixin.font-face('NotoSansKR', var.$fontPath + 'NotoSansCJKkr-Black', 900);
+
+//- roboto
+@include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Regular', 400);
+// @include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Thin', 100);
+@include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Light', 300);
+@include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Medium', 500);
+@include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Bold', 700);
+// @include mixin.font-face('Roboto', var.$fontPath + 'Roboto-Black', 900);
+//> font-face

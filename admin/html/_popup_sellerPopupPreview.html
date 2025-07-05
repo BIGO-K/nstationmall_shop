@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel='shortcut icon' href="https://img.nstationmall.com/mall/ui/admin/common/favicon.ico">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 팝업보기 - N.STATION Admin</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/lib.css">
+	<link rel="stylesheet" href="../css/app.css">
+	<!-- <link rel="stylesheet" data-css="{ '_href': '../css/font.css' }"> -->
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/jquery-3.6.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="anchor">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<div class="mm_header">
+				<h1><b>팝업 테스트</b></h1>
+				<button type="button" class="btn_popup-close" onclick="window.close();return false;"><i class="ico_close-popup"></i><b class="mm_ir-blind">팝업닫기</b></button>
+			</div>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+
+				<!-- 본문 -->
+				<!--
+					(D) 실제 내용을 추가하는 부분입니다.
+					팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다.
+				-->
+				<!-- (D) 팝업 기본사이즈는 W 600px * H 600px 이며 팝업등록시 입력한 너비값, 높이값을 인라인요소로 넣어줍니다. -->
+				<div class="mm_page-content m_popup-preview" style="width:600px;height:600px;">
+
+					<!-- 본문 내용 -->
+					<div class="mm_container">
+						<div class="m_popup-preview-cnt">
+							<div class="mm_editor-content">
+								<p>안녕하세요.</p>
+								<br>
+								<p>- 가송장 패널티란 : 협력사가 고객에게 상품을 배송출잘 시킨 후 등록한 운송장번호가 다음날까지 추적이 되지 않거나, 미리 등록하여 실제 배송출발일이 다른 경우</p>
+								<p>- 협력사는 가송장 처리된 주문건에 대하여 2일 이내 회사에 이의제기를 할 수 있으며, 이의제기를 하지 않은 주문에 대해서 3일째 자동으로 패널티 부과</p>
+								<p>- 가송장 패널티 금액 : 운송장 당 3,000원 부과</p>
+								<br>
+								<p>이 부분에 대하여 이의제기 하는 방법을 몰라 면책을 받지 못하는 업체들이 있어, 간단하게 이의제기 하는 방법에 대해 화면으로 구성하였습니다.</p>
+								<p>아래와 같은 방법으로 가송장 이의제기를 하시어 면책받을 수 있도록 업무진행 부탁드립니다.</p>
+								<p>감사합니다.</p>
+								<br>
+								<p><img src="../image/_sample/product_1.jpg" alt="팝업이미지1"></p>
+								<p><img src="../image/_sample/product_3.jpg" alt="팝업이미지3"></p>
+								<p><img src="../image/_sample/product_5.jpg" alt="팝업이미지5"></p>
+							</div>
+						</div>
+						<!-- (D) 미리보기에서는 스크립트를 연동하지 않습니다. -->
+						<div class="m_popup-preview-today">
+							<label class="mm_form-check">
+								<input type="checkbox" data-check>
+								<b class="mm_block">
+									<i class="ico_form-check"></i>
+									<span class="text_label">오늘 하루 그만보기</span>
+								</b>
+							</label>
+						</div>
+					</div>
+					<!--// 본문 내용 -->
+
+					<!-- 현재 페이지 스크립트 -->
+				</div>
+				<!--// 본문 -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

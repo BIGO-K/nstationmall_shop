@@ -1,0 +1,176 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 그리드
+**/
+
+
+html,
+body {
+	width: 100%;
+	min-width: var.$minWidth_extend;// pc 좌/우 날개배너 포함
+	height: 100%;
+}
+
+html {
+	overflow-y: scroll;// pc 스크롤바 기본 삽입
+	background-color: transparent;
+	@include mixin.font(var.$color_text_base 400 '#{const.$fontSize_base}/1' [var.$fontFamily_base], -0.25px);
+	word-break: break-all;
+	@include mixin.prefix(text-size-adjust, none, webkit ms);
+
+	// 스크롤 안됨(스크립트로 적용)
+	&.__noscroll {
+		// overflow: hidden;
+	}
+}
+
+body {
+	background-color: #fff;
+	image-rendering: -webkit-optimize-contrast;// 파폭(-moz-crisp-edges)은 적용하면 더 깨져보임
+	// @include mixin.prefix(user-select, none, webkit ms);// 본문 드래그 선택 방지
+	-webkit-touch-callout: none;
+}
+
+//< 스킵 네비게이션
+.mm_skip {
+	position: absolute;
+	z-index: const.$zIndex_skip;
+	top: 0;
+	left: 0;
+	@include mixin.font('0/1');
+
+	a:focus {
+		padding: 10px;
+		background-color: var.$color_point1;
+		@include mixin.font(#fff 700 '12px');
+	}
+}
+//> 스킵 네비게이션
+
+//< 브라우저접속 안내배너
+.mm_access {
+	&-inner {
+		position: relative;
+		height: 89px;
+		border-bottom: 1px solid #e1e1e1;
+		@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/access_banner.png') '50% 50%' no-repeat);
+	}
+
+	[class*="btn_"] {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 50%;
+		margin-left: -259px;
+		width: 150px;
+		background-image: url(const.$image_empty);
+	}
+
+	.btn_chrome {
+		margin-left: -85px;
+		width: 110px;
+	}
+
+	.btn_firefox {
+		margin-left: 55px;
+		width: 110px;
+	}
+
+	.btn_edge {
+		margin-left: 196px;
+		width: 160px;
+	}
+}
+//> 브라우저접속 안내배너
+
+//< 전체 영역
+.mm_app {
+	position: relative;
+	height: 100%;
+}
+//> 전체 영역
+
+//< 기본 화면
+.mm_view {
+	position: relative;
+	padding-top: var.$header_height_base;
+	height: 100%;
+}
+//> 기본 화면
+
+//< 페이지
+.mm_page {
+	@include mixin.flex-container();
+	// @include mixin.prefix(flex-wrap, wrap, webkit ms);
+	position: relative;
+	padding-bottom: var.$footer_height_base;
+	min-height: 100%;
+
+	html[class*="_product_"] & {
+		padding-bottom: var.$footer_height_base + 75px;
+
+		.mm_footer {
+			bottom: 75px;
+		}
+	}
+
+	// 페이지 본문
+	&-content {
+		// mm_page-content에는 position 사용 금지
+		@include mixin.prefix(flex, auto, webkit ms);
+		@include mixin.prefix(align-self, center, webkit ms);
+		padding-bottom: 140px;
+		width: 100%;
+
+		// 서브 페이지 본문 내용(pc)
+		&-inner {
+			float: right;
+			position: relative;
+			width: var.$minWidth_base - 210px;
+
+			> .mm_heading:first-child,
+			> *:first-child .mm_heading:first-child {
+				margin-top: -3px;
+			}
+		}
+	}
+}
+//> 페이지
+
+//< 아이프레임 페이지(modal, popup 제외)
+html[class*="_frame_"] {
+	min-width: 0;
+	overflow-y: visible;
+
+	body {
+		min-width: 0;
+	}
+
+	.mm_view {
+		padding: 0;
+	}
+
+	.mm_page {
+		display: block;
+		// @include mixin.prefix(flex-wrap, nowrap, webkit ms);
+		padding-bottom: 0;
+		height: 100%;
+	}
+
+	// 메인제외
+	&:not([class*="_main_"]) {
+		.mm_page-content {
+			@include mixin.prefix(flex, none, webkit ms);
+			@include mixin.prefix(align-self, auto, webkit ms);
+			padding: 0;
+		}
+	}
+}
+//> 아이프레임 페이지(modal, popup 제외)

@@ -1,0 +1,770 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 로그인, 회원가입
+**/
+
+
+// *---------- 페이지 ----------*
+
+//< 공통
+.m_sign {
+	margin: 0 auto;
+	width: 460px;
+
+	&-title {
+		text-align: center;
+
+		.mm_title {
+			padding: 80px 0 0;
+			font-size: 30px;
+		}
+
+		> p {
+			margin-top: 51px;
+			font-size: 20px;
+
+			small {
+				display: block;
+				margin-top: 16px;
+				@include mixin.font('15px/1.4');
+			}
+		}
+
+		.text_adult {
+			display: block;
+			margin: 51px 0 53px;
+
+			b {
+				display: block;
+				margin-top: 20px;
+				font-size: 20px;
+			}
+		}
+
+		+ * .mm_text-label:first-child,
+		+ .mm_text-label {
+			margin-top: 39px;
+		}
+
+		+ ul.m__fin-id {
+			margin-top: 37px;
+		}
+	}
+
+	.mm_check-listbox {
+		.mm_form-check {
+			> input[type="checkbox"]:not(:checked) {
+				+ .mm_block {
+					.mco_form-check::before {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+[class*="m_sign"] {
+	// sns 아이콘
+	[class*="mco_sns-"] {
+		border-radius: 100%;
+		@include mixin.font(#fff center);
+
+		$sns: (naver, #2fac58), (kakaotalk, #f1d200), (payco, #e1292f), (apple, #000);;
+		@each $type, $bgColor in $sns {
+			&.mco_sns-#{$type} {
+				background-color: $bgColor;
+
+				@if ($type == 'payco') {
+					&::before {
+						margin-left: 3px;
+					}
+				}
+			}
+		}
+	}
+
+	.mm_formmix-linked {
+		.mm_btn {
+			padding: 0;
+			width: 140px;
+		}
+	}
+}
+//> 공통
+
+//< 로그인
+.m_login {
+	.mm_text-label:first-child {
+		margin-top: 38px;
+	}
+
+	.mm_form-text ~ .mm_form-check {
+		margin-top: 16px;
+	}
+
+	// 보안문자입력
+	&-security {
+		> p {
+			padding: 3px 2px 18px;
+			@include mixin.font('13px/18px');
+		}
+
+		&-info {
+			.image_security {
+				width: 144px;
+				height: 46px;
+				border: 1px solid #e6e6e6;
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.btn_refresh {
+				margin-left: 4px;
+				width: 60px;
+				height: 46px;
+				border: 1px solid #a3a3a3;
+				border-radius: 3px;
+				background-color: #fafafa;
+				@include mixin.font(#7b7b7b '12px' center);
+
+				.mco_reload {
+					display: block;
+					margin: 6px 0 4px;
+					font-size: 14px;
+				}
+			}
+
+			.mm_form-text {
+				@include mixin.prefix(flex, auto, webkit ms);
+				margin-left: 8px;
+			}
+		}
+	}
+
+	// 기존 회원 비밀번호 변경
+	&-customer-pw {
+		display: block;
+		margin-top: 15px;
+		padding: 0 5px;
+		@include mixin.font(700 '15px/22px');
+
+		small {
+			margin-left: 10px;
+			color: var.$color_point1;
+
+			.mco_link {
+				margin: 1px 0 -1px;
+				font-size: 11px;
+			}
+		}
+	}
+
+	.mm_foot {
+		margin-top: 16px;
+
+		.mm_btnbox + .mm_btnbox {
+			margin-top: 9px;
+			padding: 0 47px;
+			@include mixin.font(#6a6a6a '14px');
+
+			> a {
+				position: relative;
+				padding: 10px 0;
+
+				&:nth-child(n+2) {
+					margin: 0;
+					padding-left: 1px;
+
+					&::before {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						margin-top: -5px;
+						width: 1px;
+						height: 10px;
+						background-color: #aeaeae;
+						content: '';
+					}
+				}
+			}
+		}
+	}
+
+	// 간편로그인
+	// 마이페이지 > 회원정보관리 > 회원정보수정(sns로그인) 페이지에서도 쓰이는 스타일입니다
+	&-sns {
+		margin-top: 41px;
+		@include mixin.font(#6a6a6a '0' center);
+
+		li {
+			display: inline-block;
+
+			a {
+				padding: 0 20px;
+			}
+
+			[class*="mco_sns-"] {
+				width: 44px;
+				height: 44px;
+
+				$sns: (naver, 15px, 46px), (kakaotalk, 20px, 47px), (payco, 20px, 45px);
+				@each $type, $fontSize, $lineHeight in $sns {
+					&.mco_sns-#{$type} {
+						@include mixin.font('#{$fontSize}/#{$lineHeight}');
+					}
+				}
+
+				+ b {
+					display: block;
+					margin-top: 7px;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+}
+//> 로그인
+
+//< 아이디/비밀번호 찾기
+.m_sign-find {
+	margin: 0 auto;
+	width: 724px;
+
+	.mm_tabmenu {
+		padding-top: 68px;
+	}
+
+	&-inner {
+		margin: 0 132px;
+	}
+
+	.mm_radio-list {
+		margin: 43px 0 30px -8px;
+
+		li {
+			float: left;
+			padding-left: 8px;
+			width: 50%;
+			height: 120px;
+
+			&:nth-child(n+2) {
+				margin-top: 0;
+			}
+
+			.mm_form-radio {
+				padding: 0;
+				width: 100%;
+				height: 100%;
+
+				:checked + .mm_block {
+					border-color: var.$color_point1;
+
+					> * {
+						color: var.$color_point1;
+					}
+				}
+			}
+
+			.mm_block {
+				padding-top: 32px;
+				height: 100%;
+				border: 1px solid #cdcdcd;
+				border-radius: 3px;
+				text-align: center;
+
+				i {
+					color: #b8b8b9;
+
+					&.mco_email {
+						padding: 5px 0 7px 7px;
+						font-size: 24px;
+					}
+
+					&.mco_phone {
+						padding: 0 0 8px;
+						font-size: 28px;
+					}
+				}
+
+				.text_label {
+					display: block;
+					@include mixin.font(#4a4a4a '15px');
+				}
+			}
+		}
+
+		+ .mm_note {
+			margin-top: -15px;
+		}
+	}
+
+	[class*="mm_syncer-sign"] {
+		margin-top: 39px;
+	}
+
+	.mm_popover {
+		margin-top: 41px;
+	}
+
+	// 아이디 찾기 완료
+	&-fin {
+		margin: 0 auto;
+		width: 540px;
+
+		> h3 {
+			padding-top: 75px;
+			@include mixin.font('26px/36px' center);
+		}
+
+		// 아이디 목록 (중복 가입 안내 공통사용)
+		.m__fin-id {
+			margin-top: 37px;
+
+			li {
+				position: relative;
+				padding: 24px 29px;
+				border: 1px solid #d5d5d5;
+
+				&:nth-child(n+2) {
+					margin-top: -1px;
+				}
+
+				i {
+					position: absolute;
+					width: 54px;
+					height: 54px;
+
+					$sns: (naver, 18px, 54px), (kakaotalk, 24px, 56px), (payco, 24px, 58px), (apple, 24px, 54px);
+					@each $type, $fontSize, $lineHeight in $sns {
+						&.mco_sns-#{$type} {
+							@include mixin.font('#{$fontSize}/#{$lineHeight}');
+
+							.__ie11 & { line-height: #{$lineHeight + 2}; }
+
+							@if ($type == 'payco') {
+								&::before {
+									margin-left: 4px;
+								}
+							}
+						}
+					}
+				}
+
+				p {
+					padding-left: 71px;
+					min-height: 54px;
+					@include mixin.font('14px/19px');
+
+					&::before {
+						display: block;
+						padding: 5px 0 2px;
+						@include mixin.font(#a3a3a3 '12px');
+						content: '아이디';
+					}
+				}
+			}
+		}
+
+		.m__fin-verify {
+			margin-top: 30px;
+			@include mixin.font('0' center);
+
+			> p {
+				display: inline-block;
+				margin-right: 8px;
+				@include mixin.font(#6a6a6a '14px/24px');
+			}
+		}
+	}
+}
+//> 아이디/비밀번호 찾기
+
+//< 회원가입
+[class*="m_join"] {
+	// 가입완료
+	.text_complete {
+		position: relative;
+		margin-top: 118px;
+		@include mixin.font('17px' center);
+
+		&::after {
+			position: absolute;
+			top: -43px;
+			left: 50%;
+			margin-left: 6px;
+			width: 115px;
+			height: 49px;
+			@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/content/join_effect.png') no-repeat);
+			content: '';
+		}
+
+		> strong {
+			display: block;
+			margin-bottom: 22px;
+			font-size: 26px;
+		}
+
+		.text_event {
+			display: block;
+			margin: 0 auto 21px;
+			padding: 38px 10px 43px;
+			width: 460px;
+			border: 1px solid #f5f5f5;
+			border-radius: 3px;
+			background: #fafafa;
+			line-height: 27px;
+
+			strong {
+				padding-right: 8px;
+				@include mixin.font(var.$color_point2 '23px')
+			}
+		}
+
+		span {
+			font-weight: 300;
+		}
+	}
+
+	.mm_foot {
+		margin-top: 50px;
+	}
+}
+
+.m_join {
+	margin: 0 auto;
+	padding-top: 232px;
+	width: 724px;
+
+	&-head {
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 724px;
+		@include mixin.transform(translateX(-50%));
+
+		.mm_title {
+			padding: 80px 0 60px;
+			font-size: 30px;
+		}
+
+		// 회원가입 스텝
+		&-step {
+			ol {
+				margin-left: -2px;
+
+				li {
+					margin-left: 2px;
+					padding: 0 5px 23px;
+					border-bottom: 3px solid #eee;
+					@include mixin.font(#aeaeae '17px');
+
+					&.__step-on {
+						border-bottom-color: var.$color_point1;
+						color: var.$color_point1;
+					}
+
+					span {
+						display: block;
+						margin-bottom: 4px;
+						@include mixin.font(500 '15px' [var.$fontFamily_latin]);
+
+						small {
+							margin-right: 3px;
+							@include mixin.font(400 '13px' [var.$fontFamily_base]);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 본인인증
+	.text_welcome {
+		position: relative;
+		margin: 118px 43px 0;
+		font-size: 23px;
+
+		.mco_smile {
+			position: absolute;
+			top: -57px;
+			left: 4px;
+			@include mixin.font(#eee '44px');
+		}
+
+		strong {
+			display: inline-block;
+			margin-bottom: 11px;
+			font-size: 26px;
+		}
+
+		span {
+			@include mixin.font(#4a4a4a 300);
+		}
+
+		+ .mm_note {
+			margin: 27px 41px -3px;
+			line-height: 18px;
+		}
+	}
+
+	// 회원정보 및 약관동의
+	&-info {
+		margin: 59px 132px 0;
+
+		.mm_formmix-linked {
+			.mm_btn {
+				padding: 0;
+				width: 140px;
+			}
+		}
+
+		.mm_form-check {
+			> input[type="checkbox"]:not(:checked) {
+				+ .mm_block {
+					.mco_form-check::before {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+
+	// 카카오채널
+	&-kakao-channel {
+		position: relative;
+		margin: 123px 0 0 -54px;
+		padding: 34px 53px;
+		border: 1px solid #e6e6e6;
+		width: 833px;
+		text-align: center;
+
+		> p {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			margin-top: -1px;
+			font-size: 1.4rem;
+			@include mixin.transform(translate(-50%, -50%));
+
+			> strong {
+				padding: 0 17px;
+				background-color: #fff;
+			}
+		}
+
+		> ul {
+			font-size: 0;
+
+			li {
+				float: left;
+				height: 30px;
+
+				> p {
+					display: inline-block;
+					@include mixin.font('1.5rem/3rem');
+
+					> i {
+						position: relative;
+						margin-right: 14px;
+
+						&.image_logo-national {
+							margin-top: 2px;
+							width: 151px;
+							height: 26px;
+						}
+
+						&.image_logo-nfl {
+							// margin: 4px 42px 0 28px;
+							width: 79px;
+							height: 34px;
+						}
+
+						&.image_logo-brompton {
+							margin-top: -1px;
+							width: 79px;
+							height: 31px;
+						}
+					}
+				}
+
+				.btn_channel {
+					margin-left: 26px;
+
+					i {
+						width: 76px;
+						height: 30px;
+					}
+				}
+
+				&:nth-child(3) {
+					.btn_channel {
+						margin-left: 26px;
+					}
+				}
+
+				&:nth-child(4) {
+					.btn_channel {
+						margin-left: 39px;
+					}
+				}
+
+				&:nth-child(n+3) {
+					margin-top: 20px;
+				}
+
+				&:nth-child(2n) {
+					margin-left: 38px;
+				}
+			}
+		}
+	}
+}
+
+// 간편로그인 가입
+.m_join-sns {
+	padding-top: 140px;
+
+	.mm_title {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		padding-top: 80px;
+		font-size: 30px;
+	}
+
+	.text_complete {
+		margin-top: 0;
+	}
+
+	.m_join-kakao-channel {
+		margin: 123px auto 0;
+	}
+}
+//> 회원가입
+
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+//< 비회원 주문조회
+.m_modal-sign-inquiry {
+	padding-top: 29px;
+
+	.m__inquiry-cs {
+		position: relative;
+		margin: 32px -22px 0;
+		height: 95px;
+		border-top: 1px solid #e6e6e6;
+		@include mixin.font(#2b2b2b '13px');
+
+		> strong {
+			position: absolute;
+			top: 22px;
+			left: 22px;
+			padding-top: 21px;
+			width: 72px;
+			height: 72px;
+			border-radius: 100%;
+			background-color: #f5f5f5;
+			text-align: center;
+
+			.mco_cs {
+				display: block;
+				margin-top: 7px;
+				@include mixin.font(#6a6a6a '14px');
+			}
+		}
+
+		> p {
+			padding: 24px 0 0 113px;
+			line-height: 18px;
+
+			strong {
+				@include mixin.font(#1b1b1e 500 '18px/25px' [var.$fontFamily_latin], 0);
+			}
+		}
+	}
+}
+//> 비회원 주문조회
+
+//< 휴면회원 해제안내
+.m_modal-login-quiescent {
+	html[class*="_modal_"] & {
+		width: var.$modal_width_lg;
+	}
+
+	> h3 {
+		padding-top: 35px;
+		@include mixin.font('26px/36px' center);
+	}
+
+	.m__quiescent-notice {
+		position: relative;
+		margin-top: 27px;
+		padding: 43px 42px 45px;
+		border: 1px solid #eee;
+		border-radius: 3px;
+		@include mixin.font(#6a6a6a '14px/22px' center);
+
+		> strong {
+			display: block;
+			margin-top: 13px;
+			@include mixin.font(var.$color_text_base '17px/24px');
+		}
+
+		.mm_coupon {
+			position: absolute;
+			top: 52px;
+			right: 89px;
+
+			&::before {
+				position: absolute;
+				top: -26px;
+				right: -12px;
+				width: 211px;
+				height: 124px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/content/quiescent_coupon_ribbon.png') '0' no-repeat);
+				content: '';
+			}
+
+			.mm_coupon-inner::before {
+				@include mixin.linear-gradient(#fff, -18deg, #e54848 29%, #fff 34%);
+			}
+
+			~ * {
+				text-align: left;
+			}
+
+			~ strong {
+				margin-bottom: 4px;
+			}
+		}
+	}
+
+	.btn_link {
+		vertical-align: 0;
+
+		.mco_link {
+			vertical-align: 1px;
+			margin-left: 12px;
+			font-size: 10px;
+		}
+	}
+}
+//> 휴면회원 해제안내
+
+
+// *---------- 레이어 ----------*

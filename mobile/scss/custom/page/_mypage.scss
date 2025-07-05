@@ -1,0 +1,134 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+@use '../../helper/extend';
+
+/**
+ * 페이지
+ * 마이페이지
+**/
+
+
+//< 마이페이지 메인
+.m_mymain- {
+	// 진행중인 주문
+	&order {
+		// 주문상태
+		ol li {
+			.mm_text-primary {
+				color: #f86364 !important;
+			}
+		}
+	}
+}
+//> 마이페이지 메인
+
+//< MY찜
+.m_mylike- {
+	// 찜한아이템
+	&folder-head {
+		.btn_add-folder {
+			color: #f86364;
+		}
+	}
+}
+//> MY찜
+
+//< MY리뷰
+.m_myreview {
+	&-note {
+		strong.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+
+	// 공통 - 지급가능포인트 툴팁
+	&-tooltip {
+		strong.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> MY리뷰
+
+//< 혜택관리
+.m_mybenefit {
+	&-head {
+		h3 strong.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 혜택관리
+
+//< 설정 - 앱전용
+.m_myset-app {
+	// 버전 정보
+	section {
+		dd .mm_btn {
+			color: #f86364 !important;
+
+			&::after {
+				border-color: #f86364 !important;
+			}
+		}
+	}
+}
+//> 설정
+
+// *---------- 팝업 ----------*
+
+//< 메인
+// 등급혜택안내
+.m_popup-mybenefit-member {
+	.m__member-coupon .text_amount {
+		background-color: #fef6f6;
+	}
+}
+//> 메인
+
+//< MY찜
+// 찜한아이템폴더상세
+.m_popup-mylike-folder {
+	.m__folder-head {
+		.mm_lside {
+			strong.mm_text-primary {
+				color: #f86364 !important;
+			}
+		}
+	}
+}
+//> MY찜
+
+//< MY리뷰
+// 리뷰쓰기
+.m_popup-myreview {
+	// 포토업로드
+	.mm_form-multiple {
+		.btn_select-multiple {
+			color: #f86364 !important;
+
+			&::after {
+				border-color: #f86364 !important;
+			}
+		}
+	}
+}
+//> MY리뷰
+
+//< 주문관리
+// 구매확정
+.m_popup-myconfirm {
+	> .text_point .text_price {
+		color: #f86364 !important;
+	}
+}
+//> 주문관리
+
+// *---------- 모달 ----------*
+
+
+// *---------- 레이어 ----------*

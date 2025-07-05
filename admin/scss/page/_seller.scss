@@ -1,0 +1,89 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 셀러관리
+**/
+
+
+//< 셀러공지 (공지사항 > 상세보기에 공통사용)
+.m_seller-notice- {
+	// 상세보기
+	&detail {
+		&.mm_form {
+			margin-top: 100px;
+
+			td {
+				> a:not(.mm_btn) {
+					@include mixin.font(#000 400);
+
+					b {
+						text-decoration-color: #666;
+					}
+				}
+			}
+		}
+	}
+
+	// 등록/수정
+	&form {
+		.mm_formmix-linked {
+			+ .mm_note {
+				margin-top: 10px;
+			}
+		}
+	}
+}
+//> 셀러공지
+
+//< 셀러관리 (등록/수정)
+.m_seller-manage- {
+	.text_linked {
+		+ .btn_search,
+		+ .mm_form-check {
+			margin-left: 9px;
+		}
+	}
+
+	.mm_form-multiple {
+		width: 880px;
+
+		li {
+			&::after {
+				font-size: 12px;
+				content: '추가이미지' counter(listIndex);
+			}
+
+			&:first-of-type {
+				&::after {
+					font-weight: 700;
+					counter-increment: none;
+					content: '대표이미지';
+				}
+
+				.__image-on {
+					label {
+						border-color: #555;
+					}
+				}
+			}
+		}
+	}
+}
+//> 셀러관리
+
+//< 브랜드관리
+.m_seller-brand {
+	.m_seller-brand-showcase {
+		tbody {
+			.mm_form-text {
+				max-width: 40px;
+			}
+		}
+	}
+}
+//> 브랜드관리

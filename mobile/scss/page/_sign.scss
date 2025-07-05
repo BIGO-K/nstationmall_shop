@@ -1,0 +1,796 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 로그인, 회원가입
+**/
+
+
+// *---------- 페이지 ----------*
+
+
+
+// *---------- 팝업 ----------*
+
+//< 공통
+.m_popup-sign {
+	padding: 32px 34px 0;
+
+	// 페이지제목
+	&-title {
+		margin: -1px 0 44px;
+
+		> p {
+			padding: 13px 0 3px;
+			@include mixin.font(var.$color_text_base '15px' center);
+		}
+
+		> b {
+			display: block;
+			padding: 12px 0 4px;
+			@include mixin.font(#6a6a6a '13px' center);
+		}
+	}
+
+	// 하단버튼
+	&-foot {
+		margin-top: 18px;
+	}
+}
+
+// sns 아이콘
+[class*="m_popup-sign"] {
+	i[class*="mco_sns-"] {
+		width: 47px;
+		height: 47px;
+		border-radius: 100%;
+		@include mixin.font(#fff '/47px' center);
+
+		$sns: (naver, #2fac58, 16px, 49px), (kakaotalk, #f1d200, 21px, 49px), (apple, #000, 21px, 44px), (payco, #e1292f, 20px, 49px);
+		@each $type, $bgColor, $fontSize, $lineHeight in $sns {
+			&.mco_sns-#{$type} {
+				background-color: $bgColor;
+				@include mixin.font('#{$fontSize}/#{$lineHeight}');
+
+				@if $type == 'payco' {
+					&::before {
+						margin-left: 3px;
+					}
+				}
+			}
+		}
+	}
+}
+//> 공통
+
+//< 로그인
+.m_popup-login {
+	.mm_form-text {
+		~ .mm_form-check {
+			margin-top: 16px;
+		}
+	}
+
+	// 보안문자 입력
+	&-security {
+		> p {
+			margin: 4px 0 -2px 1px;
+			@include mixin.font('12px/16px');
+		}
+
+		.m__security-info {
+			margin-top: 9px;
+			padding: 14px 10px;
+			border: 1px solid #cdcdcd;
+			border-radius: 3px;
+			background-color: #f5f5f5;
+			font-size: 0;
+
+			.image_security {
+				width: 127px;
+				height: 38px;
+				text-align: center;
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.btn_refresh {
+				margin: 6px 0 0 9px;
+			}
+
+			.mm_form-text {
+				margin-top: 7px;
+			}
+		}
+	}
+
+	// 기존 회원 비밀번호 변경
+	&-customer {
+		display: block;
+		margin-top: 15px;
+		@include mixin.font(#6a6a6a 700 '13px/19px', 0.1px);
+
+		small {
+			margin-left: 10px;
+			color: var.$color_point1;
+
+			.mco_link {
+				margin: 1px 0 -1px;
+				@include mixin.font(var.$color_point1 '10px');
+			}
+		}
+	}
+
+	// 버튼영역
+	.mm_foot {
+		.mm_btnbox + .mm_btnbox {
+			padding: 0 5px;
+			@include mixin.font(#6a6a6a '13px');
+
+			> a {
+				position: relative;
+				padding: 13px 0;
+
+				&:nth-child(n+2) {
+					margin: 0;
+					padding-left: 1px;
+
+					&::before {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						margin-top: -4px;
+						width: 1px;
+						height: 9px;
+						background-color: #e6e6e6;
+						content: '';
+					}
+				}
+			}
+		}
+	}
+
+	// 간편로그인
+	&-sns {
+		margin: 42px -30px 0;
+		@include mixin.font(#fff '0/44px' center);
+
+		li {
+			display: inline-block;
+			// padding: 0 8px 0 7px;
+
+			&:nth-child(n+2) {
+				margin-left: 16px;
+			}
+
+			&:last-child {
+				display: none;
+			}
+
+			> a {
+				@include mixin.font(#6a6a6a '12px/1.4');
+
+				b {
+					display: block;
+					padding-top: 4px;
+				}
+			}
+		}
+
+		// 애플로그인
+		.__app & {
+			li:last-child {
+				display: inline-block;
+			}
+		}
+	}
+}
+//> 로그인
+
+//< 비회원주문조회
+.m_popup-sign-order {
+	height: 99px;
+
+	.m__order-inner {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: 18px 29px 27px;
+		border-top: 1px solid #e6e6e6;
+	}
+
+	.mco_cs {
+		position: absolute;
+		top: 50%;
+		margin-top: -28px;
+		padding: 15px 0 0 1px;
+		width: 51px;
+		height: 51px;
+		border-radius: 100%;
+		background-color: #f5f5f5;
+		@include mixin.font(#6a6a6a '22px' center);
+	}
+
+	p {
+		padding-left: 64px;
+		@include mixin.font(#2b2b2b '12px/16px', nowrap);
+
+		strong {
+			display: block;
+			@include mixin.font(#1b1b1e 500 '17px/20px' [var.$fontFamily_latin]);
+		}
+	}
+}
+//> 비회원주문조회
+
+//< 아이디/비밀번호찾기
+.m_popup-sign-find {
+	padding: 0 34px;
+
+	.mm_tabmenu {
+		margin: 0 -34px;
+		padding: 27px 40px 0;
+
+		a {
+			@include mixin.font('16px/42px');
+		}
+	}
+
+	// 아이디/비밀번호찾기 방식
+	.mm_radio-list {
+		margin: 37px 0 23px -7px;
+
+		li {
+			float: left;
+			padding-left: 7px;
+			width: 50%;
+			height: 100px;
+
+			&:nth-child(n+2) {
+				margin-top: 0;
+			}
+
+			.mm_form-radio {
+				padding: 0;
+				width: 100%;
+				height: 100%;
+
+				:checked + .mm_block {
+					border-color: var.$color_point1;
+
+					> * {
+						color: var.$color_point1;
+					}
+				}
+			}
+
+			.mm_block {
+				padding-top: 22px;
+				height: 100%;
+				border: 2px solid #dcdcdc;
+				border-radius: 3px;
+				text-align: center;
+
+				i {
+					color: #b8b8b9;
+
+					&.mco_email {
+						padding: 7px 0;
+						font-size: 17px;
+					}
+
+					&.mco_phone {
+						padding: 0 0 8px;
+						font-size: 23px;
+					}
+				}
+
+				.text_label {
+					display: block;
+					@include mixin.font(#4a4a4a '14px');
+				}
+			}
+		}
+
+		+ .mm_note {
+			margin: -11px 0 27px;
+		}
+	}
+
+	.mm_popover {
+		margin: 28px -34px 0;
+	}
+
+	// 아이디/비밀번호찾기 완료
+	.m__find- {
+		// 페이지제목
+		&title {
+			padding-top: 32px;
+
+			h3 {
+				@include mixin.font(500 '20px/1.4' center);
+			}
+
+			p {
+				padding-top: 13px;
+				@include mixin.font('15px' center);
+			}
+
+			+ form,
+			+ .mm_form-text {
+				margin-top: 47px;
+			}
+		}
+
+		// 아이디목록 (중복가입 공통사용)
+		&id {
+			margin-top: 17px;
+
+			li {
+				position: relative;
+				padding: 14px 16px;
+				border: 1px solid #eee;
+
+				&:nth-child(n+2) {
+					margin-top: -1px;
+				}
+
+				i {
+					position: absolute;
+					width: 44px;
+					height: 44px;
+
+					$sns: (naver, #2fac58, 15px, 46px), (kakaotalk, #f1d200, 20px, 46px), (payco, #e1292f, 20px, 46px);
+					@each $type, $bgColor, $fontSize, $lineHeight in $sns {
+						&.mco_sns-#{$type} {
+							background-color: $bgColor;
+							@include mixin.font('#{$fontSize}/#{$lineHeight}');
+						}
+					}
+				}
+
+				p {
+					padding-left: 56px;
+					min-height: 44px;
+					@include mixin.font('13px/17px');
+
+					&::before {
+						display: block;
+						padding: 4px 0 1px;
+						@include mixin.font(#6a6a6a '12px');
+						content: '아이디';
+					}
+				}
+			}
+		}
+
+		// 본인인증
+		&verify {
+			margin-top: 28px;
+			@include mixin.font('0' center);
+
+			p {
+				display: inline-block;
+				padding: 0 8px;
+				@include mixin.font(#6a6a6a '14px/23px');
+			}
+		}
+	}
+}
+//> 아이디/비밀번호찾기
+
+//< 회원가입
+.m_popup-join {
+	padding: 35px 34px 0;
+
+	> .m_popup-sign-title {
+		margin-top: -4px;
+	}
+
+	&-title {
+		vertical-align: 0;
+		@include mixin.font('17px/20px' center);
+
+		b {
+			margin-right: 9px;
+			vertical-align: 1px;
+			@include mixin.font(500 [var.$fontFamily_latin], 0);
+		}
+
+		// step 라인
+		.m__title-line {
+			display: block;
+			overflow: hidden;
+			position: relative;
+			margin: 12px auto 0;
+			width: 169px;
+			height: 4px;
+			border-radius: 4px;
+			@include mixin.linear-gradient(#eee, 90deg, #eee 40px, #fff 3px);
+			@include mixin.background('/43px 4px' repeat-x);
+
+			$steps: 1 2 3 4;
+			@each $step in $steps {
+				&.__line_step#{$step}__::after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 43px * $step;
+					height: 100%;
+					@include mixin.linear-gradient(#eee, 90deg, var.$color_point1 40px, #fff 3px);
+					@include mixin.background('/43px 4px' repeat-x);
+					content: '';
+				}
+			}
+		}
+
+		+ .m_popup-join-info {
+			margin-top: 47px;
+		}
+	}
+
+	// 본인인증, 가입완료
+	.text_content {
+		position: relative;
+		margin-top: 90px;
+		padding-left: 9px;
+		@include mixin.font(var.$color_text_base '22px/28px');
+
+		&:first-child {
+			margin-top: 78px;// sns회원가입완료
+		}
+
+		strong {
+			display: block;
+			@include mixin.font('27px/1');
+
+			&::after {
+				position: absolute;
+				top: -46px;
+				left : 110px;
+				width: 129px;
+				height: 55px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/join_effect.png') '0/auto 100%' no-repeat);
+				content: '';
+			}
+		}
+
+		span {
+			display: block;
+			padding-top: 22px;
+			@include mixin.font(#4a4a4a 300);
+		}
+
+		// 본인인증
+		.mco_smile {
+			position: absolute;
+			top: -34px;
+			left: 10px;
+			@include mixin.font(#f5f5f5 '60px/1');
+
+			+ strong {
+				padding-top: 38px;
+			}
+		}
+
+		+ .mm_foot {
+			margin-top: 48px;
+
+			+ .mm_note {
+				margin-top: 14px;
+				padding-left: 13px;
+			}
+		}
+	}
+
+	// 이용약관, 정보입력
+	&-info {
+		.mm_form-check {
+			> input[type="checkbox"]:not(:checked) {
+				+ .mm_block {
+					.mco_form-check::before {
+						content: none;
+					}
+				}
+			}
+		}
+
+		.mm_process-item {
+			> .mm_check-listbox {
+				padding-top: 3px;
+			}
+		}
+
+		// 페이스북 간편가입 추가정보입력
+		.mm_form-text {
+			+ .mm_btn {
+				+ .mm_check-listbox {
+					margin-top: 26px;
+				}
+			}
+		}
+
+		// 생년월일
+		.mm_formmix-linked {
+			+ .mm_strapline {
+				margin-top: 23px;
+			}
+		}
+
+		.mm_foot {
+			margin-top: 50px;
+
+			a.mm_btn:not([href]) {
+				background-color: #e6e6e6;
+				color: #a3a3a3;
+			}
+		}
+	}
+
+	// 중복가입
+	&-overlap {
+		padding-top: 32px;
+
+		.m_popup-sign-title {
+			margin: 0;
+
+			> b {
+				padding: 10px 0 0;
+				line-height: 20px;
+			}
+		}
+	}
+
+	// 카카오 채널
+	&-kakao {
+		margin-top: 80px;
+
+		ul {
+			li {
+				display: block;
+				position: relative;
+				padding: 0 130px 0 8px;
+				height: 60px;
+
+				> p {
+					// padding-right: 113px;
+					font-size: 1.5rem;
+
+					> i {
+						display: block;
+
+						&.image_logo-national {
+							margin-top: 12px;
+							width: 120px;
+							height: 20px;
+						}
+
+						&.image_logo-nfl {
+							margin-top: 10px;
+							width: 26px;
+							height: 35px;
+						}
+
+						&.image_logo-brompton {
+							margin-top: 12px;
+							width: 64px;
+							height: 25px;
+						}
+					}
+				}
+
+				.btn_channel {
+					position: absolute;
+					top: 0;
+					right: 11px;
+
+					> i {
+						width: 113px;
+						height: 45px;
+					}
+				}
+
+				+ li {
+					margin-top: 31px;
+				}
+			}
+		}
+	}
+}
+//> 회원가입
+
+
+// *---------- 모달 ----------*
+//< 휴면회원 해제안내
+.m_modal-login-quiescent {
+	padding: 27px 0;
+	@include mixin.font(#6a6a6a '13px/18px' center);
+
+	h3 {
+		padding-bottom: 12px;
+		@include mixin.font(var.$color_text_base '17px/23px');
+	}
+
+	// 휴면회원 쿠폰
+	.m__quiescent-coupon {
+		position: relative;
+		margin-top: 24px;
+		padding: 25px 0;
+		color: var.$color_text_base;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			width: 68.81355%;
+			border-top: 1px solid #eee;
+			content: '';
+			@include mixin.transform(translateX(-50%));
+		}
+
+		&::after {
+			position: absolute;
+			bottom: 23px;
+			left: 50%;
+			margin-left: 5px;
+			width: 189px;
+			height: 43px;
+			@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/quiescent_coupon_ribbon.png') '0/contain' no-repeat);
+			content: '';
+			@include mixin.transform(translateX(-50%));
+		}
+
+		.text_sub {
+			@include mixin.font('13px/18px');
+
+			> strong {
+				position: relative;
+				z-index: 1;
+				@include mixin.font('15px/26px');
+
+				&::before {
+					position: absolute;
+					z-index: -1;
+					right: -1px;
+					bottom: 0;
+					left: -1px;
+					height: 9px;
+					background-color: #fbef2c;
+					content: '';
+				}
+			}
+		}
+
+		.mm_coupon {
+			z-index: 1;
+			margin: 15px auto 0;
+			width: 132px;
+			height: 78px;
+
+			&-inner {
+				&::before {
+					margin-top: 1px;
+					width: 18px;
+					height: 18px;
+					@include mixin.linear-gradient(#fff, -19deg, #e54848 37%, #fff 41%);
+					content: '';
+				}
+			}
+		}
+	}
+}
+//> 휴면회원 해제안내
+
+
+// *---------- 레이어 ----------*
+//< 생체인증 사용
+.m_login-popup {
+	display: none;
+	position: fixed;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	@include mixin.opacity(0);
+	@include mixin.transition(opacity const.$time_fast);
+
+	.__app & {
+		display: block;
+	}
+
+	// 팝업열기
+	&.__on {
+		@include mixin.opacity(1);
+		z-index: const.$zIndex_popup;
+
+		.m_login-popup-item {
+			@include mixin.transform(translateY(0));
+		}
+	}
+
+	&-dim {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(#000, 0.6);
+	}
+
+	&-item {
+		@include mixin.prefix(box-shadow, 0 -2px 6px 0 rgba(#000, 0.14), webkit);
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 52px 34px 16px;
+		width: 100%;
+		border-radius: 17px 17px 0 0;
+		background-color: #fff;
+		text-align: center;
+		@include mixin.transform(translateY(100%));
+		@include mixin.transition(transform const.$time_fast);
+
+		.image_faceid {
+			display: block;
+			margin: 0 auto;
+			width: 129px;
+			height: 68px;
+		}
+
+		p {
+			display: inline-block;
+			margin: 17px 0 0 -1.59574%;
+			@include mixin.font('17px/24px' left);
+
+			strong {
+				color: #f86363;
+			}
+		}
+
+		.mm_btnbox {
+			margin-top: 15px;
+		}
+
+		.mm_note {
+			margin-top: 32px;
+			padding: 7px 14px 8px;
+			border: 1px solid #dcdcdc;
+			border-radius: 3px;
+			background-color: #fafafa;
+			@include mixin.font('12px/18px' left);
+		}
+
+		.btn_close {
+			position: absolute;
+			top: 9px;
+			right: 5px;
+			padding: 15px;
+			@include mixin.font(#4a4a4a '17px');
+		}
+
+		.btn_cancel {
+			margin-top: 25px;
+			padding: 10px;
+			@include mixin.font(#999 '13px');
+
+			b {
+				position: relative;
+
+				&::after {
+					position: absolute;
+					right: 0;
+					bottom: -2px;
+					left: 0;
+					border-bottom: 1px solid #a3a3a3;
+					content: '';
+				}
+			}
+		}
+	}
+}
+//> 생체인증 사용

@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 브랜드샵, 브랜드리스트, 브랜드검색, 브랜드몰
+**/
+
+//< 브랜드몰(내셔널, nfl)
+.m_brandmall {
+	[data-mui="b_Nc/s1-h"] {
+		.mm_carousel- {
+			&inner {
+				padding-right: 0;
+			}
+
+			&item {
+				figcaption {
+					right: -4vw;
+					padding: 0 8vw;
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+//> 브랜드몰(내셔널, nfl)

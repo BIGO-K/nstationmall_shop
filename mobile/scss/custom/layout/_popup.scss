@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * 팝업
+**/
+
+
+//< 상품및 검색어
+.m_popup-search-auto {
+	ul {
+		li {
+			a {
+				strong.mm_text-secondary {
+					color: #f86364 !important;
+				}
+			}
+		}
+	}
+}
+//> 상품및 검색어
+
+//< 인쇄영역 (영수증)
+.m_popup-receipt {
+	.mm_print {
+		.text_price.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 인쇄영역 (영수증)

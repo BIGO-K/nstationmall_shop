@@ -1,0 +1,54 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 페이지
+ * 로그인, 회원가입
+**/
+
+
+// *---------- 페이지 ----------*
+
+//< 공통
+.m_sign {
+	&-title {
+		.mm_title + p {
+			.mm_text-primary {
+				color: #f86364 !important;
+			}
+		}
+	}
+}
+//> 공통
+
+//< 아이디/비밀번호 찾기
+.m_sign-find {
+	// 아이디 찾기 완료
+	&-fin {
+		> h3 .mm_text-primary {
+            color: #f86364 !important;
+        }
+	}
+}
+//> 아이디/비밀번호 찾기
+
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+//< 휴면회원 해제안내
+.m_modal-login-quiescent {
+	> h3 .mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 휴면회원 해제안내
+
+// *---------- 레이어 ----------*

@@ -1,0 +1,24 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 이벤트 상세보기 공통
+ * 스팟성 테마관, 쇼케이스, 래플, 카카오 플러스친구
+**/
+
+//< 이벤트상세 공통
+.mm_event {
+	&-reply {
+		&-list {
+			.mm_tag[class*="_primary_"] {
+				border-color: #f86364;
+				color: #f86364;
+			}
+		}
+	}
+}
+//> 이벤트상세 공통

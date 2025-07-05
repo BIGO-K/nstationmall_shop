@@ -1,0 +1,57 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 탭+상품(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="tp_NnNc/s1-a"] {
+   .m_ui-item {
+        > ul {
+            margin: -8px 0 0 -8px;
+
+            li {
+                float: left;
+                margin: 8px 0 0 8px;
+            }
+
+            button {
+                padding: 0 14px;
+                height: 35px;
+                border: 1px solid #e6e6e6;
+                border-radius: 3px;
+                @include mixin.font(#4a4a4a '14px/33px' center);
+
+                &.__category-on {
+                    border-color: var.$color_point1;
+                    color: var.$color_point1;
+                }
+            }
+        }
+
+        .mm_carousel {
+            margin-top: 11px;
+
+			&-list {
+				box-sizing: content-box;
+				padding-bottom: 37px;
+			}
+
+			&-item {
+				> .mm_product-list {
+					padding: 0 14px;
+				}
+			}
+
+			&-pagination {
+				bottom: 0;
+			}
+        }
+    }
+}

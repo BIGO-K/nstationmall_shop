@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel='shortcut icon' href="https://img.nstationmall.com/mall/ui/admin/common/favicon.ico">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>내정보 관리 &#60; 권한관리 &#60; 쇼핑몰관리 - N.STATION Admin</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/lib.css">
+	<link rel="stylesheet" href="../css/app.css">
+	<!-- <link rel="stylesheet" data-css="{ '_href': '../css/font.css' }"> -->
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/jquery-3.6.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="anchor">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 브라우저접속 안내배너 -->
+		<div class="mm_access">
+			<!--[if lte ie 9]>
+			<div class="mm_access-inner">
+				<p class="mm_ir-blind">이 브라우저에서는 현재 사이트가 정상 동작하지 않으며, 제조사에 의한 업데이트 종료로 심각한 보안 위험을 초래할 수 있습니다. 크롬, 파이어폭스, 엣지 브라우저로 접속하시면 최적화된 환경에서 이용하실 수 있습니다.</p>
+				<a class="btn_chrome" href="https://www.google.com/chrome/" target="_blank" title="새 창 열림"><b class="mm_ir-blind">크롬 설치하기</b></a>
+				<a class="btn_firefox" href="https://www.mozilla.org/ko/firefox/new/" target="_blank" title="새 창 열림"><b class="mm_ir-blind">파이어폭스 설치하기</b></a>
+				<a class="btn_edge" href="https://www.microsoft.com/ko-kr/edge" target="_blank" title="새 창 열림"><b class="mm_ir-blind">엣지 설치하기</b></a>
+			</div>
+			<![endif]-->
+		</div>
+		<script>
+			if (mm.is.ie('ie')) {
+				var $access = mm.find('.mm_access')[0];
+				$access.innerHTML = $access.innerHTML.replace('<!-\-[if lte ie 9]>', '').replace('<![endif]-\->', '');
+			}
+		</script>
+		<!--// 브라우저접속 안내배너 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><a href="#" data-href="{ '_type': 'link' }"><b class="mm_ir-blind">N.STATION</b></a></h1>
+
+				<!-- 헤더 바로가기 -->
+				<div class="mm_header-quick">
+					<div class="mm_lside">
+						<ul>
+							<li><a class="btn_shop" href="_popup_displayBrand.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><i class="ico_quick-shop"></i><b>매장바로가기</b></a></li>
+							<!-- (D) "비밀번호변경"영역은 브랜드관리자(셀러)로 로그인 했을 때만 노출합니다. -->
+							<li><a href="_popup_passwordChange.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>비밀번호변경</b><i class="ico_link-pw"></i></a></li>
+						</ul>
+					</div>
+					<div class="mm_rside">
+						<ul>
+							<li><p>안녕하세요. <span class="mm_text-secondary">최고관리자</span>님</p></li>
+							<!-- (D) "이메일" 버튼 영역은 브랜드관리자(셀러)로 로그인 했을 때만 노출합니다. -->
+							<li><a class="mm_btn __btn_line_lighter__" href="_popup_brandAgent.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>이메일</b></a></li>
+							<li><a class="mm_btn __btn_line_lighter__" href="_popup_scm.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>매뉴얼</b></a></li>
+							<li><button type="button" class="mm_btn __btn_line_lighter__"><b>로그아웃</b></button></li>
+						</ul>
+					</div>
+				</div>
+				<!--// 헤더 바로가기 -->
+
+				<!-- gnb -->
+				<div class="mm_gnb">
+					<ul class="mm_flex __flex_auto__">
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>쇼핑몰관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>약관관리</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>권한관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>관리자 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>내 정보 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>부서 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>접근 권한 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>로그 정보 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>관리자 로그인 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 가격 변경 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 옵션 변경 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 정보 변경 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>주문상태 수동 변경 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>회원정보 수동 변경 로그</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>회원 알림톡 발송 로그 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>자동 메일/SMS 템플릿관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>도서산간 지역 설정</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>검색엔진 최적화(SEO) 설정 관리</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>회원관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>회원관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>임직원 관리</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>PUSH 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>PUSH 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>테스트 PUSH 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>휴면 회원관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>회원 등급 관리</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>마일리지 설정</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>마일리지 적립 설정</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>전체 마일리지 현황</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>개별 마일리지 현황</b></a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>셀러관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>셀러 공지</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>셀러 팝업</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>브랜드 관리자 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>진열 브랜드 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>해외배송 브랜드 관리자 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>주문제작 브랜드 관리자 관리</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>상품관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 분류 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>분류별 추천상품 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 관리(등록 및 수정)</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 승인 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>세트 상품 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 속성 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>품절 상품 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 아이콘 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>재입고 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>사은품 관리</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>상품 일괄 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 이동 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 가격 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 진열 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>상품 재고 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>재입고예정 뱃지 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>금지어</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>금지어 해제</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>금지어 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품별 혜택 관리</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>프로모션</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>1차 쿠폰 관리</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>중복 쿠폰 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>다운로드 쿠폰 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>네이버 EP 쿠폰 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>다음 EP 쿠폰 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>자동 발행 쿠폰 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>자동 발행 쿠폰 설정</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>쿠폰 수동 발급</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>페이퍼 쿠폰 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>추가 할인 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>심야 할인 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>즉시 할인 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>적용 제외 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>EP 할인 적용 제외 상품 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>EP 할인 적용 제외 브랜드 관리자 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>EP 노출 제외 상품 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>EP 노출 제외 브랜드 관리자 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>주문관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>주문관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>주문내역</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>개인 정보 보호 대상 주문내역</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>배송 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>취소 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>반품 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>교환 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>환불 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>전시관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>메인 페이지 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>기본 검색어 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>메인 페이지 관리(N.STATION)</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>메인 페이지 관리(내셔널지오그래픽)</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>메인 페이지 관리(NFL)</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>서브 페이지 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>기획전 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>이벤트 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>룩북 관리 (내셔널지오그래픽)</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>룩북 관리 (NFL)</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>명품관 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>쇼케이스 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>래플 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>공동구매 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>타임특가 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>스팟성 테마관 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>인플루언서 추천 아이템 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품 공통배너 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>팝업 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>앱 인트로 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>무이자 관리</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>고객센터/게시판 관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>공지사항</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>FAQ 관리</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>FAQ 분류 관리</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>FAQ 관리</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>상품평 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>체험단 후기 관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>판매자 문의관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>1:1 문의관리</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>CS 알리미</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>정산관리</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>정산 현황</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>정산 집계</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a href="#" data-href="{ '_type': 'link' }"><b>매출/통계</b></a>
+							<div class="mm_gnb-depth2">
+								<ul>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>브랜드 관리자별 주문 통계</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>일별 주문 추이</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>유입경로별 실적 현황</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>결제수단별 매출 내역</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>포털사이트 광고 대행</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>목표 등록</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>목표 대비 실적 (MD)</b></a></p></li>
+									<li><p><a href="#" data-href="{ '_type': 'link' }"><b>자사 DB현황 메뉴</b></a></p></li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>회원 통계</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>월별 가입 회원</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>일별 가입 회원</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>등급별 월 회원수</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>연도별 회원수</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>월별 회원수</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>일별 회원수</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>회원 탈퇴사유</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>회원 탈퇴사유 통계</b></a></li>
+											</ul>
+										</div>
+									</li>
+									<li>
+										<p><a href="#" data-href="{ '_type': 'link' }"><b>마일리지 적립 현황</b></a></p>
+										<div class="mm_gnb-depth3">
+											<ul>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>마일리지 월별 적립현황</b></a></li>
+												<li><a href="#" data-href="{ '_type': 'link' }"><b>마일리지 일별 적립현황</b></a></li>
+											</ul>
+										</div>
+									</li>
+                                	<li><p><a href="#" data-href="{ '_type': 'link' }"><b>결제 완료일 기준 매출</b></a></p></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!--// gnb -->
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- 즐겨찾기 -->
+				<section class="mm_bookmark">
+					<div class="mm_inner">
+						<h6><i class="ico_star"></i><b>즐겨찾기</b></h6>
+						<ul>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>배송관리</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>배송처리현황</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>가송장 관리</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>고객문의 게시판</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>공지사항</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>상품등록</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>상품조회/수정</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>옵션가 상품등록</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>상품단가변경</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+							<li>
+								<a href="#" data-href="{ '_type': 'link' }"><b>상품진열순서</b></a>
+								<button type="button" class="btn_remove"><b class="mm_ir-blind">삭제</b><i class="ico_remove"></i></button>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<!--// 즐겨찾기 -->
+
+				<!-- 사이드요소 -->
+				<div class="mm_sidebar">
+					<div class="mm_container">
+						<div class="mm_sidebar-rside">
+							<ul class="mm_sidebar-csmenu">
+								<li>
+									<a href="#" data-href="{ '_type': 'link' }">
+										<i class="ico_bell"></i>
+										<p>
+											cs알리미
+											<span class="text_num"><strong>80</strong>건</span>
+											<!-- <span class="text_loading"><i class="ico_loading __loading_sm__ __ani-spin"></i>조회 중</span> -->
+										</p>
+									</a>
+								</li>
+								<li>
+									<a href="#" data-href="{ '_type': 'link' }">
+										<i class="ico_board"></i>
+										<p>
+											고객문의<br>게시판
+											<span class="text_num"><strong>45</strong>건</span>
+											<!-- <span class="text_loading"><i class="ico_loading __loading_sm__ __ani-spin"></i>조회 중</span> -->
+										</p>
+									</a>
+								</li>
+							</ul>
+							<button type="button" class="btn_refresh" onclick="window.reload();"><b>새로고침</b><i class="ico_refresh"></i></button>
+							<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로 이동"><b>TOP</b><i class="ico_topmost"></i></a>
+						</div>
+					</div>
+				</div>
+				<!--// 사이드요소 -->
+
+				<!-- 본문 -->
+				<div class="mm_page-content">
+					<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+					<!-- 본문 내용 -->
+					<div class="mm_container">
+						<!-- 페이지제목 -->
+						<div class="mm_head">
+							<h2 class="mm_title"><b>내 정보 관리</b></h2>
+							<div class="mm_btnbox">
+								<div class="mm_inline">
+									<button type="button" class="mm_btn btn_bookmark __btn_sm_line_round__"><i class="ico_star"></i><b>즐겨찾기 추가</b></button>
+									<a class="mm_btn btn_newtab __btn_sm_line_round__" href="#" target="_blank" title="새 창 열림"><i class="ico_newtab"></i><b>새창보기</b></a>
+								</div>
+							</div>
+						</div>
+						<!--// 페이지제목 -->
+
+						<!-- 관리자목록 -->
+						<div class="mm_tablebox">
+							<!-- 목록상단 -->
+							<div class="mm_tablebox-caption">
+								<a class="mm_btn btn_register __btn_line_primary__" href="mallSetPowerAdminRegister.html" data-href="{ '_type': 'link' }"><i class="ico_register"></i><b>관리자 등록하기</b></a>
+							</div>
+							<div class="mm_tablebox-unit">
+								<div class="mm_rside">
+									<a class="mm_btn btn_excel __btn_line_tertiary__" href="_popup_excelDownload.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><i class="ico_download"></i><b>엑셀 다운로드</b></a>
+								</div>
+							</div>
+							<!--// 목록상단 -->
+
+							<!-- 목록 -->
+							<div class="mm_table" data-table>
+								<div class="mm_scroller">
+									<table>
+										<colgroup>
+											<col style="width:5%;">
+											<col style="width:15%;">
+											<col style="width:15%;">
+											<col>
+											<col style="width:15%;">
+											<col style="width:13%;">
+											<col style="width:13%;">
+											<col style="width:10%;">
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col"><div class="mm_table-item">No.</div></th>
+												<th scope="col"><div class="mm_table-item">관리자명</div></th>
+												<th scope="col"><div class="mm_table-item">부서</div></th>
+												<th scope="col"><div class="mm_table-item">아이디</div></th>
+												<th scope="col"><div class="mm_table-item">접근권한</div></th>
+												<th scope="col"><div class="mm_table-item">등록일시</div></th>
+												<th scope="col"><div class="mm_table-item">수정일시</div></th>
+												<th scope="col"><div class="mm_table-item">관리</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><div class="mm_table-item">20</div></td>
+												<td><div class="mm_table-item">관리자 20</div></td>
+												<td><div class="mm_table-item">마케팅팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 A</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item">2020-04-01 16:05:10</div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">19</div></td>
+												<td><div class="mm_table-item">관리자 19</div></td>
+												<td><div class="mm_table-item">정산팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 C</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item"></div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">18</div></td>
+												<td><div class="mm_table-item">관리자 18</div></td>
+												<td><div class="mm_table-item">MD팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 C</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item"></div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">17</div></td>
+												<td><div class="mm_table-item">관리자 17</div></td>
+												<td><div class="mm_table-item">마케팅팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 B</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item">2020-04-01 16:05:10</div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">16</div></td>
+												<td><div class="mm_table-item">관리자 16</div></td>
+												<td><div class="mm_table-item">마케팅팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 A</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item">2020-04-01 16:05:10</div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">15</div></td>
+												<td><div class="mm_table-item">관리자 15</div></td>
+												<td><div class="mm_table-item">정산팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 C</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item"></div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">14</div></td>
+												<td><div class="mm_table-item">관리자 14</div></td>
+												<td><div class="mm_table-item">MD팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 C</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">13</div></td>
+												<td><div class="mm_table-item">관리자 13</div></td>
+												<td><div class="mm_table-item">마케팅팀</div></td>
+												<td><div class="mm_table-item">mmonstar123</div></td>
+												<td><div class="mm_table-item">접근권한 B</div></td>
+												<td><div class="mm_table-item">2020-01-01 15:25:36</div></td>
+												<td><div class="mm_table-item">2020-04-01 16:05:10</div></td>
+												<td>
+													<div class="mm_table-item">
+														<div class="mm_btnbox">
+															<div class="mm_inline">
+																<button type="button" class="mm_btn __btn_line__"><b>삭제</b></button>
+																<a class="mm_btn" href="mallSetPowerMyinfoModify.html" data-href="{ '_type': 'link' }"><b>수정</b></a>
+															</div>
+														</div>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!--// 목록 -->
+
+							<!-- 목록하단 -->
+							<div class="mm_tablebox-unit">
+								<div class="mm_rside">
+									<a class="mm_btn btn_excel __btn_line_tertiary__" href="_popup_excelDownload.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><i class="ico_download"></i><b>엑셀 다운로드</b></a>
+								</div>
+							</div>
+							<!--// 목록하단 -->
+
+							<!-- 페이지네이션 -->
+							<!-- (D) 현재 페이지의 메뉴에 '__page-on' 클래스와 '선택됨' 타이틀을 추가합니다. -->
+							<div class="mm_pagination">
+								<div class="mm_inline">
+									<ol>
+										<li><a class="__page-on" href="#" title="선택됨"><b>1</b></a></li>
+										<li><a href="#"><b>2</b></a></li>
+										<li><a href="#"><b>3</b></a></li>
+										<li><a href="#"><b>4</b></a></li>
+										<li><a href="#"><b>5</b></a></li>
+									</ol>
+									<button type="button" class="btn_control-first" onclick="mm.link('')" disabled><i class="ico_page-first"></i><b class="mm_ir-blind">처음</b></button>
+									<button type="button" class="btn_control-prev" onclick="mm.link('')" disabled><i class="ico_page-prev"></i><b class="mm_ir-blind">이전</b></button>
+									<button type="button" class="btn_control-next" onclick="mm.link('')"><i class="ico_page-next"></i><b class="mm_ir-blind">다음</b></button>
+									<button type="button" class="btn_control-last" onclick="mm.link('')"><i class="ico_page-last"></i><b class="mm_ir-blind">마지막</b></button>
+								</div>
+								<div class="mm_pagination-jump">
+									<div class="mm_formmix-linked">
+										<div class="mm_form-text">
+											<label>
+												<input type="text" class="textfield" data-text><i class="bg_text"></i>
+												<span class="text_placeholder">숫자</span>
+											</label>
+										</div>
+										<button type="button" class="btn_jump"><b class="mm_ir-blind">이동</b></button>
+										<p class="text_linked">of 10<strong>(1,125 items)</strong></p>
+									</div>
+								</div>
+							</div>
+							<!--// 페이지네이션 -->
+						</div>
+						<!-- 관리자목록 -->
+					</div>
+					<!--// 본문 내용 -->
+
+					<!-- 현재 페이지 스크립트 -->
+				</div>
+				<!--// 본문 -->
+
+				<!-- 푸터 -->
+				<footer id="mm_footer" class="mm_footer">
+					<div class="mm_lside">
+						<h6><b class="mm_ir-blind">N.STATION</b></h6>
+					</div>
+					<div class="mm_rside">
+						<a class="mm_btn __btn_line_lighter__" href="#" target="_blank" title="새 창 열림"><i class="image_logo"></i><b class="mm_ir-blind">N.STATION</b><b>바로가기</b><i class="ico_link __link_sm__"></i></a>
+					</div>
+				</footer>
+				<!--// 푸터 -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

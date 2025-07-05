@@ -1,0 +1,105 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s1-h"] {
+	.mm_carousel- {
+		&inner {
+			padding-right: 2.66666vw;
+		}
+
+		&list {
+			padding-top: 106.99588%;
+		}
+
+		&item {
+			button {
+				.ico_play {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					padding-top: 24px;
+					width: 87px;
+					height: 87px;
+					border-radius: 100%;
+					background-color: rgba(#000, 0.46);
+					text-align: center;
+					@include mixin.transform(translate(-50%, -50%));
+
+					&::before {
+						margin-left: 3px;
+						width: 38px;
+						height: 42px;
+						@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/ico_play.png') '50% 50%/contain' no-repeat);
+					}
+				}
+			}
+		}
+
+		&pagination {
+			li:nth-child(n+2) {
+				margin-left: 5px;
+			}
+
+			.btn_carousel-page {
+				width: 4px;
+				height: 4px;
+				border-radius: 2px;
+				background-color: #000;
+				@include mixin.opacity(0.5);
+				@include mixin.transition(width const.$time_fast, opacity const.$time_fast);
+
+				&.__carousel-on {
+					width: 38px;
+					@include mixin.opacity(1);
+				}
+			}
+		}
+	}
+
+	figure {
+		position: relative;
+		z-index: 1;
+		padding-bottom: 106.99588%;
+
+		img {
+			position: absolute;
+			height: 100%;
+			object-fit: cover;
+		}
+
+		figcaption {
+			position: absolute;
+			bottom: 15.38461% - 0.9%;
+			right: -2.8vw;
+			left: 0;
+			padding: 0 5.6vw;
+			@include mixin.font(#fff center);
+
+			&.__text_black__ {
+				color: #000;
+			}
+		}
+
+		.text_main {
+			@include mixin.text-ellipsis(1);
+			margin-top: -5px;
+			font-size: 27px;
+		}
+
+		.text_sub {
+			@include mixin.text-ellipsis(1);
+			margin-top: 5px;
+			font-size: 17px;
+		}
+	}
+}

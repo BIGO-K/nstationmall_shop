@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 가상계좌 영수증 - N.STATION</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/app.css">
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="{ '_type': 'anchor' }">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><b>가상계좌 영수증</b></h1>
+				<div class="mm_lside">
+					<a class="btn_back" href="#" data-href="{ '_type': 'back' }"><i class="mco_history-back"></i><b class="mm_ir-blind">이전으로</b></a>
+				</div>
+				<div class="mm_rside">
+					<button type="button" class="btn_popup-close" onclick="mm.popup.close();"><i class="mco_popup-close"></i><b class="mm_ir-blind">팝업 닫기</b></button>
+				</div>
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+				<div class="mm_scroller">
+					<div class="mm_page-inner">
+						<!-- 본문 -->
+						<div class="mm_page-content m_popup-receipt">
+							<div class="m_popup-receipt-head">
+								<div class="mm_form-select __select_sm__">
+									<label>
+										<select data-select>
+											<option>승인</option>
+										</select>
+										<b class="text_selected"></b>
+										<i class="mco_form-select"></i>
+									</label>
+								</div>
+								<div class="mm_btnbox">
+									<div class="mm_inline">
+										<button type="button" class="mm_btn btn_email __btn_sm_line_primary__" onclick="mm.bom.prompt('이메일 주소를 입력해주세요', sampleCallback, { _title: '메일발송', forms: [{ _type: 'email', _placeholder: '‘@’를 포함하여 50자 이하 입력' }] });"><i class="mco_email"></i><b>발송</b></button>
+									</div>
+								</div>
+							</div>
+
+							<!-- 인쇄영역 -->
+							<div class="mm_print">
+								<!-- 주문 정보 -->
+								<section>
+									<h2 class="mm_strapline"><b>주문 정보</b></h2>
+									<table>
+										<tbody>
+											<tr>
+												<th scope="row"><b>주문번호</b></th>
+												<td><b>2102040927176588082</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>주문자명</b></th>
+												<td><b>하*고크루</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>상품명</b></th>
+												<td><b>[카파] 반다 스트랩 샌들 블랙 아동 키즈</b></td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+								<!--// 주문 정보 -->
+
+								<!-- 결제 정보 -->
+								<section>
+									<h2 class="mm_strapline"><b>결제 정보</b></h2>
+									<table>
+										<tbody>
+											<tr>
+												<th scope="row"><b>결제수단</b></th>
+												<td><b>가상계좌</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>거래상태</b></th>
+												<td><b>입금</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>거래일시</b></th>
+												<td><b>2021/02/07 09:27:45</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>취소일시</b></th>
+												<td><b>2021/02/07 09:27:45</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>결제은행</b></th>
+												<td><b>국민은행</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>가상계좌번호</b></th>
+												<td><b>4089661231238936</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>승인금액</b></th>
+												<td><p class="text_price mm_text-primary"><strong>58,500</strong></p></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>과세금액</b></th>
+												<td><p class="text_price">-<strong>25,455</strong></p></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>부가세</b></th>
+												<td><p class="text_price">-<strong>2,545</strong></p></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>면세금액</b></th>
+												<td><p class="text_price"><strong>0</strong></p></td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+								<!--// 결제 정보 -->
+
+								<!-- 현금영수증 정보 -->
+								<section>
+									<h2 class="mm_strapline"><b>현금영수증 정보</b></h2>
+									<table>
+										<tbody>
+											<tr>
+												<th scope="row"><b>결제수단</b></th>
+												<td><b>현금영수증</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>거래상태</b></th>
+												<td><b>승인</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>공급자사업자번호</b></th>
+												<td><b>123123123</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>현금영수증용도</b></th>
+												<td><b>소득공제</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>현금영수증발급상태</b></th>
+												<td><b>구매자요청발급</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>현금영수증인증값</b></th>
+												<td><b>0101234****</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>현금영수증승인번호</b></th>
+												<td><b>123412415435</b></td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+								<!--// 현금영수증 정보 -->
+
+								<!-- 공급자 정보 -->
+								<section>
+									<h2 class="mm_strapline"><b>공급자 정보</b></h2>
+									<table>
+										<tbody>
+											<tr>
+												<th scope="row"><b>상호</b></th>
+												<td><b>(주)엔스테이션</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>사업자번호</b></th>
+												<td><b>213-86-34194</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>대표자명</b></th>
+												<td><b>채영희</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>연락처</b></th>
+												<td><b>1670-3212</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>주소</b></th>
+												<td><b>경기도 성남시 분당구 판교로242(삼평동, PDC빌딩 A동 1002호)</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>홈페이지</b></th>
+												<td><b>www.naturestore.co.kr</b></td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+								<!--// 공급자 정보 -->
+
+								<!-- 결제대행사 정보 -->
+								<section>
+									<h2 class="mm_strapline"><b>결제대행사 정보</b></h2>
+									<table>
+										<tbody>
+											<tr>
+												<th scope="row"><b>상호</b></th>
+												<td><b>한국정보통신(주)</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>사업자번호</b></th>
+												<td><b>213-86-34194</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>대표자명</b></th>
+												<td><b>권순배, 임명수</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>연락처</b></th>
+												<td><b>1670-3212</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>주소</b></th>
+												<td><b>경기도 성남시 분당구 판교로242(삼평동, PDC빌딩 A동 1002호)</b></td>
+											</tr>
+											<tr>
+												<th scope="row"><b>홈페이지</b></th>
+												<td><b>www.naturestore.co.kr</b></td>
+											</tr>
+										</tbody>
+									</table>
+								</section>
+								<!--// 결제대행사 정보 -->
+							</div>
+							<!--// 인쇄영역 -->
+
+							<div class="mm_foot">
+								<div class="mm_btnbox">
+									<button type="button" class="mm_btn btn_print __btn_primary__" onclick="window.print();"><b>인쇄하기</b></button>
+								</div>
+							</div>
+						</div>
+						<!--// 본문 -->
+					</div>
+				</div>
+
+				<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로"><i class="mco_topmost"></i><b>TOP</b></a>
+
+				<!-- 현재 페이지 스크립트 -->
+				<script>
+					// bom 콜백 샘플
+					function sampleCallback() {
+
+						alert('console 확인');
+						console.log(arguments);
+
+					}
+				</script>
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,575 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 브랜드샵, 브랜드리스트, 브랜드검색
+**/
+
+
+//< 브랜드샵, 브랜드리스트
+.m_brand- {
+	&head {
+		position: relative;
+		margin-bottom: 66px;
+		height: 470px;
+
+		// 브랜드 이미지
+		.image_brand {
+			width: 100%;
+			height: 100%;
+			background-color: #9a9a9a;
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				background-color: rgba(#000, 0.22);
+				content: '';
+			}
+
+			&.__lazyload-error {
+				&::before,
+				&::after {
+					content: none;
+				}
+			}
+		}
+
+		// 브랜드 소개
+		&-explan {
+			position: absolute;
+			top: 50%;
+			right: 0;
+			left: 0;
+			margin: 0 auto;
+			padding-bottom: 16px;
+			width: var.$minWidth_base;
+			text-align: center;
+			@include mixin.transform(translateY(-50%));
+
+			.text_brand {
+				padding: 0 10px;
+				@include mixin.font(#fff 700 '54px' [var.$fontFamily_latin]);
+
+				+ * {
+					position: relative;
+					margin-top: 65px;
+
+					&::after {
+						position: absolute;
+						top: -42px;
+						left: 50%;
+						margin-left: -22px;
+						width: 44px;
+						border-bottom: 4px solid #fff;
+						content: '';
+					}
+				}
+			}
+
+			> p {
+				color: #fff;
+
+				&.text_main {
+					@include mixin.font('19px/27px');
+
+					+ .text_sub {
+						margin-top: 12px;
+					}
+				}
+
+				&.text_sub {
+					padding: 0 265px;
+					@include mixin.font('14px/21px');
+				}
+			}
+		}
+
+		// 좋아요/좋아요수/공유하기
+		&-private {
+			position: absolute;
+			bottom: 38px;
+			left: 50%;
+			@include mixin.transform(translateX(-50%));
+
+			li {
+				display: inline-block;
+				text-align: center;
+
+				&:nth-child(n+2) {
+					margin-left: 14px;
+				}
+
+				> button,
+				> b {
+					padding: 0;
+					width: 48px;
+					height: 48px;
+					border-radius: 100%;
+					background-color: #fff;
+					@include mixin.font(#6a6a6a '18px/48px');
+				}
+
+				.mm_like {
+					padding-left: 1px;
+					line-height: 50px;
+				}
+
+				> b {
+					font-size: 13px;
+				}
+
+				.mco_share {
+					margin-left: -1px;
+				}
+			}
+		}
+	}
+
+	&prod {
+		margin-bottom: 70px;
+		@include mixin.clearfix();
+
+		.mm_heading {
+			border-bottom: 0;
+			padding: 0 2px 24px;
+		}
+
+		// 쇼케이스
+		&-showcase {
+			float: right;
+			width: 610px;
+
+			.mm_carousel {
+				&-list {
+					height: 738px;
+				}
+
+				&-item {
+					a {
+						display: block;
+					}
+
+					figure {
+						.image_banner {
+							padding-top: 100%;
+							width: 100%;
+						}
+					}
+
+					figcaption {
+						padding: 26px 19px 0;
+						@include mixin.font(#4a4a4a '17px/25px');
+
+						> * {
+							@include mixin.text-ellipsis(1);
+						}
+
+						.text_title {
+							@include mixin.font(var.$color_text_base '30px/42px');
+
+							+ .text_main {
+								margin-top: 12px;
+							}
+						}
+
+						.text_main {
+							padding-right: 70px;
+
+							+ .text_main {
+								margin-top: 2px;
+							}
+						}
+					}
+				}
+
+				&-control {
+					position: absolute;
+					z-index: 3;
+					top: 305px;
+					right: 0;
+					left: 0;
+
+					button {
+						padding: 24px;
+						font-size: 40px;
+						@include mixin.opacity(0.3);
+
+						&:hover {
+							@include mixin.opacity(0.7);
+						}
+
+						&.btn_carousel-next {
+							right: 0;
+						}
+					}
+				}
+
+				&-count {
+					top: 711px;
+					right: 21px;
+					padding: 0 13px;
+					height: 26px;
+					border-radius: 26px;
+					background-color: #e6e6e6;
+					@include mixin.font(#999 300 '15px/26px' [var.$fontFamily_latin]);
+
+					.text_carousel-index {
+						@include mixin.font(var.$color_text_base 500);
+					}
+
+					.text_carousel-total::before {
+						margin: 0 3px 0 2px;
+						content: '/';
+					}
+				}
+			}
+
+			+ .m_brand-prod-curation {
+				width: 712px;
+
+				.mm_product-list {
+					ul {
+						li {
+							width: 224px;
+						}
+					}
+				}
+			}
+		}
+
+		// 큐레이션
+		&-curation {
+			float: left;
+		}
+	}
+
+	&find {
+		position: relative;
+
+		&-sort {
+			padding-top: 30px;
+			border-top: 3px solid #101010;
+
+			ul {
+				padding-left: 1px;
+				@include mixin.font(#b8b8b9 '34px/45px');
+
+				li {
+					float: left;
+
+					&:first-child a {
+						position: relative;
+
+						&::after {
+							position: absolute;
+							left: 87px;
+							bottom: 0;
+							font-size: 34px;
+							content: '.';
+						}
+					}
+
+					a {
+						display: block;
+						padding: 0 3px;
+
+						&.__sort-on {
+							@include mixin.font(var.$color_text_base 700);
+
+							&::after {
+								font-weight: 400;
+							}
+						}
+					}
+				}
+			}
+
+			// ㄱㄴㄷ
+			.m__sort-korean {
+				@include mixin.font('38px', -10px);
+
+				li {
+					// ㄱㄴㄷ 전체
+					&:first-child {
+						position: relative;
+						width: 127px;
+						@include mixin.font('36px', -6px);
+
+						a::after {
+							margin-top: 1px;
+						}
+					}
+
+					// 123
+					&:last-child {
+						@include mixin.font('30px', 0);
+
+						a {
+							padding-left: 12px;
+						}
+					}
+				}
+			}
+
+			// ABC
+			.m__sort-english {
+				letter-spacing: 1px;
+
+				li {
+					// ABC 전체
+					&:first-child {
+						width: 133px;
+						letter-spacing: 6px;
+
+						a {
+							padding-left: 10px;
+						}
+					}
+
+					// 123
+					&:last-child {
+						@include mixin.font('34px', 0);
+
+						a {
+							padding-left: 6px;
+						}
+					}
+				}
+			}
+		}
+
+		&-search {
+			position: absolute;
+			z-index: 1;
+			right: 0;
+			bottom: -102px;
+			width: 230px;
+
+			.mm_form-text {
+				.btn_text-clear {
+					right: 36px;
+					width: 30px;
+				}
+
+				.textfield {
+					padding-right: 66px !important;
+				}
+			}
+
+			.btn_search {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				padding-left: 11px;
+				width: 39px;
+				@include mixin.font(#6a6a6a '14px/48px' left);
+			}
+		}
+
+		+ .mm_text-none {
+			padding-top: 266px;
+		}
+	}
+
+	&list {
+		position: relative;
+		margin-top: 38px;
+		padding-top: 100px;
+
+		> ul {
+			position: relative;
+
+			> li {
+				float: left;
+			}
+		}
+
+		// 텍스트형
+		&:not([class*="_card_"]) {
+			position: relative;
+
+			.text_title {
+				position: absolute;
+				top: 0;
+				left: 0;
+				margin-left: -9px;
+				@include mixin.font(700 '80px');
+
+				&.__title_en__ {
+					margin-left: 2px;
+					font-size: 70px;
+				}
+			}
+
+			ul li {
+				width: 20%;
+
+				&:nth-child(n+6) {
+					margin-top: 15px;
+				}
+
+				&:nth-child(-n+4)::after {
+					position: absolute;
+					top: 0;
+					left: 0;
+					bottom: 0;
+					border-right: 1px solid #e6e6e6;
+					content: '';
+				}
+
+				@for $i from 1 through 4 {
+					&:nth-child(#{$i})::after {
+						left: #{$i * 20%};
+					}
+				}
+
+				&:nth-child(5n + 1) {
+					a {
+						padding-left: 3px;
+					}
+				}
+
+				a {
+					display: block;
+					padding: 7px 30px;
+					font-size: 14px;
+
+					> * {
+						display: block;
+						@include mixin.text-ellipsis(1);
+					}
+
+					small {
+						margin-top: 2px;
+						@include mixin.font(#999 '13px');
+					}
+				}
+			}
+
+			+ .m_brand-list {
+				margin-top: 66px;
+			}
+		}
+
+		// 카드형
+		&[class*="_card_"] {
+			ul {
+				margin: -5px 0 0 -5px;
+
+				li {
+					margin: 5px 0 0 5px;
+
+					> a {
+						display: block;
+					}
+				}
+			}
+
+			figure {
+				padding: 40px 10px 0;
+				width: 190px;
+				height: 190px;
+				border-radius: 4px;
+				border: 1px solid #dcdcdc;
+
+				.image_logo {
+					position: relative;
+					padding: 17px 30px;
+					width: 100%;
+					height: 80px;
+					background-origin: content-box;
+
+					$format: (landscape-4x, 33px 20px), (landscape-2x, 20px 40px), (portrait-2x, 10px 20px), (portrait, 12px);
+					@each $ratio, $padding in $format {
+						&.__image-#{$ratio} {
+							padding: $padding;
+						}
+					}
+
+					&[class*="error"]::after {
+						position: absolute;
+						top: 50%;
+						right: 0;
+						left: 0;
+						@include mixin.font(#a3a3a3 '12px/17px' center);
+						content: attr(title);
+						@include mixin.transform(translateY(-50%));
+					}
+				}
+
+				figcaption {
+					@include mixin.text-ellipsis(1);
+					margin-top: 28px;
+					@include mixin.font(#4a4a4a '14px' center);
+				}
+			}
+		}
+
+		// 스켈레톤
+		&[class*="_skeleton_"] {
+			ul {
+				li {
+					&:nth-child(5n + 1) {
+						.text_brand {
+							padding-left: 3px;
+						}
+					}
+
+					.text_brand {
+						padding: 7px 30px;
+
+						&::before,
+						&::after {
+							display: block;
+							width: 150px;
+							height: 16px;
+							background-color: #efefef;
+							content: '';
+						}
+
+						&::after {
+							margin-top: 8px;
+							width: 80px;
+							height: 15px;
+						}
+					}
+				}
+			}
+
+			// 카드형
+			&[class*="_card_"] {
+				.text_brand {
+					width: 190px;
+					height: 190px;
+					border-radius: 4px;
+					background-color: #efefef;
+
+					&::before,
+					&::after {
+						content: none;
+					}
+				}
+			}
+		}
+	}
+}
+//> 브랜드샵, 브랜드리스트
+
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+
+
+// *---------- 레이어 ----------*

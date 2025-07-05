@@ -1,0 +1,106 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s1-b"] {
+	.mm_carousel- {
+		&list {
+			margin: 0 auto;
+			padding-top: 600px;
+			width: var.$minWidth_base;
+
+			&::before,
+			&::after {
+				position: absolute;
+				z-index: 3;
+				top: 0;
+				bottom: 0;
+				width: 100%;
+				background-color: rgba(#000, 0.44);
+				content: '';
+			}
+
+			&::before {
+				right: 100%;
+			}
+
+			&::after {
+				left: 100%;
+			}
+		}
+
+		&item {
+			.image_banner {
+				padding-top: 600px;
+				width: 100%;
+			}
+
+			figcaption {
+				position: absolute;
+				z-index: 1;
+				bottom: 115px;
+				left: 0;
+				padding: 0 101px;
+				max-width: 100%;
+				color: #fff;
+
+				&.__text_black__ {
+					color: #000;
+				}
+
+				> p {
+					@include mixin.text-ellipsis();
+				}
+			}
+
+			.text_main {
+				@include mixin.font(700 '48px');
+			}
+
+			.text_sub {
+				margin-top: 14px;
+				font-size: 30px;
+			}
+		}
+
+		&control {
+			position: absolute;
+			z-index: 2;
+			top: 50%;
+			left: 50%;
+			margin-left: math.div(var.$minWidth_base, -2);
+			width: var.$minWidth_base;
+
+			button {
+				padding: 10px;
+				@include mixin.font(#fff '47px');
+				text-shadow: 0px 3px 6px rgba(#000, 0.29);
+			}
+		}
+
+		&count {
+			left: 50%;
+			bottom: 40px;
+			padding: 0 15px;
+			height: 30px;
+			border-radius: 15px;
+			background-color: rgba(#000, 0.38);
+			@include mixin.font(#fff 500 '15px/30px' [var.$fontFamily_latin] center);
+			@include mixin.transform(translateX(-50%));
+
+			i,
+			.text_carousel-total {
+				@include mixin.opacity(0.3);
+			}
+		}
+	}
+}

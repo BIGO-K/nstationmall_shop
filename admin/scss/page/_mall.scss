@@ -1,0 +1,47 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 쇼핑몰관리
+**/
+
+
+//< 권한관리
+.m_mall-set-power {
+	.mm_form {
+		.mm_form-table {
+			> table {
+				tr {
+					th {
+						width: 210px;
+					}
+				}
+			}
+		}
+	}
+}
+//> 권한관리
+
+//< 약관관리
+.m_mall-term- {
+	// 상세보기
+	&detail {
+		> .mm_scroller {
+			padding: 0 0 20px 20px;
+			max-height: 600px;
+			border: 1px solid #d5d5d5;
+			border-top-color: #666;
+		}
+	}
+}
+//> 약관관리
+
+//< 자동메일 SMS 템플릿관리
+.m_mall-mail-frame {
+	height: 500px;
+}
+//> 자동메일 SMS 템플릿관리

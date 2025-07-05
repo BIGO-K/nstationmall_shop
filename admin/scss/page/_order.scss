@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 주문관리
+**/
+
+
+//< 주문관리
+.m_order- {
+    &list {
+        .mm_table-status button:not(.mm_btn) > b {
+            @include mixin.font(var.$color_secondary_base 700 underline);
+        }
+    }
+
+    &state-manage {
+        margin-top: 70px;
+    }
+}
+//> 주문관리

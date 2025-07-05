@@ -1,0 +1,48 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nn/s6-a"] {
+	border: 8px solid #eee;
+	border-width: 8px 0;
+
+	li {
+		float: left;
+		margin-top: -1px;
+		width: 50%;
+
+		a {
+			display: block;
+			overflow: hidden;
+			padding: 0 5px;
+			height: 52px;
+			border: 1px solid #eee;
+			border-width: 1px 1px 1px 0;
+			@include mixin.font(500 '17px/52px' [var.$fontFamily_latin] center);
+		}
+
+		&:nth-child(even) {
+			a {
+				border-right: 0;
+			}
+
+			&:last-of-type a {
+				border-bottom: 0;
+			}
+		}
+
+		&:nth-child(odd):nth-last-of-type(2) a,
+		&:nth-child(odd):last-of-type a {
+			border-bottom: 0;
+		}
+	}
+}

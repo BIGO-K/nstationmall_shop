@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__ __layout_sign__">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 로그인 - N.STATION</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/app.css">
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="{ '_type': 'anchor' }">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><b>로그인</b></h1>
+				<div class="mm_lside">
+					<a class="btn_back" href="#" data-href="{ '_type': 'back' }"><i class="mco_history-back"></i><b class="mm_ir-blind">이전으로</b></a>
+				</div>
+				<div class="mm_rside">
+					<button type="button" class="btn_popup-close" onclick="mm.popup.close();"><i class="mco_popup-close"></i><b class="mm_ir-blind">팝업 닫기</b></button>
+				</div>
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+				<!-- (D) 로그인/회원가입 팝업은 html 요소에 '__layout_popup__ __layout_sign__' 클래스를 추가합니다. -->
+				<div class="mm_scroller">
+					<div class="mm_page-inner">
+						<!-- 본문 -->
+						<div class="mm_page-content">
+							<div class="m_popup-sign m_popup-login">
+								<form>
+									<!-- 정보입력 -->
+									<h6 class="mm_strapline"><b>아이디</b></h6>
+									<div class="mm_form-text __text_lg__">
+										<button type="button" class="btn_text-clear"><i class="mco_form-clear"></i><b class="mm_ir-blind">지우기</b></button>
+										<label>
+											<input type="text" class="textfield" data-text maxlength="20"><i class="bg_text"></i>
+											<span class="text_placeholder">아이디를 입력하세요</span>
+										</label>
+									</div>
+									<h6 class="mm_strapline"><b>비밀번호</b></h6>
+									<div class="mm_form-text __text_lg__">
+										<button type="button" class="btn_text-pw"><i class="mco_pw-hide"></i><b class="mm_ir-blind">비밀번호 보기</b></button>
+										<button type="button" class="btn_text-clear"><i class="mco_form-clear"></i><b class="mm_ir-blind">지우기</b></button>
+										<label>
+											<input type="password" class="textfield" data-text minlength="8" maxlength="16"><i class="bg_text"></i>
+											<span class="text_placeholder">비밀번호를 입력하세요</span>
+										</label>
+									</div>
+									<!--// 정보입력 -->
+
+									<!-- 보안문자입력 -->
+									<!-- (D) 로그인 5회 실패 시 .m_popup-login-security 영역을 노출합니다. -->
+									<div class="m_popup-login-security">
+										<p class="mm_text-negative">로그인을 5회 실패하셨습니다<br>보안 문자를 입력하여 로그인하세요</p>
+										<div class="m__security-info">
+											<i class="image_security"><img src="../image/_sample/login_fail.png" alt="보안문자"></i>
+											<button type="button" class="mm_btn btn_refresh __btn_xs_line_light__"><i class="mco_reload"></i><b>새로고침</b></button>
+											<div class="mm_form-text">
+												<button type="button" class="btn_text-clear"><i class="mco_form-clear"></i><b class="mm_ir-blind">지우기</b></button>
+												<label>
+													<input type="text" class="textfield" data-text><i class="bg_text"></i>
+													<span class="text_placeholder">보안문자 입력</span>
+												</label>
+											</div>
+										</div>
+									</div>
+									<!--// 보안문자입력 -->
+
+									<label class="mm_form-check">
+										<input type="checkbox" data-check>
+										<b class="mm_block">
+											<i class="mco_form-check"></i>
+											<span class="text_label">아이디 저장하기</span>
+										</b>
+									</label>
+
+									<!-- 기존 회원 비밀번호 변경 -->
+									<a class="m_popup-login-customer" href="_popup_renewalInquiry.html" data-href="{ '_type': 'popup' }"><b><strong class="mm_text-secondary">기존 가입고객</strong>은 최초 1회 비밀번호 변경 후 사용 가능합니다. <small>GO <i class="mco_link"></i></small></b></a>
+									<!--// 기존 회원 비밀번호 변경 -->
+
+									<!-- 하단버튼 -->
+									<div class="mm_foot m_popup-sign-foot">
+										<div class="mm_btnbox">
+											<!-- (D) 최초 로그인 버튼 클릭시 생체인증 사용 팝업을 띄우기 위해 loginFaceIdUse() 함수를 호출합니다 -->
+											<button type="button" class="mm_btn __btn_lg_primary__" onclick="loginFaceIdUse();"><b>로그인</b></button>
+											<a class="mm_btn __btn_lg_line_primary__" href="_popup_join.html" data-href="{ '_type': 'popup' }"><b>회원가입</b></a>
+										</div>
+										<div class="mm_btnbox mm_flex __flex_auto__">
+											<a href="_popup_findID.html" data-href="{ '_type': 'popup' }"><b>아이디 찾기</b></a>
+											<a href="_popup_findPW.html" data-href="{ '_type': 'popup' }"><b>비밀번호 찾기</b></a>
+											<a href="_popup_orderInquiry_no.html" data-href="{ '_type': 'popup' }"><b>비회원 주문조회</b></a>
+											<!-- (D) 비회원 주문 시 '비회원 주문조회' 대신 하단의 '비회원 주문하기' 버튼을 노출합니다. -->
+											<!-- <a href="_popup_order_no.html" data-href="{ '_type': 'popup' }"><b>비회원 주문하기</b></a> -->
+										</div>
+									</div>
+									<!--// 하단버튼 -->
+									<input hidden>
+								</form>
+
+								<!-- 간편로그인 -->
+								<ul class="m_popup-login-sns">
+									<li><a class="btn_naver" href="#" target="_blank" title="새 창 열림"><i class="mco_sns-naver"></i><b>네이버</b></a></li>
+									<li><a class="btn_kakaotalk" href="#" target="_blank" title="새 창 열림"><i class="mco_sns-kakaotalk"></i><b>카카오톡</b></a></li>
+									<li><a class="btn_payco" href="#" target="_blank" title="새 창 열림"><i class="mco_sns-payco"></i><b>페이코</b></a></li>
+									<!-- (D) 모바일 ios app에서만 애플ID로그인 기능이 노출됩니다. -->
+									<li><a class="btn_apple" href="#" target="_blank" title="새 창 열림"><i class="mco_sns-apple"></i><b>애플</b></a></li>
+								</ul>
+								<!--// 간편로그인 -->
+							</div>
+						</div>
+						<!--// 본문 -->
+					</div>
+				</div>
+
+				<!-- 생체인증 안내 팝업 -->
+				<div class="m_login-popup">
+					<div class="m_login-popup-dim"></div>
+					<div class="m_login-popup-item">
+						<i class="mm_bg-contain image_faceid" data-lazyload="{ '_src': 'https://img.nstationmall.com/mall/ui/mobile/content/login_faceid.png' }"></i>
+						<p><strong>[필수] 생체정보(얼굴, 지문) 수집 및<br> 이용에 동의</strong>하시면 간편하게 로그인이<br> 가능합니다</p>
+						<div class="mm_btnbox">
+							<button type="button" class="mm_btn __btn_lg_primary__"><b>동의하고 사용하기</b></button>
+							<button type="button" class="btn_close"><i class="mco_close"></i><b class="mm_ir-blind">닫기</b></button>
+						</div>
+						<div class="mm_note">
+							<ul>
+								<li>최초 1회 생체정보 동의로 생체 로그인이 가능합니다 </li>
+								<li>[마이페이지 &#62; 설정]에서 연동 및 해제 가능합니다</li>
+							</ul>
+						</div>
+						<button type="button" class="btn_cancel"><b>다음에 할래요</b></button>
+					</div>
+				</div>
+				<!--// 생체인증 안내 팝업 -->
+
+				<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로"><i class="mco_topmost"></i><b>TOP</b></a>
+
+				<!-- 현재 페이지 스크립트 -->
+				<!-- <script src="../js/.js"></script> -->
+				<script>
+					// 생체인증 로그인 사용 팝업
+					function loginFaceIdUse() {
+
+						var $loginPopup = mm.find('.m_login-popup')[0];
+						if (!$loginPopup || !mm.is.mobile('app')) return;
+
+						var _classOn = '__on';
+						$loginPopup.classList.add(_classOn);
+
+						// 팝업닫기
+						mm.event.on(mm.find('.btn_close, .m_login-popup-dim, .btn_cancel', $loginPopup), 'click', function () {
+
+							$loginPopup.classList.remove(_classOn);
+
+						});
+
+					}
+				</script>
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel='shortcut icon' href="https://img.nstationmall.com/mall/ui/admin/common/favicon.ico">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 템플릿 관리 - N.STATION Admin</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/lib.css">
+	<link rel="stylesheet" href="../css/app.css">
+	<!-- <link rel="stylesheet" data-css="{ '_href': '../css/font.css' }"> -->
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/jquery-3.6.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="anchor">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<div class="mm_header">
+				<h1><b>템플릿 관리</b></h1>
+				<button type="button" class="btn_popup-close" onclick="window.close();return false;"><i class="ico_close-popup"></i><b class="mm_ir-blind">팝업닫기</b></button>
+			</div>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+
+				<!-- 본문 -->
+				<!--
+					(D) 실제 내용을 추가하는 부분입니다.
+					팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다.
+				-->
+				<div class="mm_page-content m_popup-template">
+
+					<!-- 본문 내용 -->
+					<div class="mm_container">
+						<!-- (D) 팝업이 열리면 스팟성 테마관 등록 페이지에서 템플릿의 m_display-template-form영역이 복제되어 m_popup-template-detail 영역에 삽입됩니다. -->
+						<div class="m_popup-template-detail"></div>
+
+						<!-- (D) 적용하기 버튼 클릭시 m_popup-template-detail 안에 있는 m_display-template-form이 복제되어 스팟성 테마관 등록페이지의 mm_form-hidden 영역으로 복사되어 대체됩니다. -->
+						<div class="mm_foot">
+							<div class="mm_btnbox">
+								<button type="button" class="mm_btn btn_apply __btn_xl__"><b>적용하기</b></button>
+							</div>
+						</div>
+					</div>
+					<!--// 본문 내용 -->
+
+					<!-- 현재 페이지 스크립트 -->
+					<script>
+						(function () {
+
+							var $openerForm = opener.getSelectedForm();
+							var $popupForm = mm.find('.m_popup-template-detail')[0];
+							$popupForm.innerHTML = $openerForm.outerHTML;
+
+							var $prodList = mm.find('.mm_table', $popupForm)[0];
+							if ($prodList) {
+								$prodList.setAttribute('data-table', '');
+								mm.table.destroy($prodList);
+								mm.table.update($prodList);
+							}
+
+							// 파일 input 요소는 기본적으로 file 객체(dom.files) 를 가지고 있지만
+							// file 객체는 다른 창으로 전달할 수 없기 때문에 base64로 변경된 파일 url(data.result)을
+							// blob 형태로 변환시켜 전달합니다.
+							function dataURItoBlob(__dataURI) {
+
+								var _byteString;
+								if (__dataURI.split(',')[0].indexOf('base64') >= 0) _byteString = atob(__dataURI.split(',')[1]);
+								else _byteString = unescape(__dataURI.split(',')[1]);
+
+								var _type = __dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+								var ints = new Uint8Array(_byteString.length);
+								for (var _i = 0; _i < _byteString.length; _i++) {
+									ints[_i] = _byteString.charCodeAt(_i);
+								}
+
+								return new Blob([ints], { type: _type });
+
+							}
+
+							// 이미지 파일 매칭
+							var imageDatas = opener.syncOpenerImage();
+							_.forEach(imageDatas, function (__data, __index) {
+
+								var $file = mm.find('data-file', $popupForm)[__index];
+								var fileData = mm.data.get($file);
+								var data = JSON.parse(__data);
+
+								if (data._default && !$file.closest('.__image-on')) {
+									data._default = null;
+									fileData.file = data;
+								}
+
+								if (!mm.is.empty(data.file)) {
+									data.originFile = dataURItoBlob(data.file.result);
+									fileData.file = data;
+
+									// 부모 페이지에서 html을 가져오기 때문에 이미지의 미리보기 canvas또한 부모 요소 기준이므로
+									// null 값을 부여해서 mm.form.file.set 실행시 새로운 캔버스를 생성하도록 합니다.
+									data.__.$canvas = null;
+
+									mm.form.file.set($file);
+								}
+
+							});
+
+							// 텍스트 input 매칭
+							_.forEach(mm.find('data-text', $openerForm), function (__$text, __index) {
+
+								mm.form.value(mm.find('data-text', $popupForm)[__index], __$text.value);
+
+							});
+
+							// mm.form.update();
+							mm.popup.resize();
+
+							// 적용하기 버튼 클릭 이벤트
+							mm.event.on('.btn_apply', 'click', function () {
+
+								if ($prodList) {
+									if ($prodList.closest('.__list-sortable')) {
+										mm.bom.alert('순서편집을 완료해 주세요');
+										return;
+									}
+
+									var $openerTable = mm.find('.mm_table', $openerForm)[0];
+									var $openerTbody = mm.find('tbody', $openerTable)[0];
+									if ($openerTbody) $openerTbody.outerHTML = mm.find('.mm_table-body tbody', $prodList)[0].outerHTML;
+									else $openerTable.outerHTML = $prodList.outerHTML;
+								}
+
+								var datas = [];
+								_.forEach(mm.find('data-file', $popupForm), function (__$file, __index) {
+
+									var fileData = mm.data.get(__$file).file;
+									if (!fileData) return;
+
+									if (mm.is.empty(fileData.file) && fileData._default) fileData._default = null;
+
+									// data를 string 타입으로 바꾸지 않을 경우 IE에서 "사용권한이 없습니다"라는
+									// 에러가 발생하기 때문에 string 타입으로 변경 후 전달합니다.
+									datas[__index] = JSON.stringify(mm.extend(fileData));
+
+								});
+								opener.syncPopupImage(mm.extend(datas));
+
+								_.forEach(mm.find('.mm_form [data-text]'), function (__$text, __index) {
+
+									mm.form.value(mm.find('data-text', $openerForm)[__index], __$text.value);
+
+								});
+
+								// mm.form.update();
+								mm.delay.on(mm.popup.close, { _time: 500 });
+
+							});
+
+						})();
+					</script>
+				</div>
+				<!--// 본문 -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,226 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+@use '../helper/extend';
+
+/**
+ * 레이아웃
+ * 팝업
+**/
+
+
+//< 팝업 페이지
+html[class*="_popup_"] {
+	min-width: 0;
+
+	body {
+		min-width: 0;
+	}
+
+	.mm_view {
+		padding: 0;
+	}
+
+	.mm_page {
+		display: block;
+		padding-bottom: 0;
+		height: 100%;
+
+		&-content {
+			@include mixin.prefix(flex, none, webkit ms);
+			@include mixin.prefix(align-self, auto, webkit ms);
+			padding: 0;
+		}
+	}
+}
+//> 팝업 페이지
+
+//< 메일
+// 청약 철회 안내
+.m_mail-withdrawal {
+	margin: 0 auto;
+	width: 700px;
+
+	h2 {
+		padding: 43px 0 30px;
+		@include mixin.font(500 '23px' center);
+	}
+
+	&-info {
+		padding: 0 32px;
+
+		> ul {
+			> li {
+				position: relative;
+				margin-top: 14px;
+				padding-left: 17px;
+				@include mixin.font('14px/22px');
+
+				&:first-child {
+					margin-top: 0;
+				}
+
+				span {
+					position: absolute;
+					top: 0;
+					left: 0;
+				}
+
+				ul {
+					margin-top: 6px;
+
+					li {
+						position: relative;
+						padding-left: 10px;
+						@include mixin.font(#4a4a4a '14px/24px');
+
+						&::before {
+							position: absolute;
+							top: 0;
+							left: -1px;
+							content: '·';
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&-form {
+		margin-top: 31px;
+		padding: 0 32px 60px;
+
+		table {
+			margin-bottom: 38px;
+			border-top: 1px solid #4a4a4a;
+			border-bottom: 1px solid #d5d5d5;
+
+			tr {
+				&:first-child {
+					> * {
+						border-top: 0;
+					}
+				}
+
+				> * {
+					height: 55px;
+					border-top: 1px solid #e6e6e6;
+				}
+
+				th {
+					padding-left: 24px;
+					background-color: #fafafa;
+					@include mixin.font(#6a6a6a '14px' left);
+				}
+			}
+		}
+
+		> p {
+			margin-top: 32px;
+			@include mixin.font('14px' center);
+
+			span {
+				display: inline-block;
+				width: 73px;
+
+				&.text_sign {
+					margin: 0 2px 0 114px;
+				}
+			}
+		}
+	}
+
+	&-foot {
+		position: relative;
+		height: 73px;
+		border-top: 1px solid #dcdcdc;
+		background-color: #fafafa;
+
+		.image_logo {
+			position: absolute;
+			top: 28px;
+			left: 20px;
+			width: 168px;
+			height: 18px;
+			@include mixin.opacity(0.2);
+		}
+
+		.btn_print {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
+	}
+}
+
+// 광고메일 수신 거부
+.m_mail-rejection {
+	margin: 0 auto;
+	width: 700px;
+	text-align: center;
+
+	h2 {
+		padding: 75px 0 48px;
+		@include mixin.font(500 '23px');
+
+		.ico_rejection {
+			margin: 0 0 15px 10px;
+			width: 48px;
+			height: 34px;
+		}
+
+		b {
+			display: block;
+		}
+	}
+
+	> strong {
+		font-size: 17px;
+	}
+
+	> p {
+		margin-top: 11px;
+		@include mixin.font(#4a4a4a '14px/20px');
+	}
+
+	.mm_btnbox {
+		margin-top: 52px;
+
+		.mm_btn {
+			padding: 0;
+			width: 160px;
+
+			&:nth-child(n+2) {
+				margin-left: 6px;
+			}
+		}
+	}
+
+	> ul {
+		margin-top: 70px;
+		padding: 18px 40px 40px 19px;
+		border-top: 1px solid #dcdcdc;
+		text-align: left;
+
+		li {
+			position: relative;
+			padding-left: 10px;
+			@include mixin.font(#6a6a6a '14px/24px');
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: 2px;
+				content: '·';
+			}
+
+			strong {
+				color: var.$color_text_base;
+			}
+		}
+	}
+}
+//> 메일

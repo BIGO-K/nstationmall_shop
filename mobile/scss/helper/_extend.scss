@@ -1,0 +1,302 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 헬퍼
+ * 상속 확장 클래스
+**/
+
+
+//< 찜아이템담기 (마이페이지 > MY찜 > 찜한 아이템, (모달) 찜아이템담기 사용)
+%likeFolder {
+	.btn_add-folder {
+		padding-left: 16px;
+		width: 100%;
+		@include mixin.font(var.$color_point1 '15px' left);
+
+		.mco_add {
+			margin-right: 7px;
+			font-size: 20px;
+		}
+	}
+
+	li {
+		position: relative;
+		border-bottom: 1px solid #eee;
+
+		a {
+			display: block;
+			position: relative;
+			padding: 16px 14px 16px 65px;
+			height: 69px;
+
+			i {
+				position: absolute;
+				top: 16px;
+				left: 14px;
+				width: 37px;
+				height: 37px;
+				background-color: #f5f5f5;
+				@include mixin.font(#cdcdcd '13px/37px' center);
+
+				// 이미지 오류
+				&.__lazyload-error::before {
+					@include mixin.font(#cdcdcd 'inherit');
+					content: '\ff18';
+				}
+			}
+
+			p {
+				@include mixin.flex-container();
+				@include mixin.prefix(align-items, center, webkit ms);
+				padding-top: 8px;
+				font-size: 14px;
+
+				span {
+					@include mixin.text-ellipsis(1);
+				}
+
+				small {
+					margin-left: 9px;
+					@include mixin.font(#7b7b7b 300 '12px' [var.$fontFamily_latin], nowrap 0);
+				}
+			}
+		}
+	}
+}
+//> 찜아이템담기
+
+//< 인플루언서 추천 아이템 (메인, 상품상세)
+%prodInfluencer {
+	.mm_strapline {
+		padding: 0 14px 12px;
+		font-size: 20px;
+	}
+
+	ul {
+		display: inline-block;
+		padding: 0 14px 4px;
+		@include mixin.font('0', nowrap);
+
+		li {
+			display: inline-block;
+			width: 147px;
+			white-space: normal;
+
+			&:nth-child(n+2) {
+				margin-left: 4px;
+			}
+
+			> a {
+				display: block;
+			}
+		}
+	}
+
+	figure {
+		.image_influencer {
+			padding-top: 121.76870%;
+			width: 100%;
+		}
+
+		figcaption {
+			margin-top: 7px;
+			padding-right: 10px;
+
+			.text_main {
+				@include mixin.text-ellipsis(1);
+				font-size: 14px;
+			}
+
+			.text_sub {
+				@include mixin.text-ellipsis(1);
+				margin-top: 2px;
+				@include mixin.font(#6a6a6a '13px');
+			}
+		}
+	}
+}
+//> 인플루언서 추천 아이템
+
+//< 리뷰 & 체험단 후기 작성
+%reviewWrite {
+	> [class*="-product"] {
+		padding: 20px 14px;
+	}
+
+	.mm_product-select {
+		.btn_dropdown {
+			color: #999;
+		}
+	}
+
+	section {
+		padding: 39px 0 40px;
+		border-bottom: 1px solid #eee;
+		text-align: center;
+
+		h6 {
+			padding-bottom: 17px;
+			font-size: 17px;
+		}
+
+		// 별점
+		[class*="-starscore"] {
+			@include mixin.font(#e6e6e6 '37px');
+
+			ul {
+				display: inline-block;
+
+				li {
+					float: left;
+
+					&:nth-of-type(n+2) {
+						margin-left: 4px;
+					}
+
+					&.__starscore-on {
+						color: #f2953a;
+					}
+				}
+			}
+		}
+
+		// 후기선택
+		.mm_radio-list {
+			padding: 0 30px;
+
+			ul {
+				li {
+					position: relative;
+					text-align: center;
+
+					&:nth-of-type(n+2) {
+						margin-top: 0;
+					}
+
+					&::before {
+						position: absolute;
+						top: 20px;
+						left: 0;
+						width: 100%;
+						border-top: 1px solid #e6e6e6;
+						content: '';
+					}
+
+					&:first-of-type::before {
+						right: 0;
+						left: auto;
+						width: 50%;
+					}
+
+					&:last-of-type::before {
+						width: 50%;
+					}
+				}
+			}
+
+			.mm_form-radio {
+				padding: 48px 0 0;
+				min-width: 60px;
+
+				.mco_form-radio {
+					left: 50%;
+					width: 40px;
+					height: 40px;
+					border-color: #e6e6e6;
+					@include mixin.transform(translateX(-50%));
+
+					&::before {
+						top: 50%;
+						left: 50%;
+						width: 23px;
+						height: 23px;
+						background-color: #e6e6e6;
+						@include mixin.transform(translate(-50%, -50%));
+					}
+				}
+
+				.text_label {
+					margin-left: 0;
+					@include mixin.font(#4a4a4a '12px/14px');
+				}
+
+				input:checked {
+					+ .mm_block {
+						.mco_form-radio {
+							border-color: var.$color_point1;
+						}
+
+						.text_label {
+							color: var.$color_point1;
+						}
+					}
+				}
+			}
+		}
+
+		+ .mm_inner {
+			.mm_strapline {
+				padding: 24px 0 11px 2px;
+			}
+
+			// 신체정보입력
+			> .mm_flex {
+				margin-top: -8px;
+				@include mixin.prefix(flex-wrap, wrap, webkit ms);
+
+				> .mm_formmix-linked {
+					margin-top: 8px;
+					min-width: 130px;
+					max-width: 50%;
+				}
+
+				.text_linked {
+					margin-right: 0;
+					width: 45px;
+				}
+			}
+
+			.mm_note + .mm_strapline {
+				padding-top: 21px;
+			}
+
+			.mm_form-text + .mm_strapline {
+				margin-top: 0;
+			}
+
+			// 리뷰내용
+			textarea {
+				color: #3d3d3d;
+			}
+
+			.text_length {
+				padding: 5px 0 0 2px;
+				@include mixin.font(#999 '13px/17px');
+
+				strong {
+					color: var.$color_text_base;
+				}
+			}
+
+			// 포토업로드
+			.mm_form-multiple {
+				margin-top: 17px;
+
+				+ .mm_note {
+					margin-top: 18px;
+					padding-right: 7px;
+				}
+			}
+		}
+	}
+
+	.mm_foot {
+		margin-top: 24px;
+	}
+}
+//> 리뷰 & 체험단 후기 작성

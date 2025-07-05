@@ -1,0 +1,165 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 인쇄
+**/
+
+
+//< 인쇄단락
+html[class*="_print_"] {
+	overflow: auto;
+	width: 580px;
+	min-width: 580px;
+	height: auto;
+
+	body {
+		overflow: auto;
+		width: 580px;
+		min-width: 580px;
+		height: auto;
+	}
+
+	.mm_view,
+	.mm_page,
+	.mm_page-content {
+		padding: 0 !important;
+	}
+
+	.mm_container {
+		padding: 0;
+		min-width: 580px;
+	}
+
+	@media print {
+		.mm_btnbox {
+			display: none;
+		}
+	}
+}
+//> 인쇄단락
+
+//< 인쇄영역
+.mm_print {
+	margin: 0 auto;
+	width: 580px;
+	text-align: center;
+
+	h2 {
+		padding: 28px 0 2px;
+		@include mixin.font(#333 '24px/24px');
+
+		.__ie10 & { padding-top: 26px; line-height: 25px; }
+
+		small {
+			font-size: 14px;
+		}
+	}
+
+	.text_num {
+		margin-bottom: 8px;
+		height: 12px;
+		@include mixin.font('12px/14px' right);
+
+		span {
+			display: inline-block;
+			margin-left: 4px;
+			width: 120px;
+			height: 100%;
+			border-bottom: 1px solid #000;
+		}
+	}
+
+	table {
+		@include mixin.font('12px/18px');
+
+		tr {
+			> * {
+				height: 49px;
+				border: 1px solid #d5d5d5;
+			}
+
+			th {
+				background-color: #f0f0f0;
+
+				&.text_subtitle {
+					background-color: #f9f9f9;
+				}
+			}
+
+			td {
+				padding: 7px;
+
+				> p {
+					text-align: left;
+				}
+
+				.image_sign {
+					width: auto;
+					max-width: 100%;
+				}
+
+				&.mm_image-none {
+					.ico_none::before {
+						.__ie11 & { position: relative; @include mixin.transform(translate(0,0)); }
+					}
+				}
+			}
+		}
+
+		tbody {
+			tr {
+				&:first-child {
+					td {
+						p {
+							position: relative;
+							padding-right: 46px;
+						}
+
+						span {
+							position: absolute;
+							top: 50%;
+							right: 16px;
+							@include mixin.transform(translateY(-50%));
+						}
+					}
+				}
+
+				&:last-child {
+					td:not([colspan]) {
+						background-color: #f0f0f0;
+					}
+				}
+			}
+		}
+
+		tfoot {
+			tr:first-child {
+				td {
+					background-color: #f0f0f0;
+				}
+			}
+		}
+	}
+
+	&-foot {
+		.text_using {
+			display: block;
+			padding-right: 23px;
+			border: 1px solid #d5d5d5;
+			border-top-width: 0;
+			height: 50px;
+			@include mixin.font('12px/50px' right);
+		}
+
+		p {
+			padding-top: 19px;
+			@include mixin.font(700 '14px');
+		}
+	}
+}
+//> 인쇄영역

@@ -1,0 +1,33 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * 푸터
+**/
+
+
+//< 푸터영역
+.mm_footer {
+	// 정보
+	&-info {
+		h6 {
+            &.__brand_national__ {
+                width: 189px;
+                height: 33px;
+                @include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/logo_national.png') '50% 50%/contain' no-repeat);
+            }
+
+            &.__brand_nfl__ {
+                width: 189px;
+                height: 33px;
+                @include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/logo_nfl.png') '50% 50%/contain' no-repeat);
+            }
+		}
+	}
+}
+//> 푸터영역

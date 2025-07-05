@@ -1,0 +1,35 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 페이지
+ * 장바구니, 주문결제
+**/
+
+
+// *---------- 팝업 ----------*
+
+//< 주문결제
+.m_popup-order {
+	// 해외배송 개인통관고유부호
+	&-abroad {
+		.mm_note .mm_text-primary {
+            color: #f86364 !important;
+        }
+
+		.btn_abroad {
+			color: #f86364;
+		}
+	}
+}
+//> 주문결제
+
+// *---------- 모달 ----------*
+
+
+
+// *---------- 레이어 ----------*

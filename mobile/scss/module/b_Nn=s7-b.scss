@@ -1,0 +1,91 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nn/s7-b"] {
+    position: relative;
+    border-bottom: 8px solid #eee;
+
+    &::after {
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        left: 0;
+        border-bottom: 1px solid #e6e6e6;
+        content: '';
+    }
+
+    ul {
+        position: relative;
+        z-index: 2;
+        padding: 6px 0 18px;
+        background-color: #fff;
+        font-size: 0;
+
+        li {
+            display: inline-block;
+            padding-top: 2px;
+            width: 20%;
+            text-align: center;
+        }
+
+        a {
+            display: block;
+
+            b {
+                display: block;
+                @include mixin.font('13px/16px');
+            }
+
+            $icons: women, men, casual, underwear, shoes, sports, kids, living, beauty, luxury;
+            @each $icon in $icons {
+                i[class*="ico_cate-#{$icon}"]::before {
+                    width: 48px;
+                    height: 44px;
+                    @include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/cate_icon.png') '#{(-48px * (index($icons, $icon) - 1))} 0/auto 48px' no-repeat);
+                }
+            }
+
+            &.__status_new__ {
+                i {
+                    position: relative;
+
+                    &::after {
+                        position: absolute;
+                        top: 9px;
+                        right: 4px;
+                        width: 13px;
+                        height: 13px;
+                        background-color: var.$color_point1;
+                        border-radius: 100%;
+                        @include mixin.font(#fff 700 '10px/13px' [var.$fontFamily_latin]);
+                        content: 'N';
+                    }
+                }
+            }
+        }
+    }
+
+    .btn_more-category {
+        position: absolute;
+        z-index: 1;
+        bottom: -24px;
+        left: 50%;
+        width: 56px;
+        height: 56px;
+        border: 1px solid #dcdcdc;
+        border-radius: 100%;
+        background-color: #fff;
+        @include mixin.font(#7b7b7b '20px/77px' center);
+        @include mixin.transform(translateX(-50%));
+    }
+}

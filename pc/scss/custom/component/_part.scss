@@ -1,0 +1,50 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 로딩, 찜하기, 별점
+ * 드롭다운/아코디언, 탭메뉴, 스와이퍼, 핀치줌, 에디터
+ * 컨텐츠
+ * 팝오버, 툴팁, 토스트팝업
+**/
+
+
+//< 팝오버
+.mm_popover {
+	&-item-box {
+		.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 팝오버
+
+//< Q&A 드롭다운
+.mm_qna-item {
+	.mm_text-primary.text_state {
+		background-color: #fef6f6;
+		color: #f86364 !important;
+	}
+}
+//> Q&A 드롭다운
+
+//< 금액/혜택
+.mm_cost {
+	.text_price.mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 금액/혜택
+
+//< 주문관련정보
+.mm_order-info {
+	.text_price.mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 주문관련정보

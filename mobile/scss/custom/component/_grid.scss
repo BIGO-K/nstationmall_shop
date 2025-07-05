@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 그리드
+**/
+
+
+//< 메인 페이지
+html[class*="_main_"] {
+	.mm_page {
+		> .mm_scroller {
+			padding-top: var.$header_height_main;
+		}
+	}
+}
+//> 메인 페이지

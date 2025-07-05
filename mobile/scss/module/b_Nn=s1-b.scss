@@ -1,0 +1,54 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nn/s1-b"] {
+	.m_ui-item {
+		a {
+			position: relative;
+			width: 100%;
+		}
+
+		.image_banner {
+			padding-top: 100%;
+			width: 100%;
+		}
+
+		figure {
+			figcaption {
+				position: absolute;
+				right: 4vw;
+				bottom: 0;
+				left: 0;
+				height: 22.13333vw;
+				padding: 4.26666vw 5.06666vw 0;
+
+				> p {
+					@include mixin.text-ellipsis(1);
+				}
+
+				.text_main {
+					@include mixin.font(#fff '5.33333vw');
+				}
+
+				.text_sub {
+					margin-top: 0.8vw;
+					@include mixin.font(rgba(#fff, 0.5) '3.73333vw');
+				}
+			}
+		}
+
+		&:nth-of-type(n+2) {
+			margin-top: 20px;
+		}
+	}
+}

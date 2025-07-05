@@ -1,0 +1,18 @@
+@charset 'utf-8';
+
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 텍스트, 알림, 대체텍스트, 타이틀, 태그, 플래그, 뱃지
+**/
+
+//< 소제목
+.mm_strapline {
+	strong.mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 소제목

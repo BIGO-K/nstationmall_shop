@@ -1,0 +1,31 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 메인, 메인팝업, 메인상단앱설치
+**/
+
+
+//< 메인 홈
+html[class*="_main_"] {
+	[data-mui="b_Nc/s1-h"] {
+		.mm_carousel- {
+			&inner {
+				padding-right: 0;
+			}
+
+			&item {
+				figcaption {
+					right: -4vw;
+					padding: 0 8vw;
+					text-align: left;
+				}
+			}
+		}
+	}
+}
+//> 메인 홈

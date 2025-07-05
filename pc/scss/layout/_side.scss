@@ -1,0 +1,100 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 레이아웃
+ * 사이드
+**/
+
+
+//< 사이드
+.mm_sidebar {
+	position: relative;
+	z-index: const.$zIndex_sidebar;
+	height: 0;
+
+	&.__sidebar-sm {
+		.mm_sidebar-rside-inner {
+			@include mixin.transform(scale(0.8));
+		}
+
+		.btn_direct {
+			font-size: 15px;
+
+			span {
+				margin-top: 6px;
+			}
+		}
+
+		[class*="btn_anchor"] {
+			font-size: 20px;
+		}
+	}
+
+	// 상품상세 페이지 하단에 닫혀진 옵션창이 노출될 때
+	// 75px (닫힌 옵션창) + 36px (옵션선택 버튼) = 111px
+	&.__sidebar-up {
+		.mm_sidebar-rside {
+			@include mixin.transform(translate(-50%, -111px));
+		}
+	}
+
+	// 상품상세 페이지 하단에 열린 옵션창이 노출될 때
+	// 262px (열린 옵션창 최대높이) + 36px (옵션선택 버튼) = 298px
+	&.__sidebar-upper {
+		.mm_sidebar-rside {
+			@include mixin.transform(translate(-50%, -298px));
+		}
+	}
+
+	&-rside {
+		position: fixed;
+		bottom: 20px;
+		left: 50%;
+		width: 100%;
+		max-width: var.$minWidth_extend;
+		height: 0;
+		@include mixin.transform(translateX(-50%));
+
+		&-inner {
+			overflow: hidden;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			@include mixin.prefix(transform-origin, 100% 100%, webkit ms);
+			@include mixin.transition(transform const.$time_fast);
+
+			> a {
+				display: block;
+				text-align: center;
+			}
+		}
+
+		.btn_kakaoplus {
+			width: 57px;
+			height: 57px;
+			@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/kakaochannel.png') '0 0/contain' no-repeat);
+			@include mixin.opacity(0);
+
+			+ .btn_anchor-up {
+				margin-top: 17px;
+			}
+		}
+
+		[class*="btn_anchor"] {
+			margin-top: 6px;
+			width: var.$sidebar_content_base;
+			height: var.$sidebar_content_base;
+			border: 1px solid #dcdcdc;
+			border-radius: 100%;
+			background-color: #fff;
+			@include mixin.font(#4a4a4a '18px/#{var.$sidebar_content_base - 2px}');
+			@include mixin.opacity(0);
+		}
+	}
+}
+//> 사이드바

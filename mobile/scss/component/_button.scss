@@ -1,0 +1,335 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 버튼, 버튼그룹 등 버튼의 기본 단위
+**/
+
+
+//< 탭인덱스
+[tabindex],
+a[onclick] {
+	cursor: pointer;
+}
+//> 탭인덱스
+
+//< 기본형
+.mm_btn {
+	position: relative;
+	padding: 0 15px;
+	width: auto;
+	height: 42px;
+	border-radius: 42px;
+	background-color: #6a6a6a;
+	@include mixin.font(#fff '15px/42px' center);
+
+	&::after {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		border: 1px solid transparent;
+		border-radius: 42px;
+		content: '';
+	}
+
+	// 스퀘어
+	&[class*="_square_"] {
+		border-radius: 2px;
+
+		&::after {
+			border-radius: 2px;
+		}
+	}
+
+	// 사이즈 - base 제외 / 없음 null (type, height, border-radius, font-size)
+	$sizes: (sm, 30px, 13px), (xs, 25px, 12px), (2xs, 20px, 12px), (lg, 50px, 17px);
+	@each $type, $height, $fontSize in $sizes {
+		&[class*="_#{inspect($type)}_"] {
+			height: $height;
+			border-radius: $height;
+			@include mixin.font('#{$fontSize}/#{if($type == 2xs, 19px, $height)}');
+
+			&::after {
+				border-radius: $height;
+			}
+		}
+	}
+
+	// 색상 - base 제외 / 없음 null (type, background-color, color, border-color)
+	$colors: (dark, #5c5c5c, #fff, null),
+			 (light, #eee, #4a4a4a, null),
+			 (primary, var.$color_point1, #fff, null),
+			 (secondary, var.$color_point2, #fff, null);
+	@each $type, $bgColor, $fontColor, $borderColor in $colors {
+		&[class*="_#{inspect($type)}_"] {
+			@if $bgColor {
+				background-color: $bgColor;
+				color: $fontColor;
+
+				&::after {
+					border-color: $borderColor;
+				}
+			}
+		}
+	}
+
+	// 라인 - base 제외 / 없음 null (type, background-color, color, border-color)
+	&[class*="_line_"] {
+		background-color: #fff;
+		color: #5c5c5c;
+
+		&::after {
+			border-color: #6a6a6a;
+		}
+
+		$lines: (light, null, #7b7b7b, #7b7b7b), (lighter, null, #8c8c8c, #a3a3a3), (lightest, null, #999, #aeaeae),
+				(dark, null, #2b2b2b, #2b2b2b),
+				(primary, null, var.$color_point1, var.$color_point1),
+				(secondary, null, var.$color_point2, var.$color_point2),
+				(transparent, transparent, null, null);
+		@each $type, $bgColor, $fontColor, $borderColor in $lines {
+			&[class*="_#{inspect($type)}_"] {
+				@if $borderColor {
+					background-color: $bgColor;
+					color: $fontColor;
+
+					&::after {
+						border-color: $borderColor;
+					}
+				}
+			}
+		}
+	}
+
+	// button 비활성
+	&[class*="_disabled_"],
+	&:disabled {
+		background-color: #e6e6e6;
+		color: #a3a3a3;
+
+		&[class*="_line_"]::after {
+			border-color: #e6e6e6;
+		}
+	}
+
+	// a 다운로드 속성
+	// &[download] {
+	// }
+
+	+ .mm_note {
+		margin-top: 8px;
+	}
+
+	+ .mm_strapline {
+		margin-top: 23px;
+	}
+}
+//> 기본형
+
+//< 최하단버튼
+.mm_foot {
+	margin-top: 28px;
+
+	// .mm_btn {
+	// 	width: 100%;
+	// }
+}
+//> 최하단버튼
+
+//< 버튼그룹
+.mm_btnbox {
+	@include mixin.clearfix();
+	text-align: center;
+
+	> .mm_btn {
+		width: 100%;
+
+		&:nth-child(n+2) {
+			margin-top: 8px;
+		}
+	}
+
+	// 가운데 (일렬)
+	.mm_inline {
+		@include mixin.font('0', nowrap);
+
+		> * {
+			&:nth-child(n+2) {
+				margin-left: 5px;
+			}
+		}
+	}
+
+	// 플렉스
+	&.mm_flex {
+		> * {
+			&:nth-child(n+2) {
+				margin: 0 0 0 7px;
+			}
+		}
+	}
+
+	// 위치고정
+	&.__btnbox_fixed__ {
+		position: fixed;
+		z-index: const.$zIndex_floating;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+
+		> * {
+			width: 100%;
+			height: 60px;
+			background-color: var.$color_point1;
+			@include mixin.transform(translate3d(0, 0, 0));
+			@include mixin.font(#fff '20px/54px' center);
+
+			// 폼요소 포커싱되면 페이지 하단으로 이동
+			.__focus & {
+				position: absolute;
+				bottom: 0;
+			}
+
+			// 툴바가 없으면 화면 하단으로 이동
+			.__toolbar-hide & {
+				bottom: 0;
+			}
+		}
+
+		// 장바구니
+		.btn_order {
+			b {
+				vertical-align: 0;
+				font-size: 17px;
+
+				strong {
+					vertical-align: -1px;
+					@include mixin.font(500 '20px' [var.$fontFamily_latin], 0);
+				}
+
+				&.text_total::after {
+					position: absolute;
+					top: 21px;
+					right: 0;
+					width: 1px;
+					height: 13px;
+					background-color: #fff;
+					@include mixin.opacity(0.4);
+					content: '';
+				}
+			}
+		}
+
+		// 상품상세
+		[class*="btn_product-"]:not(.btn_product-like, .btn_product-detail) {
+			margin: 0;
+			@include mixin.prefix(flex, 1, webkit ms);
+
+			&:disabled {
+				background-color: #e6e6e6;
+				color: #a3a3a3;
+				pointer-events: none;
+			}
+		}
+
+		.btn_product-like {
+			position: relative;
+			padding: 0 1px 0 0;
+			width: 61px;
+			@include mixin.font('21px/56px');
+
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 1px;
+				height: 100%;
+				background-color: rgba(#fff, 0.4);
+				content: '';
+			}
+		}
+
+		.btn_product-detail {
+			width: 160px;
+			border: 1px solid var.$color_point1;
+			background-color: #fff;
+			color: var.$color_point1;
+		}
+
+		// 필터및정렬
+		.btn_filter-reset {
+			width: 61px;
+			padding-right: 1px;
+			background-color: #1f1f1f;
+			@include mixin.font('24px/58px');
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 100%;
+				border-left: 1px solid rgba(#fff, 0.2);
+				content: '';
+			}
+
+			+ button {
+				@include mixin.prefix(flex, 1, webkit ms);
+				margin: 0;
+				background-color: #1f1f1f;
+			}
+		}
+
+		// 래플
+		.btn_nature {
+			background-color: var.$color_point1;
+		}
+	}
+}
+//> 버튼그룹
+
+//< 버튼종류
+// 더보기
+.btn_more {
+	&[class*="_xs_"] {
+		.mco_link,
+		.mco_more {
+			line-height: 25px;
+		}
+	}
+
+	.mco_link,
+	.mco_more {
+		margin-left: 10px;
+		@include mixin.font('10px/31px');
+	}
+}
+
+// 새로고침
+.btn_refresh {
+	.mco_reload {
+		margin-right: 4px;
+		line-height: 24px;
+	}
+}
+
+// 업데이트
+.btn_update {
+	padding: 0 9px;
+}
+
+// 하단 링크 버튼
+.btn_link {
+	.mco_link {
+		margin-left: 8px;
+		@include mixin.font('12px/44px');
+	}
+}
+//> 버튼종류

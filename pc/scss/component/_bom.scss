@@ -1,0 +1,142 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 브라우저(시스템) 팝업
+**/
+
+
+//< 팝업 영역
+.mm_bom {
+	overflow: hidden;
+	position: fixed;
+	z-index: const.$zIndex_bom;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	@include mixin.opacity(0, none);
+	@include mixin.transition(opacity 0s const.$time_fast);
+
+	// 팝업 열림
+	.__bom & {
+		@include mixin.opacity(1, auto);
+		@include mixin.transition(opacity 0s);
+
+		.mm_bom-dim {
+			@include mixin.opacity(1);
+		}
+	}
+
+	&-dim {
+		width: 100%;
+		height: 100%;
+		background-color: rgba(#000, 0.8);
+		@include mixin.opacity(0);
+		@include mixin.transition(opacity const.$time_fast);
+	}
+
+	&-items {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+}
+//> 팝업 영역
+
+//< 팝업 요소
+.mm_bom-item {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	@include mixin.opacity(0, none);
+	@include mixin.transform(scale(1.2));
+	@include mixin.transition(opacity const.$time_fast, transform const.$time_fast);
+
+	// 현재창
+	&.__bom-on {
+		z-index: 1;
+		@include mixin.opacity(1, auto);
+		@include mixin.transform(scale(1));
+	}
+
+	&-inner {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 300px;
+		text-align: center;
+		@include mixin.transform(translate(-50%, -50%));
+
+		> .mm_box {
+			overflow: hidden;
+			border-radius: 3px;
+			background-color: #fff;
+		}
+	}
+
+	.mco_bom-alert {
+		position: absolute;
+		top: 26px;
+		left: 50%;
+		margin-left: -16px;
+		@include mixin.font(#b8b8b9 '28px');
+	}
+
+	&-text {
+		padding: 71px 13px 32px;
+
+		h2 {
+			margin-bottom: -2px;
+			@include mixin.font('20px');
+
+			+ p {
+				margin-top: 13px;
+				@include mixin.font(#6a6a6a '14px/19px');
+
+				+ .mm_bom-item-form {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&-form {
+		margin-top: -18px;
+		padding: 0 13px 24px;
+
+		li:nth-child(n+2) {
+			margin-top: 6px;
+		}
+	}
+
+	&-btnbox {
+		ul {
+			height: 44px;
+		}
+
+		button {
+			@include mixin.font('17px/44px');
+
+			&.btn_no {
+				background-color: #cdcdcd;
+				color: #fff;
+			}
+
+			&.btn_ok {
+				background-color: var.$color_point1;
+				color: #fff;
+			}
+		}
+	}
+}
+//> 팝업 요소

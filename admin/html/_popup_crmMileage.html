@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel='shortcut icon' href="https://img.nstationmall.com/mall/ui/admin/common/favicon.ico">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 마일리지 내역 &#60; 회원관리 - N.STATION Admin</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/lib.css">
+	<link rel="stylesheet" href="../css/app.css">
+	<!-- <link rel="stylesheet" data-css="{ '_href': '../css/font.css' }"> -->
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/jquery-3.6.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="anchor">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<div class="mm_header">
+				<h1><b>회원 관리</b></h1>
+				<button type="button" class="btn_popup-close" onclick="window.close();return false;"><i class="ico_close-popup"></i><b class="mm_ir-blind">팝업닫기</b></button>
+			</div>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+
+				<!-- 본문 -->
+				<!--
+					(D) 실제 내용을 추가하는 부분입니다.
+					팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다.
+				-->
+				<div class="mm_page-content m_popup-crm">
+
+					<!-- 본문 내용 -->
+					<div class="mm_container">
+                        <div class="m_popup-crm-head">
+                            <p>홍길동 (FAMILY)</p>
+                            <p class="text_mileage">1,500M</p>
+                            <a class="mm_btn mm_rside __btn_lighter__" href="_popup_crmMemberSearch.html" data-href="{ '_type': 'popup' }"><b>회원 검색</b></a>
+                        </div>
+						<!-- 탭메뉴 -->
+						<div class="mm_tab">
+							<div class="mm_tabmenu  __tabmenu_box__">
+								<!-- (D) 선택된 탭메뉴에 '__tab-on' 클래스와 '선택됨' 타이틀을 추가합니다. -->
+								<ul class="mm_flex __flex_equal__">
+									<li><a class="btn_tab" href="_popup_crm.html" data-href="{ '_type': 'link' }"><b>요약보기</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmMemberInfo.html" data-href="{ '_type': 'link' }"><b>회원 정보</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmOrder.html" data-href="{ '_type': 'link' }"><b>주문 내역</b></a></li>
+									<li><a class="btn_tab __tab-on" href="_popup_crmMileage.html" data-href="{ '_type': 'link' }" title="선택됨"><b>마일리지<br>내역</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmCoupon.html" data-href="{ '_type': 'link' }"><b>쿠폰 내역</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmProdRestock.html" data-href="{ '_type': 'link' }"><b>재입고 알림 신청 내역</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmAlarm.html" data-href="{ '_type': 'link' }"><b>알림톡 발송 내역</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmCs.html" data-href="{ '_type': 'link' }"><b>CS메모</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmInquiry.html" data-href="{ '_type': 'link' }"><b>문의 내역</b></a></li>
+									<li><a class="btn_tab" href="_popup_crmReview.html" data-href="{ '_type': 'link' }"><b>리뷰 내역</b></a></li>
+								</ul>
+							</div>
+						</div>
+						<!--// 탭메뉴 -->
+
+						<!-- 마일리지 현황 -->
+						<div class="mm_tablebox">
+							<!-- 테이블상단 -->
+							<div class="mm_tablebox-caption">
+								<h4 class="mm_heading"><b>마일리지 내역</b></h4>
+							</div>
+							<!--// 테이블상단 -->
+
+							<!-- 테이블 -->
+							<div class="mm_table" data-table>
+								<div class="mm_scroller">
+									<table>
+										<colgroup>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col"><div class="mm_table-item">총 적립 마일리지</div></th>
+												<th scope="col"><div class="mm_table-item">총 사용 마일리지</div></th>
+												<th scope="col"><div class="mm_table-item">총 소멸 마일리지</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><div class="mm_table-item"><span class="text_comma">5315100</span></div></td>
+												<td><div class="mm_table-item"><span class="text_comma">2154342</span></div></td>
+												<td><div class="mm_table-item"><span class="text_comma">25120</span></div></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!--// 테이블 -->
+						</div>
+						<!--// 마일리지 현황 -->
+
+						<!-- 마일리지 내역 -->
+                        <div class="mm_tablebox">
+                            <!-- 테이블상단 -->
+                            <div class="mm_tablebox-caption">
+								<div class="mm_lside">
+									<ul class="mm_table-status">
+										<li>마일리지 내역 수<span class="mm_text-primary"><strong>3</strong>건</span></li>
+									</ul>
+								</div>
+								<div class="mm_rside">
+									<div class="mm_form-select __select_list__">
+										<label>
+											<select data-select>
+												<option>20개 보기</option>
+												<option>40개 보기</option>
+												<option>60개 보기</option>
+												<option>80개 보기</option>
+												<option>100개 보기</option>
+											</select>
+											<b class="text_selected"></b>
+											<i class="ico_form-select"></i>
+										</label>
+									</div>
+								</div>
+							</div>
+							<div class="mm_tablebox-unit">
+								<div class="mm_lside">
+									<a class="mm_btn" href="_popup_pointList.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>마일리지 지급/차감</b></a>
+								</div>
+							</div>
+                            <!--// 테이블상단 -->
+
+                            <!-- 테이블 -->
+							<div class="mm_table" data-table>
+								<div class="mm_scroller">
+									<table>
+										<colgroup>
+											<col style="width: 15%;">
+											<col style="width: 15%;">
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col"><div class="mm_table-item">일자</div></th>
+												<th scope="col"><div class="mm_table-item">마일리지 정보</div></th>
+												<th scope="col"><div class="mm_table-item">사유</div></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><div class="mm_table-item">2022.04.01</div></td>
+												<td><div class="mm_table-item"><span class="text_comma">30000</span></div></td>
+												<td><div class="mm_table-item"><p>구매확정 마일리지 바로 지급</p></div></td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">2022.02.01</div></td>
+												<td><div class="mm_table-item"><span class="text_comma">-10000</span></div></td>
+												<td><div class="mm_table-item"><p>주문 마일리지 사용</p></div></td>
+											</tr>
+											<tr>
+												<td><div class="mm_table-item">2022.01.01</div></td>
+												<td><div class="mm_table-item"><span class="text_comma">15000</span></div></td>
+												<td><div class="mm_table-item"><p>기존 적립금 이관(중복회원)</p></div></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+                            <!--// 테이블 -->
+
+							<!-- 테이블하단 -->
+							<div class="mm_tablebox-unit">
+								<div class="mm_lside">
+									<a class="mm_btn" href="_popup_pointList.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>마일리지 지급/차감</b></a>
+								</div>
+							</div>
+							<!--// 테이블하단 -->
+
+							<!-- 페이지네이션 -->
+							<!-- (D) 현재 페이지의 메뉴에 '__page-on' 클래스와 '선택됨' 타이틀을 추가합니다. -->
+							<div class="mm_pagination">
+								<div class="mm_inline">
+									<ol>
+										<li><a class="__page-on" href="#" title="선택됨"><b>1</b></a></li>
+										<li><a href="#"><b>2</b></a></li>
+										<li><a href="#"><b>3</b></a></li>
+										<li><a href="#"><b>4</b></a></li>
+										<li><a href="#"><b>5</b></a></li>
+									</ol>
+									<button type="button" class="btn_control-first" onclick="mm.link('')" disabled><i class="ico_page-first"></i><b class="mm_ir-blind">처음</b></button>
+									<button type="button" class="btn_control-prev" onclick="mm.link('')" disabled><i class="ico_page-prev"></i><b class="mm_ir-blind">이전</b></button>
+									<button type="button" class="btn_control-next" onclick="mm.link('')"><i class="ico_page-next"></i><b class="mm_ir-blind">다음</b></button>
+									<button type="button" class="btn_control-last" onclick="mm.link('')"><i class="ico_page-last"></i><b class="mm_ir-blind">마지막</b></button>
+								</div>
+							</div>
+							<!--// 페이지네이션 -->
+                        </div>
+
+						<!-- 내용없음 -->
+                        <div class="mm_tablebox">
+                            <div class="mm_tablebox-caption">
+                                <div class="mm_lside">
+									<ul class="mm_table-status">
+										<li>마일리지 내역 수<span class="mm_text-primary"><strong>0</strong>건</span></li>
+									</ul>
+								</div>
+								<div class="mm_rside">
+									<div class="mm_form-select __select_list__">
+										<label>
+											<select data-select>
+												<option>20개 보기</option>
+												<option>40개 보기</option>
+												<option>60개 보기</option>
+												<option>80개 보기</option>
+												<option>100개 보기</option>
+											</select>
+											<b class="text_selected"></b>
+											<i class="ico_form-select"></i>
+										</label>
+									</div>
+								</div>
+                            </div>
+                            <div class="mm_table" data-table>
+                                <div class="mm_table-none">
+                                    <p>마일리지 내역이 없습니다</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--// 내용없음 -->
+                        <!--// 마일리지 내역 -->
+					</div>
+					<!--// 본문 내용 -->
+
+					<!-- 현재 페이지 스크립트 -->
+				</div>
+				<!--// 본문 -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

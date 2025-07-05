@@ -1,0 +1,38 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 폼, 셀렉트, 체크박스, 라디오, 텍스트, 플레이스홀더 등 form의 기본 단위
+**/
+
+
+//< 체크박스
+.mm_form-check {
+	.text_label > strong.mm_text-primary {
+        color: #f86364 !important;
+    }
+}
+//> 체크박스
+
+//< 라디오
+.mm_form-radio {
+	> input[type="radio"]:checked + .mm_block {
+        .mco_form-radio {
+            border-color: #1f1f1d;
+        }
+    }
+}
+//> 라디오
+
+//< 폼 타이틀
+.mm_text-label {
+	.mm_text-primary {
+        color: #f86364 !important;
+    }
+}
+//> 폼 타이틀

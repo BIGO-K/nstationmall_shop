@@ -1,0 +1,70 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 로딩, 찜하기, 별점
+ * 드롭다운/아코디언, 탭메뉴, 스와이퍼, 핀치줌, 에디터
+ * 컨텐츠
+ * 팝오버, 툴팁, 토스트팝업
+**/
+
+
+//< 드롭다운
+.mm_dropdown {
+	// 주문형
+	&.__dropdown_order__ {
+		.btn_dropdown {
+			.text_contraction {
+				.text_price.mm_text-primary {
+					color: #f86364 !important;
+				}
+			}
+		}
+	}
+}
+//> 드롭다운
+
+//< 아코디언 (드롭다운 포함)
+.mm_accordion {
+	.btn_dropdown {
+		strong {
+			color: #f86364;
+		}
+	}
+}
+//> 아코디언
+
+//< QnA 드롭다운
+.mm_qna {
+	.btn_dropdown,
+	.mm_qna-secret {
+		.mm_text-primary.text_state {
+			background-color: #fef6f6;
+			color: #f86364 !important;
+		}
+	}
+}
+//> QnA 드롭다운
+
+//< 팝오버
+.mm_popover {
+	&-item-box {
+		> .mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 팝오버
+
+//< 금액/혜택
+.mm_cost {
+	.text_price.mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 금액/혜택

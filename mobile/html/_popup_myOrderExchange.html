@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 교환 상품 선택 - N.STATION</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/app.css">
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="{ '_type': 'anchor' }">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><b>주문 교환</b></h1>
+				<div class="mm_lside">
+					<a class="btn_back" href="#" data-href="{ '_type': 'back' }"><i class="mco_history-back"></i><b class="mm_ir-blind">이전으로</b></a>
+				</div>
+				<div class="mm_rside">
+					<button type="button" class="btn_popup-close" onclick="mm.popup.close();"><i class="mco_popup-close"></i><b class="mm_ir-blind">팝업 닫기</b></button>
+				</div>
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+				<!-- (D) 팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다. -->
+				<div class="mm_scroller">
+					<div class="mm_page-inner">
+						<!-- 본문 -->
+						<div class="mm_page-content">
+							<form>
+								<!-- 주문목록 -->
+								<div class="mm_order-list">
+									<div class="mm_order-item">
+										<h5><b>2020.05.14</b><strong>주문번호: 2005141142151234562</strong></h5>
+										<section class="mm_order-item-seller">
+											<h5><i class="mco_shop"></i><b>크루스토어 강남점</b></h5>
+											<p class="text_ship"><i class="mco_ship"></i><span class="text_price"><strong>2,500</strong></span></p>
+											<div class="mm_product-list __list_sm__">
+												<ul>
+													<li>
+														<label class="mm_form-check">
+															<input type="checkbox" data-check>
+															<b class="mm_block">
+																<i class="mco_form-check"></i>
+																<span class="text_label mm_ir-blind">상품 선택</span>
+															</b>
+														</label>
+														<div class="mm_product-item">
+															<a>
+																<figure>
+																	<i class="mm_bg-cover image_product" data-lazyload="{ '_src': '../image/_sample/prod_x1_1.png' }"></i>
+																	<figcaption>
+																		<p class="text_status">배송 완료</p>
+																		<p class="text_brand">티뷰</p>
+																		<p class="text_product">[매긴나잇브릿지]플리츠 디테일 드레스_MJM1OP3140</p>
+																		<p class="text_price"><strong>54,800</strong></p>
+																		<p class="text_option">베이지 FREE / 1개</p>
+																	</figcaption>
+																</figure>
+															</a>
+															<div class="mm_product-item-footer">
+																<div class="mm__footer-indent">
+																	<p>교환 수량: 1개</p>
+																</div>
+															</div>
+														</div>
+													</li>
+													<li>
+														<label class="mm_form-check">
+															<input type="checkbox" data-check>
+															<b class="mm_block">
+																<i class="mco_form-check"></i>
+																<span class="text_label mm_ir-blind">상품 선택</span>
+															</b>
+														</label>
+														<div class="mm_product-item">
+															<a>
+																<figure>
+																	<i class="mm_bg-cover image_product" data-lazyload="{ '_src': '../image/_sample/prod_x1_2.png' }"></i>
+																	<figcaption>
+																		<p class="text_status">배송 완료</p>
+																		<p class="text_brand">닥스</p>
+																		<p class="text_product">DAKS LADIES 자수장식 밴딩팬츠</p>
+																		<p class="text_price"><strong>154,800</strong></p>
+																		<p class="text_option">[20SS] [DAKS LADIES] 자수장식 밴딩팬츠 네이비 28 / 5개</p>
+																	</figcaption>
+																</figure>
+															</a>
+															<div class="mm_product-item-footer">
+																<div class="mm__footer-indent">
+																	<p>교환 수량</p>
+																	<div class="mm_form-select __select_sm_shortest__">
+																		<label>
+																			<select data-select>
+																				<option>1</option>
+																				<option>2</option>
+																				<option>3</option>
+																				<option selected>4</option>
+																			</select>
+																			<b class="text_selected"></b>
+																			<i class="mco_form-select"></i>
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</section>
+										<section class="mm_order-item-seller">
+											<h5><i class="mco_shop"></i><b>N.STATION 판교 플래그십 스토어</b></h5>
+											<p class="text_ship"><i class="mco_ship"></i><span class="text_price"><strong>2,500</strong></span></p>
+											<div class="mm_product-list __list_sm__">
+												<ul>
+													<li>
+														<label class="mm_form-check">
+															<input type="checkbox" data-check>
+															<b class="mm_block">
+																<i class="mco_form-check"></i>
+																<span class="text_label mm_ir-blind">상품 선택</span>
+															</b>
+														</label>
+														<div class="mm_product-item">
+															<a>
+																<figure>
+																	<i class="mm_bg-cover image_product" data-lazyload="{ '_src': '../image/_sample/prod_x1_3.png' }"></i>
+																	<figcaption>
+																		<p class="text_status">배송 완료</p>
+																		<p class="text_brand">헤지스</p>
+																		<p class="text_product">[HAZZYS MEN] 카키 버튼다운 린넨혼방 반팔캐주얼셔츠</p>
+																		<p class="text_price"><strong>90,440</strong></p>
+																		<p class="text_option">카키 버튼다운 린넨혼방 반팔캐주얼셔츠 카키 110 / 3개</p>
+																	</figcaption>
+																</figure>
+															</a>
+															<div class="mm_product-item-footer">
+																<div class="mm__footer-indent">
+																	<p>교환 수량</p>
+																	<div class="mm_form-select __select_sm_shortest__">
+																		<label>
+																			<select data-select>
+																				<option>1</option>
+																				<option>2</option>
+																				<option selected>3</option>
+																			</select>
+																			<b class="text_selected"></b>
+																			<i class="mco_form-select"></i>
+																		</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</li>
+												</ul>
+											</div>
+										</section>
+									</div>
+								</div>
+								<!--// 주문목록 -->
+
+								<div class="mm_inner">
+									<!-- 하단버튼 -->
+									<div class="mm_foot">
+										<div class="mm_btnbox">
+											<button type="button" class="mm_btn __btn_primary__" onclick="mm.link('_popup_myOrderExchangeInfo.html', { '_type': 'link', '_isLinkStage': false });"><b>다음 단계로</b></button>
+										</div>
+									</div>
+									<!--// 하단버튼 -->
+									<!-- 교환주의사항 -->
+									<div class="mm_note mm_dropdown" data-dropdown>
+										<button type="button" class="btn_dropdown" title="접어놓기"><i class="mco_note"></i><b>교환 주의사항</b><i class="mco_dropdown-box"></i></button>
+										<div class="mm_dropdown-item">
+											<div class="mm_dropdown-item-inner">
+												<ul>
+													<li>주문 제작하신 상품 및 해외 배송 상품은 교환이 불가하여 리스트에 노출되지 않습니다</li>
+													<li>인테리어 &#62; 가구 제품의 경우 자동 교환 처리신청이 어려우니 고객센터 문의 또는 업체로 문의해주시기 바랍니다</li>
+													<li>교환은 배송 완료 이후 7일 이내 신청 가능합니다</li>
+													<li>교환 사유별 배송비 부담이 상이합니다</li>
+													<li>묶음 교환의 경우 동일한 업체에 한해서 가능합니다</li>
+													<li>교환하실 상품을 발송하기 전에 한해서 반품 철회가 가능합니다</li>
+												</ul>
+											</div>
+										</div>
+									</div>
+									<!--// 교환주의사항 -->
+								</div>
+								<input hidden>
+							</form>
+						</div>
+						<!--// 본문 -->
+					</div>
+				</div>
+
+				<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로"><i class="mco_topmost"></i><b>TOP</b></a>
+
+				<!-- 현재 페이지 스크립트 -->
+				<!-- <script src="../js/.js"></script> -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

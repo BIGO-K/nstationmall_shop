@@ -1,0 +1,147 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 약관
+**/
+
+
+//< 약관
+.m_term {
+	padding: 17px 14px 0;
+
+	// 약관 내용
+	&-inner {
+		@include mixin.font('13px/19px');
+
+		> p:first-child {
+			margin-bottom: 16px;
+		}
+
+		> ul {
+			li:nth-child(n+2) {
+				margin-top: 5px;
+			}
+
+			dd {
+				dl {
+					margin-top: 5px;
+				}
+			}
+		}
+
+		article {
+			h3 {
+				@include mixin.font('14px/22px');
+			}
+
+			table {
+				margin: 7px 0 20px;
+
+				thead {
+					background-color: #eee;
+				}
+
+				th[scope=col] {
+					background-color: #eee;
+					text-align: center;
+				}
+
+				th, td {
+					padding: 6px 5px;
+					border: 1px solid #d5d5d5;
+					text-align: left;
+				}
+
+				+ p {
+					margin-top: -20px;
+				}
+			}
+
+			> dl {
+				margin-top: 19px;
+			}
+
+			+ article {
+				margin-top: 16px;
+			}
+		}
+	}
+
+	// 약관 정보
+	&-info {
+		margin-top: 19px;
+		@include mixin.font('13px/19px');
+
+		> ul {
+			padding: 13px 14px 12px;
+			background-color: #f5f5f5;
+
+			li {
+				&::before {
+					margin-right: 3px;
+					content: '-';
+				}
+			}
+		}
+
+		.mm_form-select {
+			margin-top: 17px;
+		}
+	}
+}
+//> 약관
+
+
+// *---------- 팝업 ----------*
+/** 주문결제 약관 동의 */
+.m_popup-order-term {
+	padding: 16px 14px 0;
+	@include mixin.font(#4a4a4a 400 '1.3rem/2rem');
+
+	table {
+		margin-top: 10px;
+		border: 1px solid #e6e6e6;
+		border-width: 1px 0 0 1px;
+
+		tr {
+			> * {
+				padding: 10px 9px 11px;
+				border: 1px solid #e6e6e6;
+				border-width: 0 1px 1px 0;
+			}
+
+			th {
+				background-color: #f5f5f5;
+				@include mixin.font(#3d3d3d '1.5rem' left);
+			}
+
+			td {
+				@include mixin.font('1.4rem' left);
+
+				strong {
+					@include mixin.font(#2b2b2b '1.6rem');
+				}
+			}
+		}
+	}
+
+	.mm_note {
+		margin-top: 10px;
+		padding-left: 4px;
+
+		ul {
+			li::before {
+				content: '*';
+			}
+		}
+
+		+ p {
+			margin-top: 19px;
+		}
+	}
+}

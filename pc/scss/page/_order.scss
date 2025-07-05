@@ -1,0 +1,1312 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+@use '../helper/extend';
+
+/**
+ * 장바구니, 주문결제
+**/
+
+
+//< 장바구니
+.m_cart {
+	// 셀러별 최종 결제금액
+	.text_purchase-price {
+		padding: 23px 0 45px;
+		@include mixin.font('14px' center);
+
+		strong {
+			@include mixin.font(var.$color_point1 700);
+		}
+
+		span {
+			position: relative;
+			margin-left: 40px;
+			padding-left: 40px;
+			color: #4a4a4a;
+
+			&::after {
+				position: absolute;
+				top: 4px;
+				left: 0;
+				height: 13px;
+				border-left: 1px solid #aeaeae;
+				content: '';
+			}
+		}
+	}
+
+	// 옵션/수량 변경
+	&-option {
+		position: relative;
+		margin-right: 64px;
+		width: 110px;
+
+		.mm_layer {
+			display: block;
+			visibility: hidden;
+			z-index: -1;
+			top: 37px;
+			right: 0;
+
+			&.__layer-open {
+				visibility: visible;
+				z-index: 2;
+			}
+
+			&-content {
+				padding: 29px 23px 40px;
+
+				.m_product-option-select {
+					.mm_dropdown {
+						.mm_scroller {
+							margin-top: 0;
+						}
+					}
+				}
+			}
+		}
+
+		// 옵션/수량 변경 버튼
+		.btn_option-change {
+			white-space: nowrap;
+
+			// 옵션이 품절일 때
+			&.__select-soldout {
+				color: #f86363;
+
+				&::after {
+					border-color: #f86363;
+				}
+			}
+
+			.mco_dropdown-xs {
+				margin: 1px 0 0 5px;
+				font-size: 18px;
+
+				.__ie11 & { margin-top: 2px; }
+			}
+		}
+
+		.m_product-option-select:not(.__select-button) {
+			margin-bottom: 32px;
+
+			~ .m_cart-option-quantity {
+				h6 {
+					display: inline-block;
+					margin-right: 30px;
+					padding-bottom: 0;
+					@include mixin.font('15px/24px');
+				}
+			}
+
+			~ .mm_foot {
+				margin-top: 100px;
+			}
+		}
+
+		// 옵션 수량
+		&-quantity {
+			margin-top: 30px;
+			font-size: 0;
+
+			h6 {
+				padding: 0 0 13px 2px;
+				@include mixin.font('14px/20px');
+			}
+
+			.text_stock {
+				display: inline-block;
+				margin-left: 8px;
+				@include mixin.font(#f86363 '13px/22px');
+			}
+		}
+	}
+
+	// 최종 결제금액
+	&-total {
+		margin-top: 50px;
+
+		.mm_strapline {
+			border-bottom: 0;
+		}
+
+		&-list {
+			margin-top: 1px;
+			height: 110px;
+			border: 1px solid #e6e6e6;
+			border-radius: 3px;
+			font-size: 14px;
+
+			dl.mm_flex {
+				position: relative;
+				min-width: 320px;
+
+				&:nth-child(n+2) {
+					border-left: 1px solid #e6e6e6;
+
+					dt {
+						padding-left: 57px;
+					}
+				}
+
+				&:last-child {
+					dd {
+						margin-top: -6px;
+						padding-right: 39px;
+
+						.text_price span {
+							font-size: 28px;
+							vertical-align: -1px;
+
+							&::after {
+								font-size: 17px;
+							}
+						}
+					}
+				}
+
+				> * {
+					@include mixin.prefix(align-self, center, webkit ms);
+				}
+
+				dt {
+					padding-left: 37px;
+					color: #4a4a4a;
+
+					> i {
+						position: absolute;
+						top: 50%;
+						left: -18px;
+						width: 37px;
+						height: 37px;
+						border: 1px solid #e6e6e6;
+						border-radius: 100%;
+						background-color: #fafafa;
+						@include mixin.transform(translateY(-50%));
+
+						&::before{
+							position: absolute;
+							top: 50%;
+							left: 50%;
+							width: 15px;
+							border: 3px solid #5c5c5c;
+							border-width: 3px 0 0;
+							content: '';
+							@include mixin.transform(translate(-50%, -50%));
+						}
+
+						&.ico_plus {
+							&::before {
+								border-width: 3px 0 0;
+							}
+
+							&::after {
+								position: absolute;
+								top: 50%;
+								left: 50%;
+								height: 15px;
+								border-left: 3px solid #5c5c5c;
+								content: '';
+								@include mixin.transform(translate(-50%, -50%));
+							}
+						}
+
+						&.ico_equal::before {
+							height: 9px;
+							border-bottom-width: 3px;
+						}
+					}
+				}
+
+				dd {
+					@include mixin.prefix(flex, auto, webkit ms);
+					padding-right: 58px;
+					text-align: right;
+
+					.text_price span {
+						@include mixin.font(700 '20px' [var.$fontFamily_latin], 0);
+
+						&::after {
+							font-size: 14px;
+						}
+					}
+				}
+			}
+		}
+
+		+ .mm_foot {
+			margin-top: 85px;
+		}
+	}
+
+	&-tooltip {
+		position: absolute;
+		top: -51px;
+		left: 50%;
+		margin-left: -45px;
+		font-size: 13px;
+
+		&.__tooltip-hide {
+			display: none;
+		}
+
+		&::before {
+			position: absolute;
+			z-index: -1;
+			bottom: -8px;
+			right: 67px;
+			@include mixin.triangle(#000, left, 8px, 13px);
+			content: '';
+		}
+
+		&::after {
+			position: absolute;
+			bottom: -6px;
+			right: 68px;
+			@include mixin.triangle(#fff, left, 7px, 12px);
+			content: '';
+		}
+
+		> p {
+			padding: 9px 45px 9px 13px;
+			border: 1px solid #101010;
+			border-radius: 3px;
+			background-color: #fff;
+
+			strong {
+				@include mixin.font(#f86363 700);
+			}
+		}
+
+		.btn_close {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			padding: 0 14px;
+			@include mixin.font(#999 '10px/35px');
+		}
+	}
+
+	.mm_foot {
+		position: relative;
+
+		.btn_order {
+			padding: 0 46px 0 32px;
+			line-height: 52px;
+
+			b {
+				vertical-align: 0;
+
+				&:nth-child(n+2) {
+					position: relative;
+					margin-left: 32px;
+					padding-left: 46px;
+
+					&::before {
+						position: absolute;
+						top: 20px;
+						left: 0;
+						height: 15px;
+						border-left: 1px solid rgba(#fff, 0.4);
+						content: '';
+					}
+				}
+
+				strong {
+					vertical-align: 0;
+					@include mixin.font(500 '18px' [var.$fontFamily_latin], 0);
+				}
+			}
+
+			.mco_link-sm {
+				margin-left: 11px;
+				font-size: 20px;
+
+				.__ie11 & { margin-top: 1px; }
+			}
+		}
+	}
+
+	.mm_text-none {
+		padding-bottom: 62px;
+	}
+}
+//> 장바구니
+
+//< 주문결제
+.m_order {
+	// 해외배송개인통관고유부호
+	&-abroad {
+		th {
+			line-height: 21px;
+
+			b {
+				padding-top: 2px;
+			}
+		}
+
+		td {
+			> .mm_form-check {
+				margin: 10px 0;
+			}
+		}
+
+		.mm_note {
+			margin-top: 7px;
+		}
+
+		.mm_check-list {
+			margin-top: 13px;
+			font-size: 0;
+
+			.btn_detail {
+				position: relative;
+				padding: 0 12px;
+				height: 20px;
+				@include mixin.font(#8c8c8c '13px/18px');
+
+				&::after {
+					position: absolute;
+					right: 12px;
+					bottom: 2px;
+					left: 12px;
+					border-bottom: 1px solid #8c8c8c;
+					content: '';
+				}
+			}
+		}
+
+		.btn_abroad {
+			padding: 2px 8px;
+			@include mixin.font(var.$color_point1 '13px');
+
+			.mco_link {
+				margin: 1px 0 -1px 6px;
+				font-size: 9px;
+			}
+		}
+
+		.btn_modify {
+			display: block;
+			margin-top: 8px;
+
+			.mco_link-sm {
+				margin: 1px 0 0 8px;
+
+				.__ie11 & { margin-top: 2px; }
+			}
+
+			+ .mm_check-list {
+				margin-top: 18px;
+			}
+		}
+	}
+
+	// 주문자 정보 (회원)
+	&-member {
+		// 이메일 주소
+		tr.m_order-member-email:first-child {
+			border-bottom: 20px solid transparent;
+
+			+ tr {
+				border-top: 0;
+			}
+		}
+
+		// 배송지 정보
+		tr.mm_address-list {
+			th {
+				.text_amount {
+					display: block;
+					color: #999;
+				}
+			}
+
+			.mm_slider {
+				&-inner {
+					padding: 0 27px;
+
+					&[style*="center"] {
+						margin-left: -30px;
+						text-align: left !important;
+					}
+				}
+
+				&-item {
+					padding: 0 3px;
+					width: 330px;
+
+					.mm_address-item {
+						padding: 22px 90px 0 18px;
+						height: 180px;
+
+						.mco_form-choice {
+							right: 18px;
+						}
+
+						dl {
+							dt {
+								margin-right: -50px;
+							}
+
+							dd:first-of-type {
+								margin-top: 27px;
+							}
+						}
+					}
+
+					.btn_remove {
+						padding: 10px 19px 25px 10px;
+					}
+				}
+
+				.btn_address-add {
+					padding-top: 48px;
+					width: 100%;
+					height: 180px;
+					border: 1px dashed #cdcdcd;
+					border-radius: 3px;
+					@include mixin.font(#4a4a4a '14px/1' center);
+
+					.ico_address-add {
+						position: relative;
+						width: 54px;
+						height: 54px;
+						border-radius: 100%;
+						background-color: #f5f5f5;
+
+						&::before {
+							position: absolute;
+							top: 13px;
+							bottom: 13px;
+							right: 50%;
+							border-left: 1px solid #c0c0c1;
+							content: '';
+						}
+
+						&::after {
+							position: absolute;
+							right: 13px;
+							bottom: 50%;
+							left: 13px;
+							border-top: 1px solid #c0c0c1;
+							content: '';
+						}
+					}
+
+					> b {
+						display: block;
+						margin-top: 13px;
+					}
+				}
+
+				&-control {
+					button {
+						top: 0;
+						width: 30px;
+						height: 180px;
+						background-color: rgba(#000, 0.28);
+						@include mixin.font(#fff '14px/180px');
+
+						&:disabled {
+							background-color: rgba(#000, 0.13);
+						}
+					}
+
+					.btn_slider-prev {
+						left: 0;
+					}
+
+					.btn_slider-next {
+						right: 0;
+					}
+				}
+			}
+		}
+
+		// 배송메모
+		tr.m_order-member-memo {
+			border-top-width: 34px;
+
+			th b {
+				padding-top: 0;
+			}
+		}
+
+		// 해외배송개인통관고유부호
+		tr.m_order-abroad {
+			border-top-width: 34px;
+		}
+
+		// 상품 정보
+		+ section {
+			margin-top: 94px;
+		}
+	}
+
+	// 배송지 정보 (비회원)
+	&-address {
+		> .mm_form-check {
+			margin: 24px 0 0 2px;
+		}
+
+		table {
+			// 배송메모
+			tr.m_order-address-memo {
+				border-top-width: 34px;
+
+				th b {
+					padding-top: 0;
+				}
+			}
+
+			// 해외배송개인통관고유부호
+			tr.m_order-abroad {
+				border-top-width: 34px;
+			}
+		}
+
+		// 상품 정보
+		+ section {
+			margin-top: 84px;
+
+			.mm_strapline {
+				border-bottom: 0;
+			}
+		}
+	}
+
+	.mm_order-item-seller {
+		.text_price {
+			// 즉시할인 적용가
+			> .text_discount {
+				display: block;
+				margin-bottom: 3px;
+				@include mixin.font(#f86363 400 '12px' [var.$fontFamily_base], -0.25px);
+
+				&::after {
+					display: none;
+				}
+			}
+		}
+	}
+
+	// 사은품 정보
+	&-gift {
+		margin-top: 94px;
+
+		th span {
+			display: block;
+			margin-top: 2px;
+			color: #999;
+		}
+
+		tr + tr {
+			border-top-width: 33px;
+		}
+
+		input[type=radio] {
+			position: absolute;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0;
+
+			&:checked {
+				~ .mm_gift-item,
+				+ .text_not {
+					border-color: var.$color_point1;
+
+					.mco_form-choice {
+						color: var.$color_point1;
+					}
+				}
+			}
+
+			&:disabled {
+				~ .mm_gift-item .mco_form-choice {
+					color: #eee;
+				}
+			}
+		}
+
+		.mco_form-choice {
+			position: absolute;
+			top: 14px;
+			right: 14px;
+			@include mixin.font(#cdcdcd '20px');
+		}
+
+		.text_state {
+			margin-top: 31px;
+			font-size: 14px;
+		}
+
+		.text_not {
+			position: relative;
+			padding-top: 51px;
+			height: 140px;
+			border: 1px solid #cdcdcd;
+			border-radius: 3px;
+			@include mixin.font(#4a4a4a '13px/19px' center);
+
+			strong {
+				display: block;
+				margin-bottom: 6px;
+				@include mixin.font(500 '20px' center);
+			}
+		}
+
+		.btn_target {
+			right: 23px;
+		}
+	}
+
+	&-payment {
+		margin-top: 94px;
+		@include mixin.clearfix();
+
+		> .mm_lside {
+			width: 978px;
+		}
+
+		> .mm_rside {
+			width: 324px;
+
+			.mm_strapline {
+				border-bottom: 0;
+			}
+
+			// 래플 상품 안내문구
+			.mm_note[class*="_bg_"] {
+				padding: 14px 14px 16px;
+				border: 1px solid #feb97d;
+				background-color: #fffdf9;
+				@include mixin.font(var.$color_point2 '14px');
+			}
+		}
+
+		// 보유 마일리지
+		.text_point {
+			margin-top: 10px;
+			@include mixin.font('14px/13px');
+
+			> * {
+				@include mixin.font([var.$fontFamily_latin], 0);
+			}
+
+			.text_price {
+				vertical-align: 0;
+
+				strong {
+					margin-left: 10px;
+					vertical-align: 0;
+					font-weight: 500;
+
+					&::after {
+						vertical-align: 0;
+						font-size: 13px;
+
+						.__ie11 & { margin-left: 1px; }
+					}
+				}
+			}
+		}
+
+		// 결제수단
+		&-payway {
+			&:not(.mm_lside) {
+				margin-top: 94px;
+			}
+
+			.m__payway-list {
+				padding: 24px 24px 0;
+
+				ul {
+					margin: 0 -3px;
+
+					li {
+						float: left;
+						margin: 0 3px;
+					}
+				}
+
+				.mm_form-radio {
+					display: block;
+					padding-left: 0;
+
+					.mm_block {
+						padding: 20px 0 27px;
+						width: 111px;
+						text-align: center;
+
+						&::before {
+							position: absolute;
+							top: 0;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							border: 1px solid #e6e6e6;
+							border-radius: 3px;
+							content: '';
+						}
+
+						> i {
+							width: 90px;
+							height: 44px;
+							@include mixin.font(#a3a3a3 '24px/44px');
+
+							&[class*="ico_payment-"]::before {
+								display: block;
+								height: 100%;
+								@include mixin.background('0/180px auto' no-repeat);
+							}
+
+							// 페이코
+							&.mco_payment-payco {
+								font-size: 14px;
+							}
+
+							// 토스
+							&.ico_payment-toss {
+								margin-left: 1px;
+
+								&::before {
+									background-image: url('https://img.nstationmall.com/mall/ui/pc/content/order_payway_toss.png');
+									content: '';
+								}
+							}
+
+							// 네이버페이
+							&.ico_payment-naver::before {
+								background-image: url('https://img.nstationmall.com/mall/ui/pc/content/order_payway_naver_new.png');
+							}
+
+							// 카카오페이
+							&.ico_payment-kakao::before {
+								background-image: url('https://img.nstationmall.com/mall/ui/pc/content/order_payway_kakao.png');
+							}
+						}
+
+						.text_label {
+							color: #a3a3a3;
+						}
+					}
+
+					:checked {
+						+ .mm_block {
+							&::before {
+								border-color: var.$color_point1;
+							}
+
+							[class*="ico_payment"]::before {
+								background-position-x: 100%;
+							}
+
+							> i,
+							.text_label {
+								color: var.$color_point1;
+							}
+						}
+					}
+
+					$payways: (naver, #00c73c), (kakao, #ffcd00, #47292b), (payco, #fa1414), (toss, #0050ff);
+					@each $pay, $color, $fontColor in $payways {
+						&.m__payway-#{$pay} {
+							:checked + .mm_block {
+								&::before {
+									border-color: $color;
+								}
+
+								.text_label,
+								.mco_payment-#{$pay} {
+									color: if($fontColor, $fontColor, $color);
+								}
+							}
+						}
+					}
+				}
+
+				~ * {
+					margin-top: 34px;
+				}
+			}
+
+			// 무이자할부 안내
+			.btn_card-guide {
+				padding: 9px 2px;
+				font-size: 13px;
+
+				.mco_link {
+					margin: 3px 0 0 10px;
+					font-size: 10px;
+				}
+			}
+
+			// 입금기한
+			.text_period {
+				margin: 7px 0 0 18px;
+				padding: 0 20px 0 18px;
+				height: 32px;
+				border: 1px solid #5c5c5c;
+				border-radius: 16px;
+				@include mixin.font(#5c5c5c '14px/28px');
+
+				strong {
+					position: relative;
+					margin-left: 15px;
+					padding-left: 14px;
+					color: #f86363;
+
+					&::before {
+						position: absolute;
+						top: 6px;
+						left: 0;
+						height: 10px;
+						border-left: 1px solid #999;
+						content: '';
+					}
+				}
+			}
+
+			.mm_order-form,
+			.mm_note {
+				+ .mm_order-form {
+					position: relative;
+					margin-top: 24px;
+					padding-top: 24px;
+
+					&::before {
+						position: absolute;
+						top: 0;
+						right: 0;
+						left: 0;
+						height: 1px;
+						@include mixin.linear-gradient(#e6e6e6, 90deg, #e6e6e6 5px, #fff 4px);
+						@include mixin.background('/9px 1px' repeat-x);
+						content: '';
+					}
+
+					table {
+						margin-top: 0;
+					}
+				}
+			}
+
+			// 무통장입금 현금영수증 발급 신청
+			.mm_order-form.m__payway-receipt {
+				margin-top: 34px;
+
+				ul {
+					margin: 0 -3px;
+
+					li {
+						float: left;
+						margin: 0 3px;
+					}
+				}
+
+				.mm_form-radio {
+					display: block;
+					padding-left: 0;
+
+					.mm_block {
+						width: 89px;
+						text-align: center;
+
+						&::before {
+							position: absolute;
+							top: 0;
+							right: 0;
+							bottom: 0;
+							left: 0;
+							border: 1px solid #e6e6e6;
+							border-radius: 3px;
+							content: '';
+						}
+
+						.text_label {
+							height: auto;
+							@include mixin.font(#4a4a4a '/46px');
+						}
+					}
+
+					:checked + .mm_block {
+						&::before {
+							border-color: var.$color_point1;
+						}
+
+						.text_label {
+							color: var.$color_point1;
+						}
+					}
+				}
+
+				.mm_form-text {
+					margin-top: 10px;
+				}
+			}
+
+			// 환불계좌관리
+			.m__payway-refund {
+				&.mm_order-form {
+					padding-top: 18px;
+				}
+
+				table {
+					line-height: 29px;
+
+					.mm_btn {
+						margin: 2px 0 0 9px;
+
+						i {
+							margin-left: 4px;
+						}
+					}
+
+					.mm_note {
+						margin-top: 12px;
+						padding: 0;
+						border: 0;
+					}
+				}
+			}
+
+			.mm_note {
+				padding: 20px 23px;
+				border-top: 1px solid #eee;
+			}
+		}
+
+		// 최종 결제금액
+		&-agree {
+			margin-top: 24px;
+			padding: 19px 15px 23px;
+			border: 1px solid #e6e6e6;
+			border-radius: 3px;
+
+			.mm_check-list {
+				ul {
+					margin-left: -2px;
+
+					li {
+						position: relative;
+
+						&:nth-child(n+2) {
+							margin-top: 9px;
+						}
+
+						.btn_more {
+							position: absolute;
+							top: 3px;
+							right: 4px;
+							border-bottom: 1px solid #888;
+							@include mixin.font(#888 '1.3rem');
+						}
+					}
+				}
+
+				.mm_form-check {
+					:checked + .mm_block {
+						.ico_check::before {
+							background-color: #3d3d3d;
+						}
+					}
+
+					.mm_block {
+						position: relative;
+						padding: 0 60px 0 20px;
+					}
+
+					.ico_check {
+						position: absolute;
+						top: 0;
+						left: 0;
+						margin-top: 3px;
+						border: 0;
+
+						&::before {
+							width: 14px;
+							height: 14px;
+							background-color: #cdcdcd;
+							@include mixin.prefix(mask-image, url('https://img.nstationmall.com/mall/ui/mobile/common/ico_check.svg'), webkit);
+							@include mixin.prefix(mask-position, 50% 50%, webkit);
+							@include mixin.prefix(mask-size, contain, webkit);
+							@include mixin.prefix(mask-repeat, no-repeat, webkit);
+							content: '';
+						}
+					}
+
+					.text_label {
+						padding-left: 41px;
+
+						b {
+							position: absolute;
+							top: 0;
+							left: 0;
+						}
+					}
+				}
+			}
+
+			.mm_form-check {
+				.text_label {
+					position: relative;
+					@include mixin.font('1.3rem/1.9rem');
+
+					small {
+						display: block;
+						color: #888;
+					}
+				}
+			}
+
+			> .mm_form-check {
+				margin-top: 18px;
+				padding: 15px 14px;
+				border-radius: 3px;
+				background-color: #fafafa;
+			}
+
+			+ .mm_foot {
+				margin-top: 34px;
+			}
+
+			~ .mm_note {
+				margin-top: 34px;
+			}
+		}
+	}
+
+	// 주문완료
+	&-fin {
+		text-align: center;
+
+		.mm_title {
+			padding: 118px 0 19px;
+			font-size: 26px;
+
+			+ p {
+				font-size: 15px;
+			}
+		}
+
+		&-deposit {
+			display: inline-block;
+			margin-top: 40px;
+			padding: 25px 0 23px 0;
+			width: 687px;
+			border: 1px solid #f5f5f5;
+			border-radius: 3px;
+			background-color: #fafafa;
+
+			.m__deposit-inner {
+				display: inline-block;
+			}
+
+			p {
+				@include mixin.font(#7b7b7b '14px/25px' left);
+
+				span {
+					margin-left: 12px;
+					color: var.$color_text_base;
+				}
+
+				&.text_deadline > span{
+					color: #f86363;
+				}
+			}
+
+			+ .mm_btnbox {
+				margin-top: 40px;
+			}
+		}
+
+		~ .mm_order-item,
+		~ .mm_order-info {
+			margin-top: 94px;
+		}
+
+		~ .m_order-payment {
+			margin-top: 86px;
+		}
+
+		.mm_btnbox {
+			margin-top: 39px;
+		}
+	}
+
+	.mm_text-none {
+		padding: 118px 0 62px;
+	}
+}
+//> 주문결제
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+//< 쿠폰 적용
+.m_modal-order-coupon {
+	html[class*="_modal_"] & {
+		width: var.$modal_width_lg;
+	}
+
+	.btn_apply {
+		width: 237px;
+	}
+}
+//> 쿠폰 적용
+
+//< 사은품 지급 대상
+.m_modal-gift-target {
+	padding-top: 22px;
+	@include mixin.font('13px/19px');
+
+	.mm_gift-item {
+		figcaption .text_date {
+			margin-top: 6px;
+		}
+	}
+
+	table {
+		margin-top: 22px;
+		border-top: 1px solid #d5d5d5;
+
+		th {
+			padding: 13px 11px 14px;
+			border-bottom: 1px solid #d5d5d5;
+			background-color: #fafafa;
+		}
+
+		td {
+			padding: 11px 15px;
+			border-bottom: 1px solid #e6e6e6;
+			@include mixin.font(#4a4a4a left);
+
+			> .image_product {
+				display: block;
+
+				&::after {
+					padding-top: var.$prod_height_base;
+					content: '';
+				}
+			}
+
+			> b {
+				margin-left: 5px;
+				color: var.$color_text_base;
+			}
+
+			.text_product {
+				margin-left: 3px;
+				@include mixin.text-ellipsis(3);
+			}
+
+			figure {
+				@include mixin.flex-container();
+				@include mixin.prefix(align-items, center, webkit ms);
+				position: relative;
+
+				.image_brand {
+					position: relative;
+					padding: 17px 47px;
+					width: 150px;
+					height: 70px;
+					background-origin: content-box;
+
+					$format: (landscape-4x, 10px 20px), (landscape-3x, 15px 20px), (landscape-2x, 23px 20px), (portrait-2x, 15px 5px), (portrait, 12px 5px);
+					@each $ratio, $padding in $format {
+						&.__image-#{$ratio} {
+							padding: $padding;
+						}
+					}
+
+					&.__lazyload-error::before {
+						position: absolute;
+						top: 50%;
+						right: 8px;
+						left: 8px;
+						@include mixin.font(#a3a3a3 '11px/15px' center);
+						content: attr(title);
+						@include mixin.transform(translateY(-50%));
+					}
+				}
+
+				figcaption {
+					@include mixin.prefix(flex, 1, webkit ms);
+					margin-left: 100px;
+				}
+			}
+		}
+	}
+
+	+ .mm_pagination {
+		margin-top: 32px;
+	}
+}
+//> 사은품 지급 대상
+
+
+.m_modal-term-agree {
+	@include mixin.font(#4a4a4a 400 '1.4rem/2rem');
+
+	> p {
+		&:first-child {
+			padding-top: 17px;
+		}
+	}
+
+	table {
+		display: block;
+		margin: 11px 0 8px;
+		border: 1px solid #e6e6e6;
+		border-width: 1px 0 0 1px;
+
+		tr {
+			> * {
+				padding: 8px 9px 9px;
+				border: 1px solid #e6e6e6;
+				border-width: 0 1px 1px 0;
+			}
+
+			th {
+				background-color: #f5f5f5;
+				@include mixin.font(#3d3d3d '1.5rem' left);
+			}
+
+			td {
+				text-align: left;
+				// color: #4a4a4a;
+
+				strong {
+					padding: 5px 0;
+					@include mixin.font(#2b2b2b '2rem/2.5rem');
+				}
+			}
+		}
+	}
+
+	.mm_note {
+		margin: 8px 0 20px;
+		padding-left: 3px;
+
+		ul {
+			li::before {
+				content: '*';
+			}
+		}
+
+	}
+}
+
+// *---------- 레이어 ----------*

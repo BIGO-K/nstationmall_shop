@@ -1,0 +1,46 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s4-a"] {
+    .mm_carousel {
+        &-item {
+            .mm_image-none {
+                position: relative;
+                height: 120px;
+                background-color: #f5f5f5;
+
+                &::after {
+                    position: absolute;
+                    top: 50%;
+                    right: 8px;
+                    left: 8px;
+                    @include mixin.font(#a3a3a3 '12px/17px' center, normal);
+                    content: attr(data-ir);
+                    @include mixin.transform(translateY(-50%));
+                }
+
+                .mco_none {
+                    display: none;
+                }
+            }
+        }
+
+        &-pagination {
+            bottom: 9px;
+        }
+    }
+
+    .m_ui-item:nth-of-type(n+2) {
+        margin-top: 30px;
+    }
+}

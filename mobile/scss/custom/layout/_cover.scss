@@ -1,0 +1,23 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * 모바일 전면팝업, 공유 sns
+**/
+
+
+//< sns 공유
+.mm_sns {
+	&-list {
+		[class*="btn_sns-"] {
+			&.btn_sns-url {
+				background-color: #f86364;
+			}
+		}
+	}
+}

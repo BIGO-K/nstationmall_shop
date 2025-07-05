@@ -1,0 +1,88 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s1-c"] {
+    .mm_carousel-list {
+        padding-top: 125.33333%;
+
+        figure {
+            position: relative;
+
+            .image_banner {
+                padding-top: 125.33333%;
+                width: 100%;
+            }
+        }
+
+        figcaption {
+            position: absolute;
+            right: 0;
+            bottom: 31px;
+            left: 0;
+            padding: 0 24px;
+
+            p {
+                @include mixin.text-ellipsis(1);
+                @include mixin.font(#fff '15px');
+
+                &.text_main {
+                    @include mixin.font(700 '32px');
+                }
+
+                &.text_sub {
+                    padding-top: 1px;
+                    font-size: 20px;
+                }
+            }
+
+            &.__text_black__ p {
+                color: var.$color_text_base;
+            }
+        }
+    }
+
+    .mm_carousel-count {
+        right: 0;
+        bottom: 0;
+
+        > a {
+            display: block;
+            position: relative;
+            padding: 7px 10px 5px 8px;
+            @include mixin.background(rgba(#000, 0.62));
+            @include mixin.font(#a3a3a3 '15px' [var.$fontFamily_latin]);
+
+            &::before {
+                position: absolute;
+                top: -20px;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                content: '';
+            }
+        }
+
+        .text_carousel-index {
+            color: #fff;
+        }
+
+        > i {
+            margin: 0 1px;
+        }
+
+        .mco_more-plus {
+            margin-left: 7px;
+            @include mixin.font(#fff '11px/14px');
+        }
+    }
+}

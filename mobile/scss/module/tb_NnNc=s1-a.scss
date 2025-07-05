@@ -1,0 +1,165 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 탭+배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="tb_NnNc/s1-a"] {
+    ul.mm_flex {
+        overflow: hidden;
+        border-bottom: 1px solid #000;
+
+        li {
+            @include mixin.flex-container();
+            height: auto;
+
+            &:nth-of-type(n+2) {
+                margin-left: -1px;
+            }
+
+            .btn_tab {
+                position: relative;
+                margin-top: 6px;
+                padding: 9px 0 10px;
+                height: auto;
+                border: 1px solid #ebebeb;
+                border-bottom-width: 0;
+                @include mixin.font(#999 '13px/18px');
+
+                > b {
+                    height: auto;
+                }
+
+                &.__tab-on {
+                    z-index: 1;
+                    margin-top: 0;
+                    padding: 11px 0 12px;
+                    border-color: #000;
+                    @include mixin.font(var.$color_text_base '14px/20px');
+
+                    &::after {
+                        position: absolute;
+                        right: 0;
+                        bottom: -1px;
+                        left: 0;
+                        border-bottom: 1px solid #fff;
+                        content: '';
+                    }
+
+                    b {
+                        position: static;
+
+                        &::before,
+                        &::after {
+                            position: absolute;
+                            top: 8px;
+                            bottom: 0;
+                            width: 14px;
+                            content: '';
+                        }
+
+                        &::before {
+                            left: -15px;
+                            @include mixin.linear-gradient(transparent, -70deg, rgba(#000, 0.25), rgba(#fff, 0) 48%);
+
+                            .__ios & {
+                                @include mixin.linear-gradient(transparent, -70deg, rgba(#000, 0.25), rgba(#fff, 0.1) 48%);
+                            }
+                        }
+
+                        &::after {
+                            right: -15px;
+                            @include mixin.linear-gradient(transparent, 70deg, rgba(#000, 0.25), rgba(#fff, 0) 48%);
+
+                            .__ios & {
+                                @include mixin.linear-gradient(transparent, 70deg, rgba(#000, 0.25), rgba(#fff, 0.1) 48%);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .mm_carousel {
+        margin-top: 22px;
+
+        &-list {
+            box-sizing: content-box;
+            padding-top: 55.90778%;
+            height: 159px;
+        }
+
+        &-item {
+            height: 100%;
+
+            > a {
+                height: 100%;
+            }
+
+            figure {
+                .image_banner {
+                    padding-top: 55.90778%;
+                    width: 100%;
+                }
+            }
+
+            figcaption {
+                padding: 14px 17px 0 6px;
+
+                .text_brand {
+                    @include mixin.font('20px/27px');
+                }
+
+                .text_main {
+                    margin-top: 5px;
+                    @include mixin.font(#6a6a6a '14px/20px');
+                }
+
+                span {
+                    position: absolute;
+                    right: 9px;
+                    bottom: 43px;
+                    font-size: 13px;
+
+                    &::after {
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        border-top: 1px solid #101010;
+                        content: '';
+                    }
+
+                    .mco_link-sm {
+                        margin: 2px 0 0 8px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+
+        .m__carousel-progress {
+            position: absolute;
+            z-index: 2;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            background-color: #e6e6e6;
+
+            &-bar {
+                height: 100%;
+                background-color: #101010;
+                @include mixin.transition(width const.$time_base);
+            }
+        }
+    }
+}

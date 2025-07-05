@@ -1,0 +1,112 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * 헤더
+**/
+
+
+//< 헤더영역
+.mm_header {
+	// 브랜드몰
+	html[class*="_brand_"] & {
+		height: 279px;
+
+		.mm_header-brand {
+			height: 118px;
+			text-align: center;
+
+			&.__brand_national__ {
+				padding-top: 58px;
+
+				> a {
+					width: 346px;
+					height: 60px;
+					@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/logo_national.svg') '50% 50%/100% auto' no-repeat);
+				}
+			}
+
+			&.__brand_nfl__ {
+				padding-top: 30px;
+
+				> a {
+					width: 72px;
+					height: 99px;
+					@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/logo_nfl.svg') '50% 50%/100% auto' no-repeat);
+				}
+			}
+		}
+
+		.mm_header-gnb {
+			border-top: 0;
+		}
+
+		&:not(.__header-sticky) {
+			> .mm_inner {
+				padding-bottom: 20px;
+			}
+		}
+
+		&.__header-sticky {
+			height: 72px;
+
+			h1 {
+				display: none;
+			}
+
+			.mm_header-brand {
+				position: absolute;
+				top: 20px;
+				left: 72px;
+				height: auto;
+
+				&.__brand_national__ {
+					padding-top: 2px;
+
+					> a {
+						width: 176px;
+						height: 29px;
+					}
+				}
+
+				&.__brand_nfl__ {
+					top: 15px;
+					padding-top: 0;
+
+					> a {
+						width: 32px;
+						height: 44px;
+					}
+				}
+			}
+		}
+	}
+
+	// 바로가기
+	&-quick {
+		ul {
+			li {
+				.text_count {
+					color: var.$color_point2;
+				}
+			}
+		}
+	}
+}
+//> 헤더영역
+
+//< 헤더 검색
+.mm_header-search {
+	// 추천검색어
+	&-auto {
+		.mm_text-primary {
+			color: #F86364 !important;
+		}
+	}
+}
+//> 헤더 검색

@@ -1,0 +1,168 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 매출/통계
+**/
+
+
+//< 매출/통계 공통
+.m_stats {
+	.mm_table-body {
+		[class*="_highlight_"] {
+			background-color: #fdf3f5;
+		}
+	}
+}
+//> 매출/통계 공통
+
+//< 회원통계
+.m_stats-member- {
+	// 등급별 월 회원수
+	&require {
+		.mm_table-item {
+			strong {
+				font-weight: 700;
+			}
+		}
+	}
+
+	&grade {
+		.mm_table {
+			tbody:nth-child(odd) {
+				background-color: #fcfcfc;
+			}
+		}
+	}
+}
+//> 회원통계
+
+//< 목표등록
+.m_stats-goal-calendar {
+	margin-top: 39px;
+
+	table {
+		border-collapse: collapse;
+		border: 1px solid #d5d5d5;
+		border-top: 0;
+		border-collapse: collapse;
+		font-size: 12px;
+
+		caption {
+			border-bottom: 1px solid #666;
+
+			h3 {
+				padding-bottom: 19px;
+				@include mixin.font('24px' center);
+			}
+		}
+
+		thead {
+			th {
+				background-clip: border-box;
+			}
+		}
+
+		thead,
+		tbody {
+			tr {
+				> *:nth-child(1) {
+					color: var.$color_primary_base;
+				}
+
+				> *:nth-child(7) {
+					color: #015bf0;
+				}
+
+				th {
+					padding: 4px 13px;
+					border-right: 1px solid #d5d5d5;
+					@include mixin.background(#ebebeb border-box);
+					line-height: 20px;
+				}
+
+				td {
+					position: relative;
+					padding-bottom: 4px;
+					height: 99px;
+					border: 1px solid #d5d5d5;
+
+					.text_date {
+						display: block;
+						padding: 7px 9px;
+						text-align: left;
+					}
+
+					p {
+						padding: 3px 8px 0;
+						@include mixin.font(#000 '/16px');
+					}
+				}
+			}
+		}
+
+		tfoot {
+			background-color: #ebebeb;
+
+			tr {
+				font-weight: 700;
+
+				&:first-child {
+					> * {
+						padding-top: 14px;
+					}
+				}
+
+				&:last-child {
+					> * {
+						padding-bottom: 15px;
+					}
+				}
+
+				th,
+				td {
+					padding: 4px 6px 5px;
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.btn_goal-register {
+		margin-top: 7px;
+	}
+
+	.m__calendar-unit {
+		@include mixin.clearfix;
+		padding: 9px;
+		border: 1px solid #d5d5d5;
+		border-top-width: 0;
+		background-color: #f9f9f9;
+		@include mixin.font(#666 '12px');
+	}
+
+	+ .mm_note {
+		margin-top: 6px;
+	}
+}
+//> 목표등록
+
+//< 유입경로별실적현황, 포털사이트 광고 대행
+.m_stats-inflow {
+	tbody {
+		tr {
+			&.__stats_subtotal__ {
+				background-color: #fcfcfc;
+			}
+
+			&.__stats_total__ {
+				background-color: #f9f9f9;
+			}
+		}
+	}
+}
+//> 유입경로별실적현황, 포털사이트 광고 대행

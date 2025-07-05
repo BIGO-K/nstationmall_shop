@@ -1,0 +1,57 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * 모달
+**/
+
+
+//< 본인인증
+.m_modal-certify {
+	.text_certify > .mm_text-primary {
+		color: #f86364 !important;
+	}
+}
+//> 본인인증
+
+//< 찜폴더 담기
+.m_modal-like-folder {
+	.btn_add-folder {
+		color: #f86364;
+	}
+}
+//> 찜폴더 담기
+
+//< 우편번호 검색
+.m_modal-postcode {
+	// 검색가이드
+	&-guide {
+		> dl {
+			dd strong {
+				color: #f86364;
+			}
+		}
+	}
+
+	&-title {
+		.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 우편번호 검색
+
+//< 인쇄영역 (영수증)
+.m_modal-receipt {
+	.mm_print table {
+		.text_price.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+}
+//> 인쇄영역 (영수증)

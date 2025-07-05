@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 회원 탈퇴 - N.STATION</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/app.css">
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="{ '_type': 'anchor' }">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><b>회원 탈퇴</b></h1>
+				<div class="mm_lside">
+					<a class="btn_back" href="#" data-href="{ '_type': 'back' }"><i class="mco_history-back"></i><b class="mm_ir-blind">이전으로</b></a>
+				</div>
+				<div class="mm_rside">
+					<button type="button" class="btn_popup-close" onclick="mm.popup.close();"><i class="mco_popup-close"></i><b class="mm_ir-blind">팝업 닫기</b></button>
+				</div>
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+				<!-- (D) 팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다. -->
+				<div class="mm_scroller">
+					<div class="mm_page-inner">
+						<!-- 본문 -->
+						<div class="mm_page-content">
+							<div class="m_popup-myinfo-withdraw">
+								<!-- 유의사항 -->
+								<div class="mm_note __note_line__">
+									<h5 class="text_title"><b>회원 탈퇴 유의사항</b></h5>
+									<ul>
+										<li>고객의 구매 및 반품 등 고객서비스가 완료되지 않은 경우 탈퇴 처리가 되지 않습니다. (1:1 상담 게시판을 통해 회원 탈퇴 관련 문의 내용을 남길 시 확인 후 안내)</li>
+										<li>탈퇴 시 보유하고 있는 마일리지 및 할인쿠폰은 자동 소멸됩니다.(소멸된 마일리지 및 쿠폰은 재가입 시 복원 불가)</li>
+										<li>탈퇴 이후 주문정보는 교환/반품/환불 및 사후 처리(A/S) 등을 위하여 전자상거래 등에서의 소비자보호에 관한 법류에 의거, 개인정보 보호 정책에 따라 관리합니다</li>
+									</ul>
+								</div>
+								<!--// 유의사항 -->
+
+								<form>
+									<!-- 탈퇴사유 -->
+									<h3 class="mm_title"><b>어떤 부분이 불편하셨나요?</b></h3>
+									<p class="text_sub">탈퇴 사유를 남겨주시면 소중한 의견을 반영해<br>더 좋은 서비스로 찾아뵙겠습니다</p>
+									<div class="mm_radio-list">
+										<ul>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">상품품질 불만</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">고객서비스 불만</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">원하는 상품이 없음</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">속도가 느림</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">배송 지연</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">교환/환불 불만</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio>
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">자주 이용하지 않음</span>
+													</b>
+												</label>
+											</li>
+											<li>
+												<label class="mm_form-radio">
+													<input type="radio" name="dev_radio-reason" data-radio="{ 'syncer': '.mm_syncer-reason' }">
+													<b class="mm_block">
+														<i class="mco_form-radio"></i>
+														<span class="text_label">기타</span>
+													</b>
+												</label>
+												<div class="mm_form-textarea mm_syncer-reason">
+													<button type="button" class="btn_text-clear"><i class="mco_form-clear"></i><b class="mm_ir-blind">지우기</b></button>
+													<label>
+														<textarea class="textfield" data-text></textarea><i class="bg_text"></i>
+														<span class="text_placeholder">기타 사유를 입력해 주세요</span>
+													</label>
+												</div>
+											</li>
+										</ul>
+									</div>
+									<!--// 탈퇴사유 -->
+
+									<!-- 탈퇴신청 -->
+									<h3 class="mm_title"><b>그동안 <strong>N.STATION</strong>를<br>이용해 주셔서 감사합니다</b></h3>
+									<p class="text_sub">고객님과 앞으로 함께하지 못해 아쉽습니다</p>
+									<p class="text_sub">다시 돌아오셨을 때 지금보다 더 나은 상품과 서비스로<br> 발전된 N.STATION가 될 수 있도록 노력하겠습니다</p>
+									<div class="mm_foot">
+										<div class="mm_btnbox">
+											<button type="button" class="mm_btn __btn_primary__"><b>회원탈퇴 신청</b></button>
+										</div>
+									</div>
+									<div class="mm_note">
+										<ul>
+											<li>탈퇴 신청 후 완료까지 일부 기간이 소요되며 기간 중 메일이 발송될 수 있으니 양해 부탁드립니다</li>
+										</ul>
+									</div>
+									<!--// 탈퇴신청 -->
+									<input hidden>
+								</form>
+							</div>
+						</div>
+						<!--// 본문 -->
+					</div>
+				</div>
+
+				<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로"><i class="mco_topmost"></i><b>TOP</b></a>
+
+				<!-- 현재 페이지 스크립트 -->
+				<!-- <script src="../js/.js"></script> -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

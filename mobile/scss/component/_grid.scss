@@ -1,0 +1,307 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 그리드
+**/
+
+
+html,
+body {
+	overflow: hidden;// mobile
+	width: 100%;
+	height: 100%;
+	min-width: var.$minWidth_base;// var.$minWidth_extend;// pc 좌/우 날개배너 포함
+	min-height: 100%;
+}
+
+html {
+	background-color: transparent;
+	@include mixin.font(var.$color_text_base 400 '#{const.$fontSize_base}/1' [var.$fontFamily_base]);
+	letter-spacing: -0.5px;
+	word-break: break-all;
+	@include mixin.prefix(text-size-adjust, none, webkit ms);
+}
+
+body {
+	background-color: #fff;
+	-webkit-overflow-scrolling: touch;
+	// image-rendering: -webkit-optimize-contrast;// 파폭(-moz-crisp-edges)은 적용하면 더 깨져보임 >> 모바일은 샤픈이 강해져 제외
+	// @include mixin.prefix(user-select, none, webkit ms);// 본문 드래그 선택 방지
+	-webkit-touch-callout: none;
+}
+
+// ios에서 터치할 때 회색 영역 잔상이 남는 이슈
+.__ios {
+	a,
+	button,
+	label,
+	[tabindex] {
+		-webkit-tap-highlight-color: transparent;// rgba(#000, 0.1);// 연하게 적용
+	}
+}
+
+//< 스킵 네비게이션
+.mm_skip {
+	position: absolute;
+	z-index: const.$zIndex_skip;
+	top: 0;
+	left: 0;
+	@include mixin.font('0/1');
+
+	a:focus {
+		padding: 10px;
+		background-color: var.$color_point1;
+		@include mixin.font(#fff 700 '12px');
+	}
+}
+//> 스킵 네비게이션
+
+//< 전체 영역
+.mm_app {
+	position: relative;
+	height: 100%;
+
+	// 스테이지
+	> .image_stage {
+		display: block;
+		height: 100%;
+		@include mixin.background(transparent '50% 50%/35%' no-repeat);
+	}
+}
+//> 전체 영역
+
+//< 기본 화면
+.mm_view {
+	position: relative;
+	height: 100%;
+}
+//> 기본 화면
+
+//< 페이지
+.mm_page {
+	position: relative;
+	height: 100%;
+
+	> .mm_scroller {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		padding: var.$header_height_base 0 var.$toolbar_height_base;// mobile
+
+		.__noscroll & {
+			overflow: hidden;
+		}
+	}
+
+	&-inner {
+		display: grid;
+		grid-template-rows: 1fr auto;
+		grid-template-columns: 100%;
+		min-height: 100%;
+		background-color: #fff;
+	}
+
+	// 페이지 본문
+	&-content {
+		position: relative;
+	}
+
+	.btn_side-kakao {
+		position: fixed;
+		z-index: const.$zIndex_floating;
+		right: 14px;
+		// bottom: 10px + var.$toolbar_height_base;// 여백 + topmost 버튼 높이 + 툴바높이
+		bottom: 24px + 46px + var.$toolbar_height_base;// 여백 + topmost 버튼 높이 + 툴바높이
+		width: 46px;
+		height: 46px;
+		@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/common/side_kakaoplus.svg') '0 0/contain' no-repeat);
+		@include mixin.opacity(0, none);
+		@include mixin.transition(opacity const.$time_fast, bottom const.$time_fast);
+
+		html[class*="_popup_"] & {
+			display: none;
+			// bottom: 10px;
+		}
+
+		// 메인제외 아이프레임
+		html[class*="_frame_"]:not([class*="_main_"]) & {
+			bottom: 15px;// 여백 + topmost 버튼 높이
+		}
+
+		html[class*="_lowbtn_"] & {
+			// display: none;
+			bottom: 15px + var.$lowbtn_height_base;
+			@include mixin.opacity(1, auto);
+		}
+
+		// 하단고정버튼 제외 메인
+		// html[class*="_main_"]:not([class*="_lowbtn_"]) & {
+		// 	bottom: 15px;
+		// }
+	}
+
+	.btn_topmost {
+		position: fixed;
+		z-index: const.$zIndex_floating;
+		right: 14px;
+		bottom: 15px + var.$toolbar_height_base;
+		padding-top: 8px;
+		width: 46px;
+		height: 46px;
+		border-radius: 100%;
+		background-color: rgba(#101010, 0.7);
+		@include mixin.font(#fff '15px' center);
+		@include mixin.opacity(0, none);
+		@include mixin.transition(opacity const.$time_fast);
+
+		.mco_topmost {
+			font-size: 10px;
+			@include mixin.transform(scale(0.8));
+		}
+
+		b {
+			display: block;
+			margin-top: -5px;
+		}
+
+		html[class*="_popup_"] & {
+			bottom: 10px;
+		}
+
+		// 메인제외 아이프레임
+		html[class*="_frame_"]:not([class*="_main_"]) & {
+			bottom: 15px;
+		}
+
+		html[class*="_lowbtn_"] & {
+			bottom: 15px + var.$lowbtn_height_base;
+		}
+
+		// 하단고정버튼 제외 메인
+		// html[class*="_main_"]:not([class*="_lowbtn_"]) & {
+		// 	bottom: 15px;
+		// }
+
+		&.__on {
+			@include mixin.opacity(1, auto);
+
+			+ .btn_side-kakao {
+				// bottom: 25px + 46px + var.$toolbar_height_base;// 여백 + topmost 버튼 높이 + 툴바높이
+				@include mixin.opacity(1, auto);
+
+				html[class*="_popup_"] & {
+					bottom: 15px + 46px;
+				}
+
+				html[class*="_frame_"]:not([class*="_main_"]) & {
+					bottom: 25px + 46px;// 여백 + topmost 버튼 높이
+				}
+
+				html[class*="_lowbtn_"] & {
+					bottom: var.$lowbtn_height_base + 71px;
+				}
+
+				// 하단고정버튼 제외 메인
+				// html[class*="_main_"]:not([class*="_lowbtn_"]) & {
+				// 	bottom: 25px + 46px;
+				// }
+			}
+		}
+	}
+}
+//> 페이지
+
+//< 메인 페이지
+html[class*="_main_"] {
+	.mm_page {
+		> .mm_scroller {
+			padding-top: 0;// 헤더 숨김을 위해 메인 프레임 내부에서 적용
+		}
+	}
+
+	// 메인 프레임
+	&[class*="_frame_"] {
+		.mm_page {
+			> .mm_scroller {
+				padding-top: var.$header_height_main + var.$gnb_height_base;
+
+				// 상단 GNB만큼 올리기
+				.__main_lift__ {
+					margin-top: -(var.$gnb_height_base);
+				}
+			}
+		}
+	}
+}
+//> 메인 페이지
+
+//< 하단버튼고정 페이지
+html[class*="_lowbtn_"] {
+	.mm_page {
+		> .mm_scroller {
+			padding-bottom: var.$lowbtn_height_base;
+		}
+	}
+
+	.btn_topmost {
+		bottom: 15px + var.$lowbtn_height_base;
+	}
+
+	&.__layout_popup__ {
+		.mm_page-content {
+			padding-bottom: 50px + var.$lowbtn_height_base;
+		}
+	}
+}
+//> 하단버튼고정 페이지
+
+//< 아이프레임 페이지(modal, popup 제외)
+html[class*="_frame_"] {
+	&:not([class*="_main_"]) {
+		overflow-y: visible;
+
+		body {
+			overflow: visible;
+		}
+	}
+
+	.mm_page {
+		> .mm_scroller {
+			padding: 0;
+		}
+	}
+}
+//> 아이프레임 페이지(modal, popup 제외)
+
+//< 외부링크 페이지
+html[class*="_external_"] {
+	overflow: visible;
+
+	body {
+		overflow: visible;
+		position: absolute !important;
+		top: var.$header_height_base;
+		bottom: 0;
+		height: auto;
+		min-height: 0;
+		@include mixin.transform(translate(0, 0));
+	}
+
+	.mm_app {
+		height: auto;
+	}
+
+	.mm_header {
+		z-index: 9999999999;
+		top: -#{var.$header_height_base};
+	}
+}
+//> 외부링크 페이지

@@ -1,0 +1,349 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 텍스트, 알림, 대체텍스트, 타이틀, 태그, 플래그, 뱃지
+**/
+
+
+//< 기본형
+.mm_text {
+	//< 강조
+	&-primary {
+		color: var.$color_point1 !important;
+
+		// &-light {
+		// 	color: var.$color_point !important;
+		// }
+
+		// &-lightest {
+		// 	color: var.$color_point !important;
+		// }
+
+		// &-dark {
+		// 	color: var.$color_point !important;
+		// }
+	}
+	&-secondary {
+		color: var.$color_point2 !important;
+	}
+	&-tertiary {
+		color: var.$color_point3 !important;
+	}
+	//> 강조
+
+	//< 상태(긍정/부정)
+	// &-positive {
+	// 	color: var.$color_positive_base;
+	// }
+	&-negative {
+		color: var.$color_negative_base;
+	}
+	//> 상태(긍정/부정)
+
+	//< 없음
+	&-none {
+		padding: 127px 0 125px;
+		@include mixin.font('14px/20px' center);
+
+		&[class*="_sm_"] {
+			padding: 49px 0 47px;
+		}
+	}
+	//> 없음
+
+	//< 말줄임
+	&-ellipsis {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		word-break: break-all;
+
+		br {
+			display: none;
+		}
+	}
+	//> 말줄임
+
+	//< 쪼개기
+	&-break {
+		word-break: break-all;
+	}
+	//> 쪼개기
+}
+//> 기본형
+
+//< 대체텍스트
+.mm_ir {
+	&-blind {
+		@include mixin.text-ir();
+	}
+
+	&-indent {
+		@include mixin.text-ir(indent);
+	}
+
+	&-wa {
+		@include mixin.text-ir(wa);
+	}
+}
+//> 대체텍스트
+
+//< 페이지제목
+.mm_title {
+	padding: 52px 0 54px;
+	@include mixin.font('34px' center);
+
+	strong {
+		font-weight: 700;
+	}
+
+	+ .mm_breadcrumb {
+		margin-top: -25px;
+	}
+}
+//> 페이지제목
+
+//< 컨텐츠제목
+.mm_heading {
+	position: relative;
+	padding: 0 5px 19px;
+	border-bottom: 2px solid #101010;
+	@include mixin.font('26px/36px');
+}
+//> 컨텐츠제목
+
+//< 소제목
+.mm_strapline {
+	position: relative;
+	padding-bottom: 15px;
+	vertical-align: 0;
+	font-size: 17px;
+
+	> * {
+		display: inline-block;
+	}
+
+	strong {
+		margin-left: 7px;
+		vertical-align: 1px;
+		@include mixin.font('15px' [var.$fontFamily_latin], 0);
+	}
+
+	small {
+		position: absolute;
+		top: 3px;
+		right: 10px;
+		@include mixin.font(#6a6a6a '13px');
+	}
+
+	&[class*="_line"] {
+		margin-left: 0;
+		padding: 19px 5px 20px;
+		border-top: 2px solid #101010;
+		border-bottom: 1px solid #eee;
+		@include mixin.font('20px/28px');
+	}
+}
+//> 소제목
+
+//< 유의사항
+.mm_note {
+	margin-top: 15px;
+	@include mixin.font(#6a6a6a '13px/22px');
+
+	@include mixin.context-unify(section) {
+		margin-top: 69px;
+	}
+
+	.text_title {
+		@include mixin.font(var.$color_text_base '14px');
+
+		.mco_note {
+			margin: 1px 6px -1px 0;
+			@include mixin.font(#a3a3a3 '16px');
+		}
+
+		+ ul {
+			margin-top: 6px;
+		}
+	}
+
+	ul {
+		li {
+			position: relative;
+			padding-left: 8px;
+
+			&::before {
+				position: absolute;
+				top: 0;
+				left: -4px;
+				content: 'ㆍ';
+			}
+
+			strong {
+				color: var.$color_text_base;
+			}
+		}
+	}
+
+	// 백그라운드 박스 형태
+	&[class*="_bg_"] {
+		margin: 0;
+		padding: 25px 24px 26px;
+		background-color: #fafafa;
+
+		.text_title {
+			font-size: 15px;
+
+			.mco_note {
+				margin: 0 7px 0 0;
+			}
+
+			+ ul {
+				margin-top: 5px;
+			}
+		}
+	}
+
+	> p {
+		@include mixin.font(#6a6a6a '12px/16px');
+	}
+
+	+ .mm_form-check {
+		margin-top: 19px;
+	}
+}
+//> 유의사항
+
+//< 태그
+.mm_tag {
+	display: inline-block;
+	padding: 0 4px;
+	min-width: 62px;
+	height: 22px;
+	border: 1px solid var.$color_point1;
+	border-radius: 11px;
+	background-color: #fff;
+	@include mixin.font(var.$color_point1 '13px/20px' center);
+
+	// &[class*="_gray_"] {
+	// 	border-color: #a3a3a3;
+	// 	color: #8c8c8c;
+	// }
+
+	// &[class*="_dark_"] {
+	// 	border-color: #6a6a6a;
+	// 	color: #5c5c5c;
+	// }
+
+	&[class*="_square_"] {
+		height: 21px;
+		min-width: 54px;
+		border-radius: 2px;
+		@include mixin.font('12px/19px');
+
+		.__ie11 & { line-height: 18px; }
+	}
+
+	// 사이즈 - base 제외 / 없음 null (type, height, border-radius, font-size, padding)
+	// $sizes: (sm, null, null, null), (lg, 25px, 13px, 12px, 10px);
+	// @each $type, $height, $borderRadius, $fontSize, $padding in $sizes {
+	// 	&[class*="_#{inspect($type)}_"] {
+	// 		@if $height {
+	// 			padding: 0 $padding;
+	// 			height: $height;
+	// 			border-radius: $borderRadius;
+	// 			@include mixin.font('#{$fontSize}/#{$height - 2}');
+	// 		}
+	// 	}
+	// }
+
+	// 기본 라인 - base 제외 / 없음 null (type, color. border-color)
+	$colors: (darker, #6a6a6a, #5c5c5c), (dark, #999, #7b7b7b), (gray, #a3a3a3, #8c8c8c),
+	(primary, var.$color_point1, var.$color_point1), (secondary, var.$color_point2, var.$color_point2);
+	@each $type, $borderColor, $fontColor in $colors {
+		&[class*="_#{inspect($type)}_"] {
+			@if $fontColor {
+				border-color: $borderColor;
+				color: $fontColor;
+			}
+		}
+	}
+
+	// 배경 - 없음 null (type, color, border-color, background-color)
+	&[class*="_full_"] {
+		$full: (gray, #999, #aeaeae, #f5f5f5), (secondary, #fff, var.$color_point2, var.$color_point2);
+		@each $type, $fontColor, $borderColor, $bgColor in $full {
+			&[class*="_#{inspect($type)}_"] {
+				@if $bgColor {
+					border-color: $borderColor;
+					background-color: $bgColor;
+					color: $fontColor;
+				}
+			}
+		}
+	}
+
+	.__ie11 & { line-height: 18px; }
+}
+//> 태그
+
+//< 가격
+.text_price {
+	> * {
+		vertical-align: 0;
+		@include mixin.font(700 [var.$fontFamily_latin], 0);
+
+		&::after {
+			vertical-align: 1px;
+			@include mixin.font(400 [var.$fontFamily_base]);
+			content: '원';
+		}
+	}
+}
+//> 가격
+
+//< 텍스트
+// 타이틀
+.m_ui-title {
+	@include mixin.text-ellipsis(1);
+	padding-bottom: 16px;
+	@include mixin.font(#2b2b2b 700 '20px/1.4' center);
+
+	> * {
+		display: inline;
+	}
+
+	+ .m_ui-sub-title {
+		margin-top: -16px;
+		padding-top: 4px;
+	}
+}
+
+// 서브타이틀
+.m_ui-sub-title {
+	@include mixin.text-ellipsis(1);
+	padding-bottom: 13px;
+	@include mixin.font(#5c5c5c '14px/19px' center);
+
+	> * {
+		display: inline;
+	}
+
+	+ .m_ui-sub-title {
+		margin-top: -13px;
+	}
+}
+
+// 상품타이틀
+.m_ui-prod-title {
+	padding: 0 16px 14px;
+	@include mixin.font('17px/1.4');
+}
+//> 텍스트

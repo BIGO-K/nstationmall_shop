@@ -1,0 +1,545 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 고객센터
+**/
+
+
+// *---------- 페이지 ----------*
+
+//< 메인
+.m_cs- {
+	// 자주찾는메뉴
+	&quick {
+		height: 138px;
+		border: 1px solid #e6e6e6;
+
+		h4 {
+			@include mixin.prefix(align-self, center, ms);
+			position: relative;
+			padding-left: 43px;
+			width: 240px;
+			@include mixin.font(#5c5c5c '17px');
+
+			small {
+				display: block;
+				padding-bottom: 9px;
+				@include mixin.font(#aeaeae 300 '15px' [var.$fontFamily_latin], 0);
+			}
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				height: 38px;
+				border-left: 1px solid #e6e6e6;
+				content: '';
+			}
+		}
+
+		ul {
+			padding: 0 31px 0 19px;
+
+			li {
+				@include mixin.font('15px' center);
+
+				a {
+					padding: 36px 0 34px;
+
+					.ico_cs-qna {
+						margin-left: 2px;
+					}
+
+					b {
+						display: block;
+						padding-top: 11px;
+					}
+				}
+			}
+		}
+	}
+
+	// 자주하는질문
+	&faq {
+		margin-top: 74px;
+
+		.mm_formmix-linked {
+			margin: 0 auto;
+			width: 726px;
+
+			.text_linked {
+				margin-right: 30px;
+				font-size: 20px;
+				font-size: 20px;
+			}
+		}
+
+		.mm_tabmenu {
+			margin-top: 54px;
+		}
+
+		.mm_accordion {
+			dl strong {
+				color: var.$color_point1;
+			}
+		}
+
+		.mm_pagination {
+			margin-top: 34px;
+		}
+
+		.mm_text-none {
+			border-bottom: 1px solid #d5d5d5;
+		}
+	}
+
+	// 공지사항
+	&notice {
+		position: relative;
+		margin-top: 74px;
+
+		.mm_list {
+			li {
+				position: relative;
+
+				a {
+					padding: 10px 137px 11px 12px;
+					@include mixin.text-ellipsis(0);
+
+					.text_important {
+						position: absolute;
+						margin: 1px 0 -1px 9px;
+						padding: 0 7px;
+						height: 18px;
+						border: 1px solid #f86363;
+						border-radius: 9px;
+						@include mixin.font(#f86363 '12px/15px');
+
+						.__ie11 & { margin-top: 2px; }
+					}
+
+					small {
+						position: absolute;
+						top: 11px;
+						right: 15px;
+						@include mixin.font(#999 '13px');
+					}
+				}
+			}
+		}
+
+		.btn_more {
+			position: absolute;
+			top: -13px;
+			right: 0;
+			padding: 16px 10px;
+			@include mixin.font(#7b7b7b '13px');
+
+			.mco_more {
+				margin: 1px 0 0 10px;
+				font-size: 12px;
+
+				.__ie11 & { margin-top: 2px; }
+			}
+		}
+	}
+}
+//> 메인
+
+//< 이용안내
+.m_cs-info {
+	// 공통-탭메뉴
+	.mm_tab {
+		margin-top: 54px;
+
+		.mm_tabmenu {
+			li {
+				max-width: 230px;
+			}
+		}
+	}
+
+	// 공통-타이틀
+	&-title {
+		margin-left: -1px;
+		padding: 53px 0 24px;
+		vertical-align: 0;
+		font-size: 20px;
+
+		small {
+			margin-left: 12px;
+			vertical-align: 0;
+			@include mixin.font(#6a6a6a '13px');
+		}
+	}
+
+	// 공통-하단이동버튼
+	.btn_cs-link {
+		.mco_link {
+			margin: 1px 0 0 13px;
+			font-size: 10px;
+		}
+	}
+
+	// 공통-유의사항
+	&-note {
+		margin-top: -5px;
+		@include mixin.font(var.$color_text_base '14px/23px');
+
+		ul {
+			li {
+				padding-left: 10px;
+
+				strong {
+					color: var.$color_point2;
+				}
+			}
+		}
+	}
+
+	// 주문/반품 배송조회
+	&-inquiry {
+		p {
+			margin-left: 2px;
+			padding-top: 13px;
+			@include mixin.font(#6a6a6a '14px');
+
+			strong {
+				color: var.$color_text_base;
+			}
+		}
+
+		ol {
+			li {
+				float: left;
+				margin-right: 50px;
+			}
+		}
+
+		.mm_btnbox {
+			margin-top: 85px;
+		}
+	}
+
+	// 반품/환불 안내
+	.m__info-return- {
+		// 반품 신청 과정
+		&step {
+			border: 1px solid #cdcdcd;
+			background-color: #f5f5f5;
+			font-size: 14px;
+
+			li {
+				float: left;
+				padding: 20px 29px 24px 60px;
+				width: 33.33333%;
+				height: 110px;
+
+				&:not(:last-child) {
+					position: relative;
+					background-color: #fafafa;
+
+					&::before {
+						position: absolute;
+						z-index: 1;
+						top: -1px;
+						right: -30px;
+						@include mixin.triangle(#cdcdcd, right, 56px, 30px);
+						content: '';
+					}
+
+					&::after {
+						position: absolute;
+						z-index: 1;
+						top: 1px;
+						right: -29px;
+						@include mixin.triangle(#fafafa, right, 54px, 29px);
+						content: '';
+					}
+
+					&:first-child {
+						padding-left: 29px;
+						width: 373px;
+						background-color: #fff;
+
+						&::after {
+							border-left-color: #fff;
+						}
+					}
+				}
+
+				dl {
+					dt {
+						margin-bottom: 14px;
+						font-size: 17px;
+
+						small {
+							display: block;
+							margin-bottom: 7px;
+							@include mixin.font(#999 '14px');
+						}
+					}
+				}
+			}
+		}
+
+		// 반품 배송료
+		&pay {
+			@include mixin.clearfix();
+			border: 1px solid #cdcdcd;
+
+			dl {
+				float: left;
+				padding: 23px 0 27px 33px;
+
+				dt {
+					margin-bottom: 19px;
+
+					span {
+						display: inline-block;
+						position: relative;
+						font-size: 17px;
+
+						&::before {
+							position: absolute;
+							z-index: -1;
+							right: 0;
+							bottom: -5px;
+							left: 0;
+							height: 10px;
+							background-color: #f0f7f7;
+							content: '';
+						}
+					}
+				}
+
+				dd {
+					display: inline-block;
+					position: relative;
+					padding-left: 8px;
+					font-size: 14px;
+
+					&::before {
+						position: absolute;
+						left: -3px;
+						content: '·';
+					}
+
+					&:nth-of-type(n+2) {
+						margin-left: 28px;
+					}
+				}
+
+				&:first-child {
+					width: 534px;
+					border-right: 1px solid #cdcdcd;
+				}
+			}
+
+			+ .m_cs-info-note {
+				margin-top: 13px;
+			}
+		}
+
+		// 반품이 가능한 경우, 반품이 불가능한 경우
+		&impossible {
+			font-size: 14px;
+
+			> p {
+				+ .m_cs-info-note {
+					margin-top: 10px;
+				}
+			}
+
+			.m_cs-info-note {
+				ul {
+					li {
+						padding: 2px 0 0;
+
+						&::before {
+							content: none;
+						}
+					}
+				}
+
+				dl {
+					padding-bottom: 5px;
+
+					dd {
+						position: relative;
+						padding-left: 26px;
+
+						&::before {
+							position: absolute;
+							left: 14px;
+							content: '·';
+						}
+					}
+				}
+			}
+		}
+
+		// 환불 안내
+		&guide {
+			table {
+				thead {
+					background-color: #fafafa;
+				}
+
+				tbody {
+					td {
+						text-align: left;
+					}
+				}
+			}
+
+			+ .m_cs-info-note {
+				margin-top: 13px;
+			}
+		}
+	}
+
+	// 쿠폰/마일리지
+	&-point {
+		&.mm_table-point {
+			table {
+				width: 100%;
+			}
+
+			+ .mm_note {
+				margin-top: 7px;
+			}
+		}
+	}
+
+	// 간편결제
+	&-pay {
+		figure {
+			position: relative;
+			padding: 52px 0 52px 169px;
+			background-color: #fafafa;
+
+			i {
+				position: absolute;
+				top: 44px;
+				left: 80px;
+			}
+
+			figcaption {
+				@include mixin.font('14px/18px');
+
+				h3 {
+					padding-bottom: 10px;
+					font-size: 20px;
+				}
+
+				.mm_note {
+					margin-top: -1px;
+					@include mixin.font(var.$color_text_base '1.4rem');
+
+					ul {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+
+		ol {
+			position: relative;
+			margin-left: 12px;
+			counter-reset: listIndex;
+
+			&::before {
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 17px;
+				border-left: 1px solid #dcdcdc;
+				content: '';
+
+				.__ie11 & { top: -1px; }
+			}
+
+			li {
+				position: relative;
+				padding-left: 54px;
+				@include mixin.font('14px/33px');
+
+				&::before {
+					position: absolute;
+					top: 0;
+					left: 0;
+					padding-left: 1px;
+					width: 34px;
+					height: 34px;
+					border: 1px solid #dcdcdc;
+					border-radius: 100%;
+					background-color: #fff;
+					@include mixin.font(#3d3d3d '15px/33px' center [var.$fontFamily_latin], 0);
+					counter-increment: listIndex;
+					content: counter(listIndex);
+				}
+
+				span {
+					margin-left: 4px;
+					@include mixin.font(#5c5c5c '14px');
+				}
+
+				&:nth-child(n+2) {
+					margin-top: 13px;
+				}
+			}
+		}
+	}
+}
+//> 이용안내
+
+//< 공지사항
+.m_cs-notice- {
+	&table {
+		margin-top: -1px;
+	}
+
+	&detail {
+		.m__detail-title {
+			position: relative;
+			padding: 13px 108px 15px 12px;
+			border: 1px solid #d5d5d5;
+			border-width: 1px 0;
+			@include mixin.font('14px/18px');
+
+			.text_date {
+				position: absolute;
+				top: 50%;
+				right: 20px;
+				@include mixin.transform(translateY(-50%));
+			}
+		}
+
+		.m__detail-content {
+			padding: 24px 12px 52px;
+			border-bottom: 1px solid #d5d5d5;
+		}
+
+		.mm_btnbox {
+			margin-top: 24px;
+		}
+	}
+}
+//> 공지사항
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+
+
+
+// *---------- 레이어 ----------*

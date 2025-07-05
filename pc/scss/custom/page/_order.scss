@@ -1,0 +1,61 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 페이지
+ * 장바구니, 주문결제
+**/
+
+
+//< 장바구니
+.m_cart {
+	// 셀러별 최종 결제금액
+	.text_purchase-price strong {
+        color: #f86364;
+	}
+
+    // 최종 결제금액
+	&-total-list {
+        dl.mm_flex:last-child {
+            dd .text_price.mm_text-primary {
+                color: #f86364 !important;
+            }
+        }
+    }
+}
+//> 장바구니
+
+//< 주문결제
+.m_order {
+    // 해외배송 개인통관고유부호
+    &-abroad {
+        .mm_note .mm_text-primary {
+            color: #f86364 !important;
+        }
+
+        .btn_abroad {
+            color: #f86364;
+		}
+    }
+
+    // 결제수단 선텍
+    &-payment-payway {
+        .m__payway-list {
+            .mm_form-radio :checked + .mm_block {
+                &::before {
+                    border-color: #f86364;
+                }
+
+                > i,
+                .text_label {
+                    color: #f86364;
+                }
+            }
+        }
+    }
+}
+//> 주문결제

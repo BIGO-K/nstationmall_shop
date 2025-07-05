@@ -1,0 +1,246 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 컴포넌트
+ * 이미지, 백그라운드, 아이콘 등 이미지의 기본 단위
+**/
+
+
+//< exif orientation (정방형만 가능)
+.mm_orientation {
+	// 반전
+	&-2 {
+		@include mixin.transform(scaleX(-1));
+	}
+	// 180도
+	&-3 {
+		@include mixin.transform(rotate(180deg));
+	}
+	// 180도 + 반전
+	&-4 {
+		@include mixin.transform(rotate(180deg) scaleX(-1));
+	}
+	// -90도 + 반전
+	&-5 {
+		@include mixin.transform(rotate(-90deg) scaleX(-1));
+	}
+	// -90도
+	&-6 {
+		@include mixin.transform(rotate(90deg));
+	}
+	// 90도 + 반전
+	&-7 {
+		@include mixin.transform(rotate(90deg) scaleX(-1));
+	}
+	// 90도
+	&-8 {
+		@include mixin.transform(rotate(-90deg));
+	}
+}
+//> exif orientation
+
+//< 기본형
+.mm_image {
+	// 이미지 없음
+	&-none {
+		position: relative;
+
+		.mco_none::before {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			@include mixin.font(#e2e2e2 '21px');
+			@include mixin.transform(translate(-50%, -50%));
+		}
+	}
+
+	// 브랜드
+	&-brand {
+		overflow: hidden;
+		position: relative;
+		padding-top: 120%;
+		width: 100%;
+		background-color: #f2f2f2;
+		text-align: center;
+
+		&.__lazyload-error::before {
+			position: absolute;
+			top: 50%;
+			right: 8px;
+			left: 8px;
+			@include mixin.font(#a3a3a3 '12px/16px' center, normal);
+			content: attr(title);
+			@include mixin.transform(translateY(-50%));
+		}
+	}
+}
+//> 기본형
+
+//< 백그라운드 이미지
+.mm_bg {
+	&-cover {
+		@include mixin.background('50% 50%/cover' no-repeat);
+	}
+
+	&-contain {
+		@include mixin.background('50% 50%/contain' no-repeat);
+	}
+}
+//> 백그라운드 이미지
+
+//< 프리로드, 레이지로드
+%loadBefore {
+	@include mixin.opacity(0);
+	@include mixin.transition(opacity const.$time_base);
+}
+
+%loadAfter {
+	@include mixin.opacity(1);
+}
+
+[data-preload] {
+	&:not(iframe) {
+		@extend %loadBefore;
+
+		&.__preload-loaded,
+		&.__preload-error {
+			@extend %loadAfter;
+		}
+	}
+}
+[data-lazyload] {
+	&:not(iframe) {
+		@extend %loadBefore;
+
+		&.__lazyload-loaded,
+		&.__lazyload-error {
+			@extend %loadAfter;
+		}
+	}
+}
+//> 프리로드, 레이지로드
+
+//< 아이콘
+i[class*="ico_"]:not([class*="mco_"]) {
+	@include mixin.font('0/1');
+
+	&::before {
+		content: '';
+	}
+}
+
+.ico_ {
+	// 내용없음
+	&text-none {
+		display: block;
+		position: relative;
+		margin: 0 auto 14px;
+		width: 50px;
+		height: 50px;
+		background-color: #fff;
+		border: 2px solid #e6e6e6;
+		border-radius: 100%;
+
+		&::before,
+		&::after {
+			position: absolute;
+			top: 10px;
+			left: 50%;
+			width: 3px;
+			height: 18px;
+			background-color: #e6e6e6;
+			@include mixin.transform(translateX(-50%));
+			content: '';
+		}
+
+		&::after {
+			top: auto;
+			bottom: 10px;
+			width: 4px;
+			height: 4px;
+			border-radius: 100%;
+		}
+	}
+
+	// 고객센터
+	&cs- {
+		// 메인
+		$icons: qna, answer, order, coupon;
+		@each $icon in $icons {
+			&#{$icon}::before {
+				width: 29px;
+				height: 25px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/cs_main_menu.png') '#{(-29px * (index($icons, $icon) - 1))} 100%/auto 100%' no-repeat);
+			}
+		}
+	}
+
+	// 마이페이지
+	&my- {
+		// 반품, 교환 사유
+		$icons: change, defects, other;
+		@each $icon in $icons {
+			&#{$icon}::before {
+				width: 58px;
+				height: 55px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/mypage_reason.png') '#{(-58px * (index($icons, $icon) - 1))} 0/174px auto' no-repeat);
+			}
+		}
+	}
+
+	// 360도 뷰
+	&multiangle {
+		width: 100%;
+		height: 100%;
+		@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/product_multiangle.png') 'center 9px/35px 35px' no-repeat);
+	}
+
+	// 공동구매
+	&coopbuy- {
+		// 시작, 참여, 달성, 발급, 구매
+		$icons: start, join, full, send, buy;
+		@each $icon in $icons {
+			&#{$icon}::before {
+				width: 40px;
+				height: 30px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/coopbuy_icon.png') '#{(-40px * (index($icons, $icon) - 1))} 0/200px auto' no-repeat);
+			}
+		}
+	}
+
+	// 공동구매 상세
+	&coopbuy-detail- {
+		// 시작, 참여, 달성, 발급, 구매
+		$icons: start, join, full, send, buy;
+		@each $icon in $icons {
+			&#{$icon}::before {
+				width: 60px;
+				height: 60px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/content/prodetail_coopbuy_icon.png') '#{(-60px * (index($icons, $icon) - 1))} 0/300px auto' no-repeat);
+			}
+		}
+	}
+
+	// 아이디 찾기
+	&sns-nstation {
+		// sns 내셔널 로고
+		&::before {
+			width: 44px;
+			height: 44px;
+			border-radius: 100%;
+			@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/common/logo_sns.png') '50% 50%/auto 100%' no-repeat);
+		}
+	}
+}
+//> 아이콘
+
+//< 상품 이미지
+.image_product {
+	background-color: #f8f8f8;
+}
+//> 상품 이미지

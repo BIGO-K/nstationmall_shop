@@ -1,0 +1,150 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 앱전용화면, 기타
+**/
+
+
+//< 제휴 및 입점문의
+.m_partner-inquiry {
+	.mm_heading {
+		padding: 78px 2px 0;
+		border-bottom: 0;
+
+		+ p {
+			padding: 5px 2px 0;
+			@include mixin.font('15px/24px');
+		}
+	}
+
+	&-write {
+		margin-top: 29px;
+		padding-top: 49px;
+		border-top: 1px solid #999;
+		@include mixin.clearfix();
+
+		.mm_lside {
+			padding-right: 20px;
+			width: 50%;
+
+			.mm_radio-list {
+				> ul {
+					> li {
+						border: 1px solid #cdcdcd;
+						border-radius: 3px;
+
+						&:nth-child(n+2) {
+							margin-top: 10px;
+						}
+
+						.mm_form-radio {
+							padding: 0;
+							width: 100%;
+
+							.mm_block {
+								padding: 21px 13px 21px 33px;
+							}
+
+							.mco_form-radio {
+								top: 21px;
+								left: 13px;
+							}
+
+							.text_label {
+								vertical-align: 0;
+
+								small {
+									margin-left: 6px;
+									vertical-align: 0;
+									@include mixin.font(#7b7b7b '13px');
+								}
+							}
+						}
+					}
+				}
+
+				.mm_check-list {
+					padding: 18px 15px 19px;
+					border-top: 1px solid #eee;
+
+					> p {
+						padding-bottom: 21px;
+						font-size: 14px;
+					}
+
+					ul {
+						margin-top: -10px;
+
+						li {
+							float: left;
+							margin-top: 10px;
+							width: 50%;
+
+							&:nth-child(2n) {
+								padding-left: 16px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.mm_rside {
+			padding-left: 20px;
+			width: 50%;
+
+			.mm_form-textarea {
+				.textfield {
+					height: 164px;
+				}
+			}
+		}
+	}
+
+	.mm_foot {
+		margin-top: 42px;
+		text-align: center;
+
+		.mm_form-check {
+			margin-left: 8px;
+		}
+
+		.btn_detail {
+			padding: 2px 7px;
+			@include mixin.font(#8c8c8c '12px');
+
+			b {
+				position: relative;
+
+				&::after {
+					position: absolute;
+					right: 0;
+					bottom: -3px;
+					left: 0;
+					border-bottom: 1px solid #8c8c8c;
+					content: '';
+				}
+			}
+		}
+
+		.mm_btnbox {
+			margin-top: 30px;
+		}
+	}
+}
+//> 제휴 및 입점문의
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+
+
+// *---------- 레이어 ----------*

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="ko" class="__layout_popup__">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<link rel='shortcut icon' href="https://img.nstationmall.com/mall/ui/admin/common/favicon.ico">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>(팝업) 1:1 문의 답변 - N.STATION Admin</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/lib.css">
+	<link rel="stylesheet" href="../css/app.css">
+	<!-- <link rel="stylesheet" data-css="{ '_href': '../css/font.css' }"> -->
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/jquery-3.6.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="anchor">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<div class="mm_header">
+				<h1><b>1:1 문의 답변</b></h1>
+				<button type="button" class="btn_popup-close" onclick="window.close();return false;"><i class="ico_close-popup"></i><b class="mm_ir-blind">팝업닫기</b></button>
+			</div>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+
+				<!-- 본문 -->
+				<!--
+					(D) 실제 내용을 추가하는 부분입니다.
+					팝업은 html 요소에 '__layout_popup__' 클래스를 추가합니다.
+				-->
+				<div class="mm_page-content">
+
+					<!-- 본문 내용 -->
+					<div class="mm_container">
+						<form>
+							<!-- 폼영역 -->
+							<div class="mm_form">
+								<table>
+									<tbody>
+										<tr>
+											<th></th><td></td><th></th><td></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>문의번호</b></th>
+											<td><p>300</p></td>
+											<th scope="row"><b>문의유형</b></th>
+											<td><p>교환/반품 &#62; 주문반품</p></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>판매처</b></th>
+											<td colspan="3"><p>엔스테이션</p></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>등록자</b></th>
+											<td><p>최길동(mmonstar123)</p></td>
+											<th scope="row"><b>등록일자</b></th>
+											<td><p>2020-04-20</p></td>
+										</tr>
+										<!-- (D) 최고 관리자에게 바로 접수된 문의 일 때 노출합니다. -->
+										<tr>
+											<th scope="row"><b>답변자</b></th>
+											<td><p>관리자A</p></td>
+											<th scope="row"><b>답변일자</b></th>
+											<td><p>2020-04-20</p></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>주문번호</b></th>
+											<td><p>12312312311</p></td>
+											<th scope="row"><b>문의상품코드</b></th>
+											<td><p>1231231111111111</p></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>문의상품명</b></th>
+											<td colspan="3"><p>ZX 500 OG W ALUMI2/RUNWHT/REDB(d65398)</p></td>
+										</tr>
+
+										<!-- (D) 이관된 문의 일 때 노출합니다. -->
+										<tr>
+											<th scope="row"><b>이관여부</b></th>
+											<td><p>채유진(이관)</p></td>
+											<th scope="row"><b>이관일자</b></th>
+											<td><p>2020-04-20</p></td>
+										</tr>
+
+										<tr>
+											<th scope="row"><b>문의제목</b></th>
+											<td colspan="3"><p>교환/반품 문의 1</p></td>
+										</tr>
+										<tr>
+											<th scope="row"><b>문의내용<br> 첨부파일(이미지)</b></th>
+											<td colspan="3">
+												<a href="_popup_imagePreview.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>SENDBILL.jpeg</b></a><br>
+												<a href="_popup_imagePreview.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>SENDBILL.jpeg</b></a><br>
+												<a href="_popup_imagePreview.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>SENDBILL.jpeg</b></a>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row"><b>문의내용</b></th>
+											<td colspan="3">
+												<div class="text_content">
+													<p>
+														상품 문의 드립니다.<br><br>
+														상품을 어떻게 판매하시나요?<br><br><br><br>
+														상품 문의 드립니다.
+													</p>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row"><b>답변내용</b></th>
+											<td colspan="3">
+												<div class="mm_form-textarea">
+													<button type="button" class="btn_text-clear"><i class="ico_form-clear"></i><b class="mm_ir-blind">지우기</b></button>
+													<label>
+														<textarea class="textfield" data-text maxlength="5000"></textarea><i class="bg_text"></i>
+														<span class="text_placeholder mm_ir-blind">답변내용</span>
+													</label>
+												</div>
+												<div class="mm_note">
+													<p class="mm_text-primary">띄어쓰기 포함 최대 5,000자까지 입력 가능합니다</p>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row"><b>파일 첨부</b></th>
+											<td colspan="3">
+												<div class="mm_form-multiple">
+													<ul>
+														<li>
+															<div class="mm_form-image">
+																<div class="mm_form-image-preview"></div>
+																<label>
+																	<input type="file" accept="image/*" data-file="{ '_imageSize': 'cover' }">
+																	<b class="mm_form-image-box"><i class="ico_image-add"></i><span class="mm_ir-blind">이미지 등록하기</span></b>
+																</label>
+																<button type="button" class="btn_remove-file"><i class="ico_image-remove"></i><b class="mm_ir-blind">파일삭제</b></button>
+															</div>
+														</li>
+													</ul>
+													<div class="mm_btnbox">
+														<div class="mm_inline">
+															<label class="mm_btn btn_select-multiple __btn_xl_secondary__">
+																<input type="file" accept="image/*" data-multiple="{ '_max': 3, '_isMax': true }" multiple>
+																<i class="ico_image-multiple"></i><b>한번에 여러장 선택</b>
+															</label>
+															<button type="button" class="mm_btn __btn_xl_line__ btn_remove-all"><b><i class="ico_image-remove-all"></i>전체삭제</b></button>
+														</div>
+													</div>
+												</div>
+												<div class="mm_note __note_bottom__">
+													<ul>
+														<li>대체 텍스트는 화면에 노출되지 않으며 이미지를 설명하는 내용을 작성해 주세요.</li>
+														<li>권장 사이즈는 W 694px 이고, JPG/PNG 형식의 파일만 등록이 가능합니다.</li>
+														<li>이미지 최대 용량은 2MB를 초과할 수 없습니다.</li>
+													</ul>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!--// 폼영역 -->
+
+							<!-- 유의사항 -->
+							<div class="mm_note">
+								<ul>
+									<li>고객이 문의를 등록한 시점으로부터 24시간이 지나면 이관이 불가합니다.</li>
+								</ul>
+							</div>
+							<!--// 유의사항 -->
+
+							<!-- 하단 버튼 -->
+							<div class="mm_foot">
+								<div class="mm_btnbox">
+									<div class="mm_inline">
+										<a class="mm_btn __btn_xl_line__" href="#" data-href="{ '_type': 'link' }"><b>취소하기</b></a>
+										<button type="button" class="mm_btn __btn_xl__"><b>등록하기</b></button>
+										<!-- (D) 이관된 문의 일 때 비노출합니다. -->
+										<a class="mm_btn __btn_xl_line_primary__" href="_popup_transferReason.html" data-href="{ '_type': 'popup' }" title="새 창 열림"><b>문의이관</b></a>
+									</div>
+								</div>
+							</div>
+							<!--// 하단 버튼 -->
+							<input hidden>
+						</form>
+					</div>
+					<!--// 본문 내용 -->
+
+					<!-- 현재 페이지 스크립트 -->
+				</div>
+				<!--// 본문 -->
+			</div>
+			<!--// 내용 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

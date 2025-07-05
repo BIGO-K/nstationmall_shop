@@ -1,0 +1,344 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 전시관리
+**/
+
+
+//< 전시관리 레이아웃
+.m_popup-display-manage {
+	html[class*="_popup_"] & {
+		width: var.$popup_width_lg;
+	}
+
+	.m__manage-title {
+		.mm_formmix-linked {
+			.mm_form-check {
+				+ .mm_form-text {
+					margin-left: 24px;
+				}
+			}
+		}
+	}
+
+	.m__manage-search {
+		margin-top: 70px;
+
+		+ .mm_note {
+			margin-top: 26px;
+		}
+	}
+}
+
+// 블록 테이블
+.m_display- {
+	&table {
+		// form 순서변경
+		&.__list-sortable {
+			.text_division,
+			.btn_preview-toggle {
+				display: none;
+			}
+
+			.m_display-table-list {
+				col:nth-child(n+3) {
+					display: none;
+				}
+
+				td {
+					text-align: left;
+
+					&:not(:last-child) {
+						display: none;
+					}
+
+					.mm_btnbox {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.mm_formbox-caption {
+			.mm_note {
+				.ico_image-show {
+					margin: 4px 0 -4px;
+				}
+			}
+		}
+
+		.mm_formbox-unit {
+			.mm_btnbox {
+				.text_division {
+					padding: 0 3px;
+					@include mixin.font('14px/20px');
+				}
+
+				.btn_preview-toggle {
+					margin: 0;
+					padding: 0 10px;
+					@include mixin.font('12px/23px');
+
+					.ico_image-show {
+						margin: 6px 4px 0 0;
+					}
+
+					.ico_image-hide {
+						margin: 3px 4px 0 0;
+					}
+				}
+			}
+		}
+
+		// 이미지 보기
+		.btn_preview-image {
+			@include mixin.context-first('.__preview-on') {
+				&::after {
+					display: none;
+				}
+
+				> b {
+					display: none;
+				}
+
+				.image_preview {
+					display: block;
+				}
+			}
+
+			.image_preview {
+				&.mm_image-none {
+					min-height: 82px;
+				}
+			}
+		}
+	}
+
+	&table-list {
+		// 아이프레임 내부 table list 제외
+		&:not(.mm_form) {
+			border: 1px solid #d5d5d5;
+			border-width: 1px 0;
+			border-top-color: #666;
+			@include mixin.font('12px/16px');
+
+			> table {
+				table-layout: auto;
+				border-collapse: collapse;
+
+				> colgroup {
+					col {
+						&:first-child {
+							width: 150px;
+						}
+
+						&:last-child {
+							width: 110px;
+						}
+					}
+				}
+
+				> tbody {
+					&:nth-of-type(n+2) {
+						border-top: 1px solid #d5d5d5;
+					}
+
+					&:not(.__on) {
+						tr:nth-child(2) {
+							display: none;
+						}
+					}
+
+					&.__on {
+						tr:first-child {
+							display: none;
+						}
+					}
+
+					tr:first-child {
+						th {
+							padding: 9px 13px;
+							@include mixin.background(#ebebeb border-box);
+							text-align: left;
+
+							.mm_btn {
+								display: block;
+								margin: 4px 0 0;
+							}
+						}
+
+						td {
+							padding: 9px 7px;
+							// min-width: 160px;
+							border-right: 1px solid #d5d5d5;
+
+							&:last-of-type {
+								min-width: 0;
+								border-right: 0;
+							}
+						}
+					}
+				}
+
+				.btn_preview-image {
+					display: block;
+					margin: 0 auto;
+					width: 150px;
+
+					&:nth-child(n+2) {
+						margin-top: 4px;
+					}
+				}
+
+				.btn_total {
+					width: 150px;
+				}
+			}
+
+			+ .mm_formbox-unit {
+				margin: -1px 0 0;
+			}
+		}
+
+		// 아이프레임 내부 table list
+		html[class*="_frame_"] & {
+			border: 0;
+
+			> table {
+				table-layout: auto;
+
+				> tbody {
+					> tr {
+						> th {
+							width: 150px;
+						}
+
+						> td {
+							&:last-child {
+								width: 110px;
+								border-left: 1px solid #d5d5d5;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 수정영역
+	&table-frame {
+		max-width: 100%;
+		@include mixin.linear-gradient(#ebebeb, 90deg, #ebebeb 150px, #fff 150px);
+	}
+
+	// 문구영역
+	&table-phrase {
+		dl {
+			position: relative;
+			text-align: left;
+
+			+ dl {
+				margin-top: 4px;
+			}
+
+			dt {
+				position: absolute;
+			}
+
+			dd {
+				padding-left: 70px;
+			}
+		}
+	}
+}
+//> 전시관리 레이아웃
+
+//< 공통
+.m_display- {
+	// 페이지 하단 검색+목록 영역
+	&search-area {
+		margin-top: 70px;
+	}
+
+	&manage-list {
+		margin-top: 70px;
+	}
+
+	&prodgroup {
+		margin-top: 30px;
+	}
+
+	// mobile,pc 미리보기 버튼
+	&image-btnbox {
+		margin: 0 auto;
+		min-width: 86px;
+		max-width: 125px;
+	}
+}
+//> 공통
+
+//< 무이자 관리
+.m_display-interest-cardset {
+	th > .mm_btn {
+		margin: 4px 0 0;
+	}
+
+	.mm_check-list + .mm_form-textarea {
+		margin-top: 6px;
+
+		+ .mm_form-check {
+			margin-top: 6px;
+		}
+	}
+}
+//> 무이자 관리
+
+//< 상품 공통배너 관리
+.m_display-prod-register {
+	.m_display-prod-register-form {
+		margin-top: 30px;
+	}
+}
+//> 상품 공통배너 관리
+
+//< 기획전
+.m_display-promotion {
+	.btn_weighting,
+	.text_weighting {
+		display: inline-block;
+	}
+
+	[class*="btn_weighting-"],
+	.mm_form-text {
+		display: none;
+	}
+
+	[class*="btn_weighting-"] {
+		&:nth-child(2) {
+			margin-left: 0;
+		}
+
+		i {
+			margin: 5px 3px 0 0;
+		}
+	}
+
+	// 가중치 변경
+	&.__promotion-weighting {
+		.btn_weighting,
+		.text_weighting {
+			display: none;
+		}
+
+		[class*="btn_weighting-"],
+		.mm_form-text {
+			display: inline-block;
+		}
+	}
+}
+//> 기획전

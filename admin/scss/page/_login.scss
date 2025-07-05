@@ -1,0 +1,150 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 로그인
+**/
+
+
+html[class*="_login_"] {
+	.mm_view,
+	.mm_page,
+	.mm_page-content {
+		padding: 0;
+		height: 100%;
+	}
+}
+
+.m_login {
+	height: 100%;
+	@include mixin.font('0' center);
+
+	&::before {
+		margin-left: -1px;
+		width: 1px;
+		height: 100%;
+		vertical-align: middle;
+		content: '';
+	}
+
+	&-inner {
+		display: inline-block;
+		padding-bottom: 54px;
+		width: 490px;
+		border-top: 2px solid #35374e;
+		background-color: #fff;
+		vertical-align: middle;
+	}
+
+	h1 {
+		margin: 52px auto 44px;
+		width: 167px;
+		height: 40px;
+		@include mixin.background(url('https://img.nstationmall.com/mall/ui/admin/common/logo.svg') '0 0/contain' no-repeat);
+	}
+
+	&-form {
+		padding: 0 75px;
+		text-align: left;
+
+		section {
+			margin-top: 15px;
+
+			h3 {
+				padding-bottom: 8px;
+				font-size: 12px;
+			}
+		}
+
+		// 로그인 실패 (자동입력 방지문자 입력 영역)
+		&-fail {
+			@include mixin.clearfix;
+			font-size: 0;
+
+			> p {
+				margin: 3px 0 15px;
+				@include mixin.font(var.$color_primary_base '11px/15px');
+			}
+
+			.image_security {
+				width: 122px;
+				height: 34px;
+				border: 1px solid #d5d5d5;
+				text-align: center;
+
+				img {
+					height: 100%;
+				}
+			}
+
+			.mm_btn {
+				margin-left: -1px;
+				padding: 0 11px 0 12px;
+				height: 34px;
+				@include mixin.font(#444 '/34px');
+
+				.ico_refresh {
+					margin: 12px 4px 0 0;
+				}
+			}
+
+			.mm_form-text {
+				float: right;
+				width: 131px;
+			}
+		}
+
+		.mm_form-check {
+			margin: 16px 0;
+		}
+
+		// 인증번호 확인
+		&-confirm {
+			margin-top: 40px !important;
+
+			// 휴대폰번호
+			> h3 + .mm_formmix-linked {
+				.mm_form-text {
+					.btn_text-clear {
+						right: 0;
+					}
+				}
+			}
+
+			.mm_form-text {
+				.btn_text-clear {
+					right: 40px;
+				}
+
+				.textfield {
+					padding-right: 74px !important;
+				}
+
+				.text_time {
+					position: absolute;
+					top: 0;
+					right: 10px;
+					@include mixin.font(var.$color_primary_base 500 '12px/34px');
+				}
+			}
+
+			.btn_resend {
+				padding: 0 20px;
+				height: 34px;
+				line-height: 34px;
+			}
+
+			.mm_btnbox {
+				margin-top: 10px;
+
+				+ .mm_note {
+					margin-top: 6px;
+				}
+			}
+		}
+	}
+}

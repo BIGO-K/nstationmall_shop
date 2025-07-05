@@ -1,0 +1,28 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 상품(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="p_Nc/s1-a"] {
+    .mm_carousel {
+        &-inner {
+            padding: 0 0 37px 14px;
+        }
+
+        &-item {
+            padding-right: 14px;
+        }
+
+        &-pagination {
+            bottom: 0;
+        }
+    }
+}

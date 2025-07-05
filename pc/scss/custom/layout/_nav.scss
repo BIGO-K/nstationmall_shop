@@ -1,0 +1,30 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 레이아웃
+ * GNB, LNB, 카테고리메뉴, 브레드크럼, 페이지네이션
+**/
+
+
+//< lnb
+.mm_lnb {
+	.__lnb-on {
+		h6 {
+			color: #f86364;
+		}
+
+		> b {
+			color: #f86364 !important;
+
+			&::after {
+				border-color: #f86364 !important;
+			}
+		}
+	}
+}
+//> lnb

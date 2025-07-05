@@ -1,0 +1,84 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너+상품(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="bp_NnNn/s1-a"] {
+	.m_ui-item {
+		> a {
+			position: relative;
+			width: 100%;
+
+			.image_banner {
+				padding-top: 100%;
+				width: 100%;
+			}
+
+			figure {
+				position: relative;
+				padding-bottom: 14.93333vw;
+
+				figcaption {
+					position: absolute;
+					right: 4vw;
+					bottom: 0;
+					left: 0;
+					padding: 5.06666vw;
+					height: 37.86666vw;
+					background-color: #fff;
+
+					> p {
+						@include mixin.text-ellipsis(1);
+						margin-top: 0;
+						color: #000;
+					}
+
+					.text_main {
+						font-size: 5.33333vw;
+					}
+
+					.text_sub {
+						margin-top: 0.8vw;
+						font-size: 3.73333vw;
+
+						&:not(:last-of-type) {
+							margin-top: 2.66666vw;
+						}
+					}
+				}
+			}
+
+			.ico_arrow {
+				position: absolute;
+				bottom: 0;
+				left: 5.06666vw;
+				width: 5.6vw;
+				height: 0.26667vw;
+				background-color: #666;
+
+				&::before {
+					position: absolute;
+					right: -0.26667vw;
+					bottom: 0.8vw;
+					width: 2.4vw;
+					height: 0.26667vw;
+					background-color: #666;
+					@include mixin.transform(rotate(45deg));
+				}
+			}
+		}
+
+		.mm_product-list {
+			margin-top: 9.06666vw;
+			padding: 0 14px;
+		}
+	}
+}

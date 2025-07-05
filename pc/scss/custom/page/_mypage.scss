@@ -1,0 +1,90 @@
+@charset 'utf-8';
+
+@use '../../setting/var';
+@use '../../helper/mixin';
+@use '../../helper/extend';
+
+/**
+ * 마이페이지
+**/
+
+
+//< 마이페이지 메인
+.m_mymain- {
+	// 진행중인 주문
+	&order {
+		ol {
+			a > strong.mm_text-primary {
+				color: #f86364 !important;
+			}
+		}
+	}
+}
+//> 마이페이지 메인
+
+//< 마이페이지
+.m_my- {
+	// My 찜 - 찜한 아이템
+	&like-prod {
+		// 폴더목록
+		.m__prod-folder {
+			.btn_folder.__folder-open::after {
+				background-color: rgba(#fff6c4, 0.45);
+			}
+		}
+	}
+
+	// 회원정보관리
+	&info-title {
+		strong.mm_text-primary {
+			color: #f86364 !important;
+		}
+	}
+
+	// 리뷰 관리
+	&review- {
+		&list {
+			> .text_note {
+				strong {
+					color: #f86364 !important;
+				}
+			}
+		}
+
+		&item {
+			.text_tooltip {
+				strong {
+					color: #f86364 !important;
+				}
+			}
+		}
+	}
+}
+//> 마이페이지
+
+
+
+// *---------- 팝업 ----------*
+
+
+
+// *---------- 모달 ----------*
+
+
+//< 폴더 수정하기
+.m_modal-my-folder {
+	.btn_add-folder {
+		color: #f86364;
+	}
+}
+//> 폴더 수정하기
+
+//< 구매 확정
+.m_modal-my-confirm {
+	> p .text_price > strong {
+		color: #f86364;
+	}
+}
+//> 구매 확정
+
+// *---------- 레이어 ----------*

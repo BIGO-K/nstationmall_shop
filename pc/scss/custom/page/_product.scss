@@ -1,0 +1,40 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 커스텀
+ * 카테고리, 상품상세, 검색결과, 베스트
+**/
+
+
+//< 검색결과
+.m_searched {
+	&-head {
+		h3 {
+			strong.mm_text-secondary {
+				color: #f86364 !important;
+			}
+		}
+
+		&-offer {
+			strong.mm_text-secondary {
+				color: #f86364 !important;
+			}
+		}
+	}
+}
+//> 검색결과
+
+//< 상품상세
+.m_prodetail- {
+	&head {
+		.text_timesale {
+			background-color: #f86364;
+		}
+	}
+}
+//> 상품상세

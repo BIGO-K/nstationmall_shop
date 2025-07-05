@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../../setting/const';
+@use '../../setting/var';
+@use '../../helper/mixin';
+
+/**
+ * 템플릿
+ * 이벤트 상세보기 공통
+ * 스팟성 테마관, 저널, 래플, 오픈이벤트
+**/
+
+
+//< 이벤트상세 공통 (기획전, 쇼케이스 사용)
+.mm_event {
+	&-reply {
+		&-item {
+			.text_user {
+				> .mm_tag.__tag_lg_square_secondary__ {
+					border-color: #f86364;
+					color: #f86364;
+				}
+			}
+		}
+	}
+}
+//> 이벤트상세 공통 (기획전, 쇼케이스 사용)
+
+//< 체험단 후기 작성
+.m_popup-experience {
+	.mm_form-multiple {
+		.mm_btn.__btn_line_secondary__ {
+			color: #f86364;
+
+			&::after {
+				border-color: #f86364;
+			}
+		}
+	}
+}
+//> 체험단 후기 작성

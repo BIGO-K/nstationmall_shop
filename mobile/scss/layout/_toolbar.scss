@@ -1,0 +1,73 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 레이아웃
+ * 툴바
+**/
+
+
+//< 툴바 영역
+.mm_toolbar {
+	position: absolute;
+	z-index: const.$zIndex_toolbar;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: var.$toolbar_height_base;
+	border-top: 1px solid #e8e8e8;
+	background-color: #fff;
+	@include mixin.transition(transform const.$time_fast);
+
+	// 스크롤 숨김
+	.__toolbar-hide & {
+		border-top: 0;
+		@include mixin.transform(translateY(100%));
+	}
+
+	> ul {
+		height: 100%;
+
+		> li {
+			[class*="mco_"] {
+				height: 32px;
+				@include mixin.font('17px/35px');
+			}
+
+			.mco_menu {
+				font-size: 15px;
+			}
+
+			.mco_search-lg {
+				margin: 7px 0 0 1px;
+				width: 38px;
+				height: 38px;
+				border-radius: 100%;
+				background-color: var.$color_point1;
+				@include mixin.font(#fff '20px/38px');
+			}
+
+			.image_recent {
+				margin: 5px 0 3px;
+				width: 24px;
+				height: 24px;
+				border: 1px solid #101010;
+				border-radius: 1px;
+
+				+ .mco_recent {
+					display: none;
+				}
+			}
+
+			b {
+				display: block;
+				@include mixin.font(var.$color_text_base 300 '10px');
+			}
+		}
+	}
+}
+//> 툴바 영역

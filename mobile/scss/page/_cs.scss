@@ -1,0 +1,376 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 고객센터
+**/
+
+
+// *---------- 페이지 ----------*
+
+//< 고객센터 메인
+.m_cs-main {
+	section:not(.mm_inner) {
+		position: relative;
+		margin-top: 37px;
+
+		h3 {
+			padding-left: 15px;
+
+			> i {
+				margin: 0 6px -1px 0;
+				@include mixin.font(#6a6a6a '/20px');
+			}
+		}
+	}
+
+	// 퀵메뉴
+	&-menu {
+		ul {
+			margin: -1px;
+
+			li {
+				float: left;
+				width: 50%;
+				border: 1px solid #fff;
+				text-align: center;
+
+				> a {
+					padding-top: 20px;
+					width: 100%;
+					height: 87px;
+					background-color: #fafafa;
+				}
+			}
+
+			p {
+				margin-top: 9px;
+				font-size: 14px;
+			}
+		}
+	}
+
+	// faq바로가기
+	.m_cs-faq {
+		margin-top: 26px;
+	}
+
+	// 공지사항
+	&-notice {
+		.mm_accordion {
+			border: 1px solid #e6e6e6;
+			border-width: 1px 0;
+
+			li:last-child {
+				border-bottom: 0;
+			}
+		}
+
+		.btn_more {
+			position: absolute;
+			top: -6px;
+			right: 0;
+			padding: 0 18px;
+			@include mixin.font(#a3a3a3 '13px/30px');
+
+			> .mco_link {
+				margin-left: 9px;
+				@include mixin.font(#b8b8b9 '11px');
+			}
+		}
+	}
+
+	// 이용안내
+	&-info {
+		ul {
+			border: 1px solid #e6e6e6;
+			border-width: 1px 0;
+		}
+
+		li {
+			&:nth-child(n+2) {
+				border-top: 1px solid #eee;
+			}
+
+			a {
+				display: block;
+				position: relative;
+				padding: 11px 45px 12px 15px;
+				@include mixin.font(#2b2b2b '14px/18px');
+
+				> i {
+					position: absolute;
+					top: 50%;
+					right: 19px;
+					margin-top: -9px;
+					color: #4a4a4a;
+				}
+			}
+		}
+	}
+}
+//> 고객센터 메인
+
+//< 자주하는 질문
+.m_cs-faq {
+	margin-top: 18px;
+
+	// 질문분류
+	> ul {
+		position: relative;
+
+		&::before {
+			position: absolute;
+			top: -1px;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			border: 1px solid #eee;
+			content: '';
+		}
+
+		li {
+			float: left;
+			position: relative;
+			margin-top: -1px;
+			width: 50%;
+
+			> a {
+				display: block;
+				padding: 17px 12px;
+				height: 55px;
+				border: 1px solid #eee;
+				border-width: 0 1px 1px 0;
+				@include mixin.font('14px/18px' center);
+
+				&.__faq-on {
+					position: relative;
+					z-index: 1;
+					border-color: var.$color_point1;
+					background-color: var.$color_point1;
+					color: #fff;
+
+					// &::after {
+					// 	position: absolute;
+					// 	top: -1px;
+					// 	right: -1px;
+					// 	bottom: -1px;
+					// 	left: 0;
+					// 	border: 1px solid var.$color_point1;
+					// 	content: '';
+					// }
+				}
+			}
+
+			&:nth-child(even) {
+				.__faq-on::after {
+					left: -1px;
+				}
+			}
+		}
+	}
+
+	+ .mm_accordion {
+		margin-top: 30px;
+		border-top: 1px solid #eee;
+	}
+
+	// 검색결과
+	&-result {
+		margin-top: 26px;
+
+		.mm_heading {
+			padding: 0 14px;
+
+			+ * {
+				border-top: 1px solid #eee;
+			}
+		}
+	}
+}
+//> 자주하는 질문
+
+
+// *---------- 팝업 ----------*
+
+//< 공통 (회원등급및혜택, 1:1고객상담 제외)
+.m_popup-cs {
+	&.mm_tab {
+		margin-top: 5px;
+	}
+
+	&-title {
+		padding: 38px 0 14px;
+		@include mixin.font('17px' center);
+
+		+ p {
+			@include mixin.font(#4a4a4a '13px/19px');
+	   }
+	}
+
+	// 반품/환불안내
+	table {
+		margin-top: 12px;
+		background-color: #fff;
+		@include mixin.font(#2b2b2b '13px/17px');
+
+		thead th {
+			background-color: #fafafa;
+			text-align: center;
+		}
+
+		th,
+		td {
+			padding: 8px 12px 9px;
+			border: 1px solid #eee;
+			text-align: left;
+		}
+	}
+
+	.mm_foot + .mm_note {
+		margin-top: 39px;
+	}
+
+	.mm_dropdown:not(.mm_note) {
+		.mm_dropdown-item-inner {
+			padding: 17px 21px 20px;
+
+			.text_indent {
+				position: absolute;
+				left: 0;
+
+				+ p {
+					display: inline-block;
+					padding-left: 14px;
+
+					&::before {
+						content: none;
+					}
+				}
+			}
+
+			p {
+				position: relative;
+				padding-left: 9px;
+
+				&::before {
+					position: absolute;
+					top: -1px;
+					left: 0;
+					content: '-';
+				}
+
+				+ ol {
+					margin: 12px 0 0 9px;
+				}
+			}
+
+			.mm_note {
+				margin-top: 0;
+				@include mixin.font('1.4rem/2rem');
+
+				li::before {
+					font-size: 1.3rem;
+				}
+
+				+ * {
+					margin-top: 13px;
+				}
+			}
+
+			> ul,
+			> ol {
+				> li {
+					position: relative;
+
+					&:nth-child(n+2) {
+						margin-top: 11px;
+					}
+				}
+			}
+
+			// 쿠폰/포인트
+			dt,
+			dd {
+				> ol {
+					padding-left: 12px;
+
+					li {
+						position: relative;
+					}
+
+					// 숫자가 ① 모양일 때
+					.text_indent + p {
+						padding-left: 18px;
+					}
+				}
+			}
+		}
+	}
+
+	// 반품/환불안내 테이블
+	&-table {
+		margin-right: -7px;
+		padding-bottom: 2px;
+
+		th {
+			background-color: #fafafa;
+		}
+	}
+
+	// 주문/반품배송조회
+	&-step {
+		margin-top: 3px;
+
+		> figure {
+			margin-top: -3px;
+		}
+
+		> li {
+			&:nth-child(n+2) {
+				.text_step {
+					margin-top: 15px;
+				}
+			}
+
+			.text_step {
+				display: inline-block;
+				padding: 0 6px 0 8px;
+				height: 22px;
+				border-radius: 22px;
+				background-color: #4a4a4a;
+				@include mixin.font(#fff '14px/24px' [var.$fontFamily_latin], 0);
+
+				+ p {
+					margin-top: 9px;
+					padding: 0 !important;
+
+					&::before {
+						content: none !important;
+					}
+				}
+			}
+
+			figure {
+				margin-top: 9px;
+			}
+		}
+
+		.image_guide {
+			margin-top: 14px;
+		}
+	}
+}
+//> 공통 (회원등급및혜택, 1:1고객상담 제외)
+
+
+// *---------- 모달 ----------*
+
+
+
+
+// *---------- 레이어 ----------*

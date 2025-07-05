@@ -1,0 +1,153 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 레이아웃
+ * 푸터
+**/
+
+
+//< 푸터영역
+.mm_footer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: var.$footer_height_base;
+	background-color: #fff;
+
+	// 메뉴
+	&-menu {
+		border-top: 1px solid #dcdcdc;
+		@include mixin.font(#5c5c5c '13px/50px');
+
+		.mm_lside {
+			margin-left: -17px;
+		}
+
+		.mm_rside {
+			margin-right: -16px;
+		}
+
+		ul {
+			height: 50px;
+
+			li {
+				position: relative;
+
+				&:nth-child(n+2) {
+					padding-left: 1px;
+
+					&::before {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						margin-top: -4px;
+						height: 8px;
+						border-left: 1px solid #cdcdcd;
+						content: '';
+					}
+				}
+
+				a {
+					padding: 0 20px;
+
+					strong {
+						color: var.$color_text_base;
+					}
+				}
+			}
+		}
+	}
+
+	// 정보
+	&-info {
+		border-top: 1px solid #dcdcdc;
+		@include mixin.font(#6a6a6a '12px/19px');
+
+		.mm_inner {
+			padding-top: 21px;
+
+			> * {
+				display: inline-block;
+
+				&:not(h6) {
+					margin-left: 108px;
+				}
+			}
+		}
+
+		dt,
+		strong {
+			color: var.$color_text_base;
+		}
+
+		h6 {
+			margin: 4px 0 0 4px;
+			width: 170px;
+			height: 40px;
+			@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/logo.svg') '50% 50%/contain' no-repeat);
+			@include mixin.opacity(0.2);
+		}
+
+		.btn_footer-info {
+			position: relative;
+			margin: 1px 0 0 5px;
+			padding: 0 6px;
+			height: 17px;
+			border-radius: 17px;
+			@include mixin.font(#8c8c8c '10px/15px');
+
+			.mco_link {
+				margin: 1px 0 0 4px;
+				@include mixin.transform(scale(0.8));
+			}
+
+			&::after {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+				border: 1px solid #cdcdcd;
+				border-radius: 17px;
+				content: '';
+			}
+		}
+
+		dd {
+			position: relative;
+
+			.image_isms {
+				position: absolute;
+				top: 10px;
+				width: 42px;
+				height: 37px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/pc/common/ico_isms.png') '50% 50%/100% auto' no-repeat);
+
+				~ p {
+					padding-left: 53px;
+				}
+			}
+
+			+ dd {
+				margin-top: 11px;
+			}
+		}
+
+		> .text_copyright {
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 39px;
+			background-color: #fafafa;
+			@include mixin.font(#8c8c8c '12px/40px' center);
+		}
+	}
+}
+//> 푸터영역

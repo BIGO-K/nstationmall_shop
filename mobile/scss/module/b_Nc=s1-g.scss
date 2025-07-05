@@ -1,0 +1,85 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s1-g"] {
+	.mm_carousel- {
+		&list {
+			padding-top: 104%;
+		}
+
+		&item {
+			a {
+				display: block;
+
+				figure {
+					position: relative;
+
+					&::after {
+						position: absolute;
+						top: 0;
+						right: 0;
+						bottom: 0;
+						left: 0;
+						background-color: rgba(#000, 0.27);
+						content: '';
+					}
+				}
+			}
+
+			.image_banner {
+				padding-top: 104%;
+				width: 100%;
+			}
+
+			figcaption {
+				position: absolute;
+				z-index: 1;
+				bottom: 56px;
+				left: 0;
+				padding: 0 31px;
+				max-width: 100%;
+				color: #fff;
+
+				&.__text_black__ {
+					color: #000;
+				}
+			}
+
+			.text_main {
+				@include mixin.text-ellipsis(2);
+				@include mixin.font('27px/34px');
+			}
+
+			.text_sub {
+				@include mixin.text-ellipsis();
+				margin-top: 14px;
+				@include mixin.font(300 '17px/26px');
+			}
+		}
+
+		&count {
+			right: 20px;
+			bottom: 16px;
+			padding: 0 10px;
+			height: 24px;
+			border-radius: 12px;
+			background-color: rgba(#101010, 0.46);
+			@include mixin.font(#fff 500 '13px/25px' [var.$fontFamily_latin] center);
+
+			> i,
+			.text_carousel-total {
+				@include mixin.font(#cdcdcd 300);
+			}
+		}
+	}
+}

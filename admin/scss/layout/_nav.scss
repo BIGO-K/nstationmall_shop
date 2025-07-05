@@ -1,0 +1,299 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * GNB, LNB, 카테고리메뉴, 브레드크럼, 페이지네이션, 즐겨찾기
+**/
+
+
+//< gnb
+.mm_gnb {
+	var.$gnb_height_base: 34px;
+
+	position: relative;
+	background-color: darken(var.$color_main_base, 8%);
+
+	> ul {
+		margin: 0 auto;
+		width: var.$minWidth_base;
+		height: var.$gnb_height_base;
+
+		> li {
+			position: relative;
+
+			&:hover,
+			&:focus {
+				> a {
+					font-weight: 700;
+					letter-spacing: -0.3px;
+
+					&::after {
+						position: absolute;
+						z-index: 1;
+						top: var.$gnb_height_base - 5px;
+						left: 50%;
+						content: '';
+						@include mixin.transform(translateX(-50%));
+						@include mixin.triangle(#fff, top, 5px);
+					}
+				}
+
+				.mm_gnb-depth2 {
+					visibility: inherit;
+					z-index: 0;
+					@include mixin.opacity(1, auto);
+				}
+			}
+
+			> a {
+				padding: 0 10px;
+				@include mixin.font(#fff '13px/#{var.$gnb_height_base}');
+
+				.__ie11 &, .__edge & { line-height: 32px; }
+			}
+		}
+	}
+
+	&-depth2 {
+		visibility: hidden;
+		position: absolute;
+		z-index: -1;
+		top: var.$gnb_height_base - 1px;// border값 빼기
+		right: 50%;// left 기준으로 하면 ie 마지막 메뉴에 여백이 생겨 right 기준으로 사용
+		padding: 14px 10px;
+		border: 1px solid #35374e;
+		background-color: #fff;
+		@include mixin.opacity(0, none);
+		@include mixin.transform(translateX(50%));
+
+		> ul {
+			display: table;
+
+			> li {
+				display: table-row;
+
+				> * {
+					display: table-cell;
+				}
+
+				p {
+					padding: 0 10px;
+					@include mixin.font(700 '12px/22px', nowrap);
+				}
+
+				&:last-child {
+					.mm_gnb-depth3 {
+						padding-bottom: 0 !important;
+					}
+				}
+
+				&:hover,
+				&:focus {
+					> p {
+						a {
+							text-decoration: underline;
+							@include mixin.font(var.$color_main_base underline);
+
+							> b {
+								display: inline;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&-depth3 {
+		padding-bottom: 9px;
+
+		a {
+			padding: 0 10px;
+			@include mixin.font('12px/22px', nowrap);
+
+			&:hover {
+				@include mixin.font(var.$color_main_base underline);
+
+				> b {
+					display: inline;
+				}
+			}
+
+			.__ie11 &, .__edge & { padding: 0 9px 0 11px; }
+		}
+	}
+}
+//> gnb
+
+//< 즐겨찾기
+.mm_bookmark {
+	position: relative;
+	min-height: 44px;
+	background-color: #f4f4f4;
+
+	.mm_inner {
+		padding: 10px 0 10px 72px;
+	}
+
+	h6 {
+		position: absolute;
+		top: 8px;
+		left: 0;
+		@include mixin.font(#35374e '12px/26px');
+
+		.ico_star {
+			margin: 8px 5px 0 2px;
+		}
+	}
+
+	ul {
+		margin-top: -2px;
+		font-size: 0;
+
+		li {
+			display: inline-block;
+			position: relative;
+			margin: 2px 0 0 2px;
+			border: 1px solid #959595;
+			background-color: #fff;
+
+			a {
+				padding: 5px 21px 5px 5px;
+				@include mixin.font(#666 '12px');
+			}
+
+			.btn_remove {
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				padding-top: 6px;
+				width: 19px;
+			}
+		}
+	}
+}
+//> 즐겨찾기
+
+//< 페이지네이션
+.mm_pagination {
+	position: relative;
+	margin-top: 6px;
+	text-align: center;
+
+	.mm_inline {
+		position: relative;
+	}
+
+	ol {
+		li {
+			float: left;
+
+			&:nth-child(n+2) {
+				margin-left: 10px;
+			}
+
+			a {
+				display: block;
+				padding: 0 6px;
+				height: var.$pagination_height_base;
+				@include mixin.font(#666 '12px/#{var.$pagination_height_base + 1}');
+
+				&.__page-on {
+					@include mixin.font(var.$color_secondary_base 700);
+				}
+
+				[class*="__ie1"] &, .__edge & { line-height: 28px; }
+			}
+		}
+	}
+
+	[class^="btn_control"] {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		padding: 0 10px;
+		cursor: pointer;
+
+		&.btn_control-first {
+			left: -45px - 30px;
+		}
+
+		&.btn_control-prev {
+			left: -45px;
+		}
+
+		&.btn_control-next {
+			right: -45px;
+		}
+
+		&.btn_control-last {
+			right: -45px - 30px;
+		}
+
+		&[disabled] {
+			color: #cfcfcf;
+		}
+
+		i {
+			margin-top: 12px;
+
+			[class*="__ie1"] & { margin-top: 11px; }
+		}
+	}
+
+	&-jump {
+		position: absolute;
+		top: 4px;
+		right: 0;
+
+		.mm_form-text {
+			width: 38px;
+			@include mixin.prefix(flex, auto, webkit ms);
+
+			.__edge & { max-width: 38px; }
+			[class*="__ie1"] & .text_placeholder { top: 0; }
+		}
+
+		.btn_jump {
+			position: relative;
+			margin: 0 0 0 -1px;
+			width: 23px;
+			height: 23px;
+			border: 1px solid #d5d5d5;
+			border-left: 0;
+
+			&::after {
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: 1px;
+				@include mixin.transform(translate(-50%, -50%));
+				@include mixin.triangle(#555, right, 3px, 7px);
+				content: '';
+
+				[class*="__ie1"] &, .__edge & { margin-left: 0; }
+			}
+		}
+
+		.text_linked {
+			margin: 0 2px 0 4px;
+			@include mixin.font(#444 '12px');
+
+			.__edge & { line-height: 22px; }
+			[class*="__ie1"] & { margin-left: 3px; }
+
+			strong {
+				margin-left: 10px;
+				font-weight: 700;
+
+				[class*="__ie1"] & { margin-left: 9px; }
+			}
+		}
+	}
+}
+//> 페이지네이션

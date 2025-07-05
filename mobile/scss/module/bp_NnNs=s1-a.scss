@@ -1,0 +1,68 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너+상품(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="bp_NnNs/s1-a"] {
+    .m_ui-item {
+        padding: 0 14px;
+
+        // 배너
+        > a {
+			display: block;
+
+            .image_banner {
+                position: relative;
+                padding-top: 100%;
+                width: 100%;
+            }
+
+            figure {
+                position: relative;
+
+                &::after {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background-color: rgba(#000, 0.27);
+                    content: '';
+                }
+
+                figcaption {
+                    position: absolute;
+                    z-index: 1;
+                    top: 50%;
+                    right: 0;
+                    left: 0;
+                    padding: 0 14px;
+                    @include mixin.font(#fff 700 '22px/32px' center);
+                    @include mixin.transform(translateY(-50%));
+
+                    .text_sub {
+                        margin-top: 7px;
+                        @include mixin.font(300 '17px/24px');
+                    }
+                }
+            }
+		}
+
+        // 상품
+        .mm_scroller {
+            margin: 12px -14px 0;
+        }
+
+		+ .m_ui-item {
+			margin-top: 30px;
+		}
+	}
+}

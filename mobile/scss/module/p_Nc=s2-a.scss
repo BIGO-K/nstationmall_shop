@@ -1,0 +1,104 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 상품(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="p_Nc/s2-a"] {
+    padding: 44px 0 50px;
+    background-color: #1e1e1e;
+
+    .m_ui-title {
+        color: #fff;
+    }
+
+    .mm_carousel {
+        margin-left: 14px;
+
+        &-inner {
+            padding: 0 calc(21.05263% + 20px) 42px 0;
+        }
+
+        &-list {
+            box-sizing: content-box;
+            padding-top: var.$prod_height_base;
+            height: 135px;
+        }
+
+        &-item {
+            padding-right: 10px;
+            width: calc(100% + 30px);
+            background-color: transparent;
+        }
+
+        &-count {
+            bottom: 0;
+            left: 50%;
+            margin-left: -4px;
+            padding: 0 14px;
+            height: 26px;
+            border: 1px solid #101010;
+            border-radius: 13px;
+            background-color: #101010;
+            font-size: 0;
+            @include mixin.transform(translateX(-50%));
+
+            > * {
+                @include mixin.font(#cdcdcd 300 '15px/24px' [var.$fontFamily_latin]);
+            }
+
+            .text_carousel-index {
+                @include mixin.font(#fff 500);
+            }
+        }
+    }
+
+    .mm_product-list.__list_card__ {
+        .mm_product-item {
+            a {
+                padding: 10px 10px 25px;
+                background-color: #fff;
+
+                figure {
+                    position: relative;
+
+                    .text_soldout {
+                        position: absolute;
+                        z-index: 1;
+                        top: 0;
+                        left: 0;
+                        background-color: rgba(#000, 0.27);
+
+                        b {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            margin: -30px 0 0 -50px;
+                            width: 100px;
+                            height: 60px;
+                            border: 2px solid #fff;
+                            @include mixin.font(#fff 500 '12px' center);
+
+                            strong {
+                                display: block;
+                                @include mixin.font('17px/56px' [var.$fontFamily_latin], 0);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .mm_like {
+                right: 10px;
+                margin-top: calc((100% - 20px) * #{var.$prod_ratio_base} + 10px);
+            }
+        }
+    }
+}

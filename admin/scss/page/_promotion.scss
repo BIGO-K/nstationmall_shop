@@ -1,0 +1,55 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 프로모션
+**/
+
+
+//< 공통
+// 추가 할인 관리
+.m_promo-set {
+	margin-bottom: 30px;
+}
+
+// 추가 할인 관리, 쿠폰관리
+.m_promo-list-set {
+	margin-top: 30px;
+}
+
+.m_promo-period {
+	.mm_formmix-linked {
+		&:nth-child(2n) {
+			margin-top: 8px;
+		}
+
+		.mm_form-radio {
+			padding-right: 2px;
+		}
+	}
+}
+//> 공통
+
+//< 쿠폰 수동 발급
+.m_promo-self {
+	margin-top: 60px;
+
+	.mm_selected > a:not(.mm_btn) {
+		position: relative;
+		@include mixin.font(var.$color_secondary_base 700);
+
+		&::after {
+			position: absolute;
+			right: 0;
+			bottom: 4px;
+			left: 0;
+			border-bottom: 1px solid var.$color_secondary_base;
+			content: '';
+		}
+	}
+}
+//> 쿠폰 수동 발급

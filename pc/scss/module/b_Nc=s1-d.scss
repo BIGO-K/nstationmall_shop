@@ -1,0 +1,88 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="b_Nc/s1-d"] {
+	.mm_carousel {
+        &-list {
+            padding-top: 600px;
+        }
+
+        &-item {
+            top: 0;
+
+            .image_banner {
+                padding-top: 600px;
+                width: 100%;
+            }
+
+            figcaption {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: math.div(var.$minWidth_base, -2);
+                padding: 0 100px 8px;
+                width: var.$minWidth_base;
+                @include mixin.font(#fff '/1.4');
+                @include mixin.transform(translateY(-50%));
+
+                .text_main {
+                    @include mixin.font(700 '48px/68px');
+
+                    + .text_sub {
+                        padding-top: 21px;
+                    }
+                }
+
+                .text_sub {
+                    @include mixin.font('26px/38px');
+                }
+
+                &.__text_black__ {
+                    color: #000;
+                }
+            }
+        }
+
+        &-control {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            margin-left: math.div(var.$minWidth_base, -2);
+            width: var.$minWidth_base;
+
+            button {
+                padding: 10px;
+                @include mixin.font(rgba(#fff, 0.7) '47px');
+                text-shadow: 0px 3px 6px rgba(#000, 0.16);
+            }
+        }
+
+        &-count {
+            position: absolute;
+            z-index: 2;
+            bottom: 40px;
+            left: 50%;
+            padding: 0 15px;
+            border-radius: 15px;
+            background-color: rgba(#000, 0.38);
+            @include mixin.font(#fff 500 '15px/30px' [var.$fontFamily_latin] center);
+            @include mixin.transform(translateX(-50%));
+
+            i,
+            .text_carousel-total {
+                @include mixin.opacity(0.3);
+            }
+        }
+    }
+}

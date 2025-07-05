@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="format-detection" content="telephone=no, address=no, email=no">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="mobile-web-app-capable" content="yes">
+
+	<!-- 소셜태그 -->
+	<meta property="og:title" content="">
+	<meta property="og:description" content="">
+	<meta property="og:image" content="">
+	<meta property="og:url" content="">
+	<meta property="og:site_name" content="">
+	<!--// 소셜태그 -->
+
+	<title>보유 쿠폰 &#60; 혜택관리 &#60; 마이페이지 - N.STATION</title>
+
+	<!-- 공통 css -->
+	<link rel="stylesheet" href="../css/app.css">
+
+	<!-- (D) 폴리필/라이브러리는 요청을 줄이기 위해 combind + minify를 적용해주세요. -->
+	<!-- 폴리필/라이브러리 스크립트 -->
+	<script src="../js/polyfill/babel-polyfill-7.12.1.min.js"></script>
+	<script src="../js/polyfill/dom4-2.1.5.min.js"></script>
+	<script src="../js/polyfill/fetch.umd-3.6.2.min.js"></script>
+	<script src="../js/polyfill/intersection-observer-0.12.0.min.js"></script>
+	<script src="../js/polyfill/resize-observer-1.5.1.min.js"></script>
+	<script src="../js/polyfill/webcomponents-ce-2.6.0.min.js"></script>
+	<script src="../js/lib/lodash-4.17.21.min.js"></script>
+	<script src="../js/lib/gsap-3.6.1/gsap.min.js"></script>
+	<script src="../js/lib/axios-0.21.1.min.js"></script>
+	<script src="../js/lib/load-image.all-5.14.0.min.js"></script>
+	<script src="../js/lib/sortable-1.13.0.min.js"></script>
+
+	<!-- 공통 스크립트 -->
+	<script src="../js/app_common.js"></script>
+	<script src="../js/app_page-common.js"></script>
+
+	<!-- (D) 페이지 전용 스크립트는 .mm_page-content 하단에 넣어주세요. -->
+</head>
+<body>
+	<div id="mm_app" class="mm_app">
+		<!-- 스킵 -->
+		<nav class="mm_skip">
+			<ul>
+				<li><a href="#mm_body" data-href="{ '_type': 'anchor' }">본문바로가기</a></li>
+			</ul>
+		</nav>
+		<!-- 스킵 -->
+
+		<!-- 화면 -->
+		<div class="mm_view">
+			<!-- 헤더 -->
+			<header class="mm_header">
+				<h1><b>혜택관리</b></h1>
+				<div class="mm_lside">
+					<a class="btn_back" href="#" data-href="{ '_type': 'back' }"><i class="mco_history-back"></i><b class="mm_ir-blind">이전으로</b></a>
+				</div>
+				<div class="mm_rside">
+					<a href="_popup_search.html" data-href="{ '_type': 'popup' }"><i class="mco_search"></i><b class="mm_ir-blind">검색</b></a>
+					<a href="cart.html" data-href="{ '_type': 'link' }"><i class="mco_cart"></i><strong class="text_badge">2</strong><b class="mm_ir-blind">장바구니</b></a>
+				</div>
+			</header>
+			<!--// 헤더 -->
+
+			<!-- 내용 -->
+			<div id="mm_body" class="mm_page">
+				<!-- (D) 실제 내용을 추가하는 부분입니다. -->
+
+				<div class="mm_scroller">
+					<div class="mm_page-inner">
+						<!-- 본문 -->
+						<div class="mm_page-content">
+							<!-- 탭메뉴 -->
+							<div class="mm_tabmenu m_my-tabmenu">
+								<!-- (D) 선택된 탭메뉴에 '__tab-on' 클래스와 '선택됨' 타이틀을 추가합니다. -->
+								<ul class="mm_flex __flex_equal__">
+									<li><a class="__tab-on" href="myBenefitCoupon.html" data-href="{ '_type': 'link', '_isLinkStage': false }" title="선택됨"><b>보유 쿠폰</b></a></li>
+									<li><a href="myBenefitPoint.html" data-href="{ '_type': 'link', '_isLinkStage': false }"><b>보유 마일리지</b></a></li>
+								</ul>
+							</div>
+							<!--// 탭메뉴 -->
+
+							<!-- 보유쿠폰 -->
+							<div class="m_mybenefit">
+								<div class="m_mybenefit-head">
+									<h3><b>내가 보유한 쿠폰</b><strong class="mm_text-primary">25<sub>장</sub></strong></h3>
+									<div class="mm_btnbox">
+										<div class="mm_inline">
+											<button type="button" class="mm_btn __btn_sm_light__" onclick="mm.bom.prompt('쿠폰 인증 번호를 입력해주세요<br>(8자리~최대 12자리)', null, { _title: '쿠폰 등록' });"><b>쿠폰 등록하기</b></button>
+										</div>
+									</div>
+								</div>
+								<!-- 쿠폰목록 -->
+								<!-- (D) 'text_status' 영역에 사용 가능 상태는 '__status_on__' 클래스를 추가합니다. -->
+								<div class="m_mybenefit-coupon">
+									<ul>
+										<li>
+											<p class="text_status __status_on__">사용 가능</p>
+											<div class="mm_coupon __coupon_xl__">
+												<div class="mm_coupon-inner">
+													<p class="text_price"><strong>2,500</strong></p>
+													<p class="text_coupon">승급할인 쿠폰</p>
+													<p class="text_condition">특정 브랜드상품 사용 가능</p>
+													<p class="text_quantity"><span>1장</span></p>
+												</div>
+											</div>
+											<div class="m__coupon-using">
+												<a href="_popup_myBenefitCoupon_prod.html" data-href="{ '_type': 'popup' }"><b>사용 조건</b><i class="mco_link"></i></a>
+												<p class="text_period">23일 남음</p>
+												<p class="text_date">발급일자: 2021.05.26 12:30</p>
+												<p class="text_date">취득일자: 2021.05.26 12:30</p>
+											</div>
+										</li>
+										<li>
+											<p class="text_status __status_on__">사용 가능</p>
+											<div class="mm_coupon __coupon_xl__">
+												<div class="mm_coupon-inner">
+													<p class="text_percent"><strong>8</strong><sub>%</sub></p>
+													<p class="text_coupon">회원할인 쿠폰</p>
+													<p class="text_condition">특정 브랜드상품 사용 가능</p>
+													<p class="text_quantity"><span>무제한 발급</span></p>
+												</div>
+											</div>
+											<div class="m__coupon-using">
+												<a href="_popup_myBenefitCoupon_brand.html" data-href="{ '_type': 'popup' }"><b>사용 조건</b><i class="mco_link"></i></a>
+												<p class="text_period">23일 남음</p>
+											</div>
+										</li>
+										<li>
+											<p class="text_status __status_on__">사용 가능</p>
+											<div class="mm_coupon __coupon_xl__">
+												<div class="mm_coupon-inner">
+													<p class="text_percent"><strong>10</strong><sub>%</sub></p>
+													<p class="text_coupon">블랙야크 10% 중복할인 쿠폰</p>
+													<p class="text_condition">특정 브랜드상품 사용 가능</p>
+													<p class="text_quantity"><span>12장</span></p>
+												</div>
+											</div>
+											<div class="m__coupon-using">
+												<a href="_popup_myBenefitCoupon.html" data-href="{ '_type': 'popup' }"><b>사용 조건</b><i class="mco_link"></i></a>
+												<p class="text_period">5일 남음</p>
+											</div>
+										</li>
+										<li>
+											<p class="text_status">사용 불가</p>
+											<div class="mm_coupon __coupon_xl__">
+												<div class="mm_coupon-inner">
+													<p class="text_percent"><strong>10</strong><sub>%</sub></p>
+													<p class="text_coupon">제이앤에이 마운티아 30% 중복 할인 쿠폰_naver_mb</p>
+													<p class="text_condition">모든 상품 사용 가능</p>
+													<p class="text_quantity"><span>1장</span></p>
+												</div>
+											</div>
+											<div class="m__coupon-using">
+												<a href="_popup_myBenefitCoupon.html" data-href="{ '_type': 'popup' }"><b>사용 조건</b><i class="mco_link"></i></a>
+												<p class="text_period">5일 남음</p>
+											</div>
+										</li>
+									</ul>
+								</div>
+								<!--// 쿠폰목록 -->
+
+								<!-- 페이지네이션 -->
+								<!-- (D) 현재 페이지의 메뉴에 '__page-on' 클래스와 '선택됨' 타이틀을 추가합니다. -->
+								<div class="mm_pagination">
+									<div class="mm_inline">
+										<ol>
+											<li><a class="__page-on" href="#" title="선택됨"><b>1</b></a></li>
+											<li><a href="#"><b>2</b></a></li>
+											<li><a href="#"><b>3</b></a></li>
+										</ol>
+										<button type="button" class="btn_control-first" onclick="mm.link('')" disabled><i class="mco_page-first"></i><b class="mm_ir-blind">처음</b></button>
+										<button type="button" class="btn_control-prev" onclick="mm.link('')" disabled><i class="mco_page-prev"></i><b class="mm_ir-blind">이전</b></button>
+										<button type="button" class="btn_control-next" onclick="mm.link('')"><i class="mco_page-next"></i><b class="mm_ir-blind">다음</b></button>
+										<button type="button" class="btn_control-last" onclick="mm.link('')"><i class="mco_page-last"></i><b class="mm_ir-blind">마지막</b></button>
+									</div>
+								</div>
+								<!--// 페이지네이션 -->
+
+								<!-- 유의사항 -->
+								<div class="mm_note mm_dropdown mm_inner" data-dropdown>
+									<button type="button" class="btn_dropdown" title="펼쳐보기"><i class="mco_note"></i><b>쿠폰 유의사항</b><i class="mco_dropdown-box"></i></button>
+									<div class="mm_dropdown-item">
+										<div class="mm_dropdown-item-inner">
+											<ul>
+												<li>쿠폰은 회원에 한해 적용되며, <strong>한 품목당 한장의 쿠폰만 사용</strong>할 수 있습니다</li>
+												<li>쿠폰 사용 후 <strong>잔액은 환불이 불가하며, 자동소멸</strong>됩니다</li>
+												<li>쿠폰을 사용하여 주문 결제한 건에 대해 <strong>취소/반품 시 쿠폰은 재발행 되지 않으며, 구매 시 사용한 쿠폰 금액에 대해서도 환불되지 않습니다</strong></li>
+												<li>쿠폰에 따라 유효기간, 최소 사용금액과 같은 사용 조건이 상이합니다</li>
+												<li>쿠폰에 따라 <strong>금액, 브랜드, 상품, 디바이스별로 사용이 제한</strong>될 수 있습니다</li>
+												<li>유효기간이 만료된 쿠폰은 사용할 수 없습니다</li>
+												<li>첫 구매 시 지급되는 '첫 구매 쿠폰'은 구매확정일 익일 4시 지급됩니다</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!--// 유의사항 -->
+							</div>
+							<!--// 보유쿠폰 -->
+						</div>
+						<!--// 본문 -->
+
+						<!-- 푸터 -->
+						<footer id="mm_footer" class="mm_footer">
+							<!-- 푸터-메뉴 -->
+							<div class="mm_footer-menu">
+								<ul class="mm_flex __flex_equal__">
+									<li><a href="_popup_login.html" data-href="{ '_type': 'popup' }"><b>로그인</b></a></li>
+									<li><a href="csMain.html" data-href="{ '_type': 'link' }"><b>고객센터</b></a></li>
+									<li><a href="csNotice.html" data-href="{ '_type': 'link' }"><b>공지사항</b></a></li>
+									<li><a href="#" target="_blank" title="새 창 열림"><b>PC버전</b></a></li>
+								</ul>
+							</div>
+							<!--// 푸터-메뉴 -->
+
+							<!-- 푸터-정보 -->
+							<div class="mm_footer-info">
+								<div class="mm_dropdown" data-dropdown>
+									<b>㈜더네이쳐홀딩스</b>
+									<button type="button" class="btn_dropdown" title="펼쳐보기"><b>사업자 정보</b><i class="mco_dropdown-sm"></i></button>
+									<div class="mm_dropdown-item">
+										<div class="mm_dropdown-item-inner">
+											<address>
+												<p>대표: 박영준</p>
+												<p>서울특별시 용산구 새창로44길 10 1~4층</p>
+												<p>사업자등록번호: 106-86-26388 <a href="#" target="_blank" title="새 창 열림"><b>사업자정보 확인</b></a></p>
+												<p>통신판매업 신고번호: 제2021-서울용산-1781호</p>
+												<p>개인정보관리자: 전제구</p>
+												<p class="text_cs">대표전화: <a href="tel:1588-2906" title="전화연결"><b>1588-2906</b></a> / AM 10:00 ~ PM 05:00 (월-금)</p>
+												<p>점심시간 12:30~13:30 / 주말 및 공휴일 휴무</p>
+												<p>팩스번호: 02-3274-0805</p>
+												<p class="text_email">이메일: <a href="mailto:jackman@nglife.co.kr" title="새 창 열림"><b>jackman@nglife.co.kr</b></a></p>
+											</address>
+										</div>
+									</div>
+								</div>
+								<ul class="mm_footer-info-terms">
+									<li><a href="_popup_termsUse.html" data-href="{ '_type': 'popup' }"><b>이용약관</b></a></li>
+									<li><a href="_popup_termsPrivacy.html" data-href="{ '_type': 'popup' }"><strong>개인정보처리방침</strong></a></li>
+									<li><a href="#" target="_blank" title="새 창 열림"><b>구매안전서비스 가입사실확인</b></a></li>
+								</ul>
+								<p class="text_copyright">&#169;2021 thenatureholdings All Rights Reserved.</p>
+							</div>
+							<!--// 푸터-정보 -->
+						</footer>
+						<!--// 푸터 -->
+					</div>
+				</div>
+
+				<a class="btn_topmost" href="#mm_app" data-href="{ '_type': 'anchor' }" title="페이지 처음으로"><i class="mco_topmost"></i><b>TOP</b></a>
+				<a class="btn_side-kakao" href="#" target="_blank" title="새 창 열림"><b class="mm_ir-blind">카카오톡 플러스 친구</b></a>
+
+				<!-- 현재 페이지 스크립트 -->
+				<!-- <script src="../js/.js"></script> -->
+			</div>
+			<!--// 내용 -->
+
+			<!-- 툴바 -->
+			<div class="mm_toolbar">
+				<ul class="mm_flex __flex_equal__">
+					<li>
+						<a href="_popup_search.html" data-href="{ '_type': 'popup' }">
+							<i class="mco_search-lg"></i>
+							<b>검색</b>
+						</a>
+					</li>
+					<li>
+						<a href="sidebar_level5.html" onclick="mm.side.open(this.href);return false;">
+							<i class="mco_menu"></i>
+							<b>카테고리</b>
+						</a>
+					</li>
+					<li>
+						<button type="button" class="mm_switch btn_quickmenu" data-switch="{ '_defaultTitle': '퀵메뉴 열기', '_title': '퀵메뉴 닫기', '_isParent': true, '_parentSelector': '.mm_toolbar' }">
+							<i class="mco_home"></i>
+							<i class="mco_close"></i>
+							<b class="mm_ir-blind">퀵메뉴 열기</b>
+						</button>
+					</li>
+					<li>
+						<a href="myMain_level5.html" data-href="{ '_type': 'link' }">
+							<i class="mco_mypage"></i>
+							<b>마이페이지</b>
+						</a>
+					</li>
+					<li>
+						<a href="_popup_recent.html" data-href="{ '_type': 'popup' }">
+							<!-- (D) 최근본상품이 있을 때 노출합니다. -->
+							<!-- <i class="mm_bg-cover image_recent" data-lazyload="{ '_src': '../image/_sample/prod_x1_3.png' }"></i> -->
+							<i class="mco_recent"></i>
+							<b>최근본상품</b>
+						</a>
+					</li>
+				</ul>
+				<div class="mm_toolbar-quickmenu">
+					<div class="mm_toolbar-quickmenu-dim"></div>
+					<div class="mm_toolbar-quickmenu-item">
+						<ul>
+							<li>
+								<a href="main.html" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_main__"></i><b class="mm_ir-blind">N.STATION</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+							<li>
+								<a href="main_national.html" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_national__"></i><b class="mm_ir-blind">내셔널지오그래픽</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+							<li>
+								<a href="main_nfl.html" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_nfl__"></i><b class="mm_ir-blind">NFL</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+							<li>
+								<a href="https://m.nstationmall.com/goods/brand/29" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_barrel_color__"></i><b class="mm_ir-blind">배럴</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+							<li>
+								<a href="https://markgonzaleskorea.com/" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_markgonzales__"></i><b class="mm_ir-blind">마크곤잘레스</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+							<li>
+								<a href="luxury.html" data-href="{ '_type': 'link' }">
+									<i class="image_logo __logo_couloir__"></i><b class="mm_ir-blind">끌루와</b>
+									<b>바로가기 <i class="mco_link"></i></b>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!--// 툴바 -->
+		</div>
+		<!--// 화면 -->
+	</div>
+</body>
+</html>

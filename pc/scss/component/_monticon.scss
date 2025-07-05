@@ -1,0 +1,552 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+@use '../helper/function' as *;
+
+/**
+ * 컴포넌트
+ * monticon
+**/
+
+
+@include mixin.font-face('monticon', var.$fontPath + 'monticon');
+%monticon {
+	display: inline-block;
+	@include mixin.font(400 normal 'inherit/inherit' ['monticon']);
+	font-variant: normal;
+	text-decoration: inherit;
+	text-transform: none;
+	text-indent: 0;
+	letter-spacing: 0;
+	// speak: none;
+	@include mixin.prefix(font_smoothing, antialiased, webkit moz);
+}
+
+[class^="mco_"],
+[class*=" mco_"] {
+	// @include mixin.font('0/1');
+
+	@at-root .mco,
+	&::before {
+		// visibility: hidden;
+		@extend %monticon;
+
+		// .__font & {
+		// 	visibility: inherit;
+		// }
+	}
+}
+
+//< 모션
+.__mco-spin {
+	@include mixin.prefix(animation, frame-spin 1.5s infinite linear, webkit);
+}
+
+@include mixin.keyframes(frame-spin) {
+	0% {
+		@include mixin.transform(rotate(0deg));
+	}
+	100% {
+		@include mixin.transform(rotate(359deg));
+	}
+}
+//> 모션
+
+//< 아이콘
+.mco_ {
+	// bom
+	&bom {
+		@include mixin.monticon('-alert', \ee4e);
+	}
+
+	// 모달
+	&modal {
+		// @include mixin.monticon('', \e92e);
+		@include mixin.monticon('-close', \ff07);
+	}
+
+	// 팝업
+	&popup {
+		@include mixin.monticon('-close', \ff07);
+		// @include mixin.monticon('-window', \ee5c);// 새 창(팝업)
+	}
+
+	// 팝오버
+	&popover {
+		@include mixin.monticon('-help', \ec0c);
+	}
+
+	// 툴팁
+	&tooltip {
+		@include mixin.monticon('-help', \ec0c);
+	}
+
+	// 토스트
+	// &toast {
+	// 	@include mixin.monticon('', \e93e);
+	// }
+
+	// 히스토리
+	&history {
+		@include mixin.monticon('-back', \e93f);// 이전
+	}
+
+	// 로딩
+	@include mixin.monticon('loading', \e834);
+
+	// 앵커
+	&anchor {
+		@include mixin.monticon('-up', \ec19);// 맨위로
+		@include mixin.monticon('-down', \ec16);// 맨아래로
+	}
+
+	// 이전
+	// @include mixin.monticon('prev', \f104);
+
+	// 다음(브레드크럼 등)
+	@include mixin.monticon('next', \e940);
+
+	// 뒤로가기
+	@include mixin.monticon('back', \ff01);
+
+	// 앞으로가기
+	// @include mixin.monticon('forward, \);
+
+	// 바로가기
+	// @include mixin.monticon('shortcut', \f124);
+
+	// 페이지네이션
+	&page {
+		@include mixin.monticon('-prev', \e93f);
+		@include mixin.monticon('-next', \e940);
+		@include mixin.monticon('-first', \e93f\e93f);
+		@include mixin.monticon('-last', \e940\e940);
+	}
+
+	// 폼
+	&form {
+		@include mixin.monticon('-check', \e8d5);
+		@include mixin.monticon('-choice', \f06d);
+		@include mixin.monticon('-select', \e936);
+		@include mixin.monticon('-select-sm', \e93a);
+		@include mixin.monticon('-clear', \ee3e);// 지우기
+		// @include mixin.monticon('-alert', \ed40);// 경고/에러
+		@include mixin.monticon('-valid', \ea6f);// 유효성
+	}
+
+	// 폼 파일(이미지)
+	&file {
+		// @include mixin.monticon('-remove', \ff07);
+		// @include mixin.monticon('-find', \e8d2);// 불러오기
+		// @include mixin.monticon('-sortable', \ff41);// 순서
+	}
+
+	// 이미지
+	&image {
+		@include mixin.monticon('-remove', \ff07);
+		@include mixin.monticon('', \ed06);// 노 이미지
+		// @include mixin.monticon('multiple', \e8d1);// 멀티이미지
+		@include mixin.monticon('-multiple', \ff98);// 멀티이미지
+	}
+
+	// 필수입력
+	// @include mixin.monticon('required', \ea6f);
+
+	// 비밀번호
+	&pw {
+		// 비밀번호 보기
+		@include mixin.monticon('-show', \ed25);
+
+		// 비밀번호 숨기기
+		@include mixin.monticon('-hide', \ed26);
+	}
+
+	// 드롭다운
+	&dropdown {
+		@include mixin.monticon('', \e93e);
+		@include mixin.monticon('-sm', \f107);
+		@include mixin.monticon('-xs', \e93a);
+		// @include mixin.monticon('-box', \ff85);
+		@include mixin.monticon('-bold', \e936);
+	}
+
+	// 검색
+	&search {
+		@include mixin.monticon('', \ff05);
+		@include mixin.monticon('-sm', \ff90);
+		@include mixin.monticon('-brand', \ff39);
+		@include mixin.monticon('-postcode', \ff39);
+	}
+
+	// 공백
+	@include mixin.monticon('blank', \e8dc);
+
+	// 사이드/슬라이드
+	&side {
+		// @include mixin.monticon('-close', \ff07);
+	}
+
+	// 상품정렬
+	// &array {
+	// 	@include mixin.monticon('-wide', \ed0c);// 와이드형
+	// 	@include mixin.monticon('-card', \ed0a);// 카드형
+	// }
+
+	// 휴지통
+	@include mixin.monticon('delete', \e85d);
+
+	// 필터검색
+	@include mixin.monticon('filter', \f1de);
+
+	// 닫기
+	@include mixin.monticon('close', \ff07);
+
+	// 삭제
+	&remove {
+		@include mixin.monticon('', \ff07);
+		@include mixin.monticon('-all', \e85d);
+	}
+
+	// 뎁스
+	@include mixin.monticon('depth', \e940);
+
+	// 하단 fixed영역 토글
+	@include mixin.monticon('toggle', \e936);
+
+	// 카테고리 열기&닫기
+	// @include mixin.monticon('category', \e936);
+
+	// 장바구니
+	@include mixin.monticon('cart', \ffb4);
+
+	// 홈
+	@include mixin.monticon('home', \e8e4);
+
+	// 카테고리(메뉴)
+	@include mixin.monticon('menu', \ff02);
+
+	// 마이페이지
+	@include mixin.monticon('mypage', \ff9b);
+
+	// 상점
+	@include mixin.monticon('shop', \e8e4);
+
+	// 배송
+	@include mixin.monticon('ship', \ff09);
+
+	// 새로고침
+	@include mixin.monticon('reload', \e953);
+
+	// 유의사항
+	&note {
+		@include mixin.monticon('', \eb9d);
+		@include mixin.monticon('-alert', \ec0f);
+	}
+
+	// 링크
+	&link {
+		@include mixin.monticon('', \e940);
+		@include mixin.monticon('-sm', \f105);
+		@include mixin.monticon('-xs', \e93c);
+		@include mixin.monticon('-circle', \ff27);
+		@include mixin.monticon('-arrow', \ff89);
+	}
+
+	// 좋아요
+	&like {
+		@include mixin.monticon('', \ff18);
+		@include mixin.monticon('-full', \ff19);
+		@include mixin.monticon('-brand', \ff92);
+	}
+
+	// 스타
+	&star {
+		@include mixin.monticon('', \ecfc);
+		@include mixin.monticon('-full', \ecfa);
+	}
+
+	// 별점
+	&stars {
+		$stars: 0 1 2 3 4 5;
+		@each $score in $stars {
+			$star: unquote('');
+			@for $i from 1 through length($stars) - 1 {
+				@if $i <= $score {
+					$star: append($star, \ecfa);
+				}
+				@else {
+					$star: append($star, \ecfc);
+				}
+			}
+
+			@include mixin.monticon(if($score == 0, '', '-s#{$score}'), str-replace($star, ' '));
+		}
+	}
+
+	// sns
+	&sns {
+		@include mixin.monticon('-facebook', \f09a);
+		@include mixin.monticon('-instagram', \f16d);
+		@include mixin.monticon('-blog', \ffb8);
+		// @include mixin.monticon('-twitter', \ec98);
+		// @include mixin.monticon('-kakaostory', \ff22);
+		@include mixin.monticon('-naver', \ff11);
+		// @include mixin.monticon('-line', \ff23);
+		@include mixin.monticon('-payco', \ff51);
+		// @include mixin.monticon('-mail', \e817);
+		@include mixin.monticon('-apple', \f179);
+		@include mixin.monticon('-url', URL, var.$fontFamily_latin);
+		@include mixin.monticon('-kakaotalk', \ff21);
+		@include mixin.monticon('-youtube', \f16a);
+		// @include mixin.monticon('-close', \ff07);
+	}
+
+	// 랭킹
+	&rank {
+		@include mixin.monticon('-up', \ebb9);
+		@include mixin.monticon('-down', \ebb6);
+		@include mixin.monticon('-unchanged', \eaf4);
+		@include mixin.monticon('-new', new, var.$fontFamily_latin);
+		@include mixin.monticon('-first', \ffb7);
+	}
+
+	// 카메라
+	@include mixin.monticon('camera', \ff29);
+
+	// 공유
+	@include mixin.monticon('share', \ff06);
+
+	// 순서변경
+	// @include mixin.monticon('sortable', \ff02);
+
+	// 추가
+	@include mixin.monticon('add', \e8d9);
+
+	// 더보기
+	&more {
+		@include mixin.monticon('-down', \e93e);
+		@include mixin.monticon('-down-sm', \f107);
+		@include mixin.monticon('', \e938);
+		@include mixin.monticon('-plus', \e8d9);
+		@include mixin.monticon('-bold', \f004);
+	}
+
+	// 편집
+	@include mixin.monticon('modify', \ff96);
+
+	// 시계
+	@include mixin.monticon('clock', \ff93);
+
+	// 고객센터
+	@include mixin.monticon('cs', \ff14);
+
+	// 이메일
+	@include mixin.monticon('email', \ff94);
+
+	// 핸드폰
+	@include mixin.monticon('phone', \ff80);
+
+	// 스마일
+	@include mixin.monticon('smile', \e800);
+
+	// 비밀글
+	@include mixin.monticon('secret', \ff17);
+
+	// 공지사항
+	// @include mixin.monticon('notice', \e9eb);
+
+	// 이용안내
+	// @include mixin.monticon('info', \e911);
+
+	// 초기화
+	@include mixin.monticon('reset', \e953);
+
+	// 확대
+	// @include mixin.monticon('zoom', \ff40);
+
+	// 다운로드
+	&download {
+		@include mixin.monticon('', \ff08);
+		@include mixin.monticon('-complete', \ee3b);// 완료
+		// @include mixin.monticon('-app', \ff08);// 앱
+	}
+
+	// 조회수
+	@include mixin.monticon('view', \ed25);
+
+	// 컨트롤러
+	&control {
+		@include mixin.monticon('-prev', \e93f);
+		@include mixin.monticon('-next', \e940);
+		@include mixin.monticon('-prev-thin', \ff9d);
+		@include mixin.monticon('-next-thin', \ff9c);
+	}
+
+	// 사이즈
+	@include mixin.monticon('size', \ff91);
+
+	// 로그인
+	@include mixin.monticon('login', \ff99);
+
+	// 로그아웃
+	@include mixin.monticon('logout', \ff9a);
+
+	// 회원가입
+	@include mixin.monticon('join', \ffa0);
+
+	// 엑셀
+	// @include mixin.monticon('excel', \f1c3);
+
+	// 즐겨찾기
+	// @include mixin.monticon('bookmark', \ed29);
+
+	// 적용하기
+	// @include mixin.monticon('submit', \ee5f);
+
+	// 멤버
+	// @include mixin.monticon('member', \e800);
+
+	// 논멤버
+	// @include mixin.monticon('nonmember', \e802);
+
+	// 안내
+	// @include mixin.monticon('guide', \ec0f);
+
+	// sms 보내기
+	// @include mixin.monticon('mail', \ec9f);
+
+	// 첨부파일
+	// @include mixin.monticon('file', \f15c);
+
+	// 주문/배송
+	&order {
+		// @include mixin.monticon('', \ff47);
+		// @include mixin.monticon('-inquiry', \ff83);// 주문조회
+		@include mixin.monticon('-origin', \ffa4);// 원주문상세
+	}
+
+	// 취소/교환/반품
+	// @include mixin.monticon('return', \ff48);
+
+	// qna
+	// @include mixin.monticon('qna', \ff20);
+
+	// 말풍선
+	// @include mixin.monticon('chat', \f27a);
+
+	// 연결
+	// @include mixin.monticon('-connect', \f287);
+
+	// 수정, 작성
+	// @include mixin.monticon('edit', \ff53);
+
+	// 카드
+	// @include mixin.monticon('card', \e8bc);
+
+	// 설정
+	@include mixin.monticon('setup', \e918);
+
+	// 이미지 리뷰
+	// @include mixin.monticon('review', \ed06);
+
+	// 체크
+	@include mixin.monticon('check', \ec08);
+
+	// 무통장
+	// @include mixin.monticon('bank', \ff79);
+
+	// 리뷰
+	&review {
+		@include mixin.monticon('-write', \ec0e); //리뷰 작성
+		@include mixin.monticon('-photo', \e8d2); //포토 리뷰
+		@include mixin.monticon('-list', \ed0a); //리스트
+		@include mixin.monticon('-pencil', \ffaf);
+	}
+
+	// 쿠폰 발급
+	&coupon {
+		@include mixin.monticon('-download', \ed2f); //쿠폰 다운로드
+		@include mixin.monticon('-complete', \ee3b); //쿠폰 발급 완료
+	}
+
+	// 옵션삭제 (옵션선택)
+	&option {
+		@include mixin.monticon('-remove', \ee3e);
+	}
+
+	// 추가 안내
+	@include mixin.monticon('plus', \ee3f);
+
+	// 폴더
+	&folder {
+		@include mixin.monticon('', \ffa1);
+		@include mixin.monticon('-open', \f115);
+		@include mixin.monticon('-add', \ffa2);
+	}
+
+	// 복사
+	@include mixin.monticon('copy', \f24d);
+
+	// 순서편집
+	@include mixin.monticon('sort', \ff97);
+
+	// 접기
+	@include mixin.monticon('fold', \e941);
+
+	// 인쇄
+	@include mixin.monticon('print', \e855);
+
+	// 래플 안내
+	@include mixin.monticon('guide', \ec0c);
+
+	// 작성
+	@include mixin.monticon('write', \ec0e);
+
+	// 말풍선
+	@include mixin.monticon('speech', \ee4d);
+
+	// 간편결제
+	&payment {
+		@include mixin.monticon('-card', \e8bc);
+		@include mixin.monticon('-bank', \ff79);
+		@include mixin.monticon('-kicc', \ffb3);
+		@include mixin.monticon('-phone', \ff80);
+		@include mixin.monticon('-payco', \ffac);
+		@include mixin.monticon('-toss', \ffb2);
+	}
+
+	// 알림
+	@include mixin.monticon('alarm', \ffb1);
+
+	// 좋아요
+	&thumbs {
+		@include mixin.monticon('-up', \e84d);
+	}
+
+	// 체험단후기 등록
+	&experience {
+		@include mixin.monticon('', \f118);
+		@include mixin.monticon('-write', \ec0e);
+	}
+
+	// 공동구매
+	&coopbuy {
+		@include mixin.monticon('-goal', \ec08);
+	}
+
+	// 재생
+	&play {
+		@include mixin.monticon('', \e95a);
+		@include mixin.monticon('-lg', \f00f);
+	}
+
+	// 데이트픽커
+	&datepicker {
+		@include mixin.monticon('-calendar', \ee17);
+		@include mixin.monticon('-select', \ff85);
+	}
+}
+//> 아이콘

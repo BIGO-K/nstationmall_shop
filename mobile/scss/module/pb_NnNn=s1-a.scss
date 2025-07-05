@@ -1,0 +1,46 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 모듈
+ * 상품+배너(고정/캐러셀/스크롤)
+**/
+
+
+[data-mui="pb_NnNn/s1-a"] {
+	position: relative;
+
+	.m_ui-title {
+		padding: 22px 15px 16px;
+		@include mixin.font(400 '17px/24px');
+	}
+
+	.m_ui-item {
+		> a {
+			display: block;
+			margin-top: 10px;
+
+			.image_banner {
+				padding-top: 40%;
+				width: 100%;
+			}
+		}
+	}
+
+	+ [data-mui="pb_NnNn/s1-a"] {
+		border-top: 8px solid #eee;
+
+		&::before {
+			position: absolute;
+			top: -8px;
+			right: 0;
+			left: 0;
+			border-top: 1px solid #e6e6e6;
+			content: '';
+		}
+	}
+}

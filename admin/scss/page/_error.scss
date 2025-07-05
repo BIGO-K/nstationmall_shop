@@ -1,0 +1,78 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 에러
+**/
+
+
+html[class*="_error_"] {
+	.mm_view,
+	.mm_page,
+	.mm_page-content {
+		padding: 0;
+		height: 100%;
+	}
+
+	.m_error {
+		height: 100%;
+		@include mixin.font('0' center);
+
+		&::before {
+			margin-left: -1px;
+			width: 1px;
+			height: 100%;
+			vertical-align: middle;
+			content: '';
+		}
+
+		&-inner {
+			display: inline-block;
+			padding: 50px 0;
+			vertical-align: middle;
+
+			h1 {
+				margin-top: 35px;
+				@include mixin.font(var.$color_primary_base '28px/32px');
+			}
+
+			p {
+				margin-top: 9px;
+				@include mixin.font(#333 '14px/19px');
+			}
+
+			dl {
+				margin: 36px 40px 0;
+				padding: 23px 0 21px;
+				background-color: #f9f9f9;
+
+				dt {
+					@include mixin.font('14px/18px');
+
+					[class*="__ie1"] &, .__edge & { margin: 1px 0 -1px; }
+				}
+
+				dd {
+					padding-top: 10px;
+					@include mixin.font('18px/25px');
+
+					strong {
+						@include mixin.font(700 '19px');
+					}
+				}
+			}
+
+			> .mm_btnbox {
+				margin-top: 30px;
+
+				.mm_btn {
+					width: 200px;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,244 @@
+@charset 'utf-8';
+
+@use 'sass:math';
+@use '../setting/const';
+@use '../setting/var';
+@use '../helper/mixin';
+
+/**
+ * 레이아웃
+ * 푸터
+**/
+
+
+//< 푸터영역
+.mm_footer {
+	margin-top: 50px;
+	background-color: #fff;
+
+	// 앱설치
+	> .btn_download {
+		padding: 14px 13px;
+		width: 100%;
+		height: 61px ;
+		border-top: 8px solid #eee;
+		@include mixin.font(#000 '14px/24px');
+
+		.image_logo {
+			margin-right: 8px;
+
+			&::before {
+				margin-right: 10px;
+				width: 25px;
+				height: 25px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/common/app_icon.svg') '/contain' no-repeat);
+				content: '';
+			}
+
+			&::after {
+				margin-top: 3px;
+				width: 76px;
+				height: 18px;
+				@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/common/logo.svg') '/contain' no-repeat);
+				content: '';
+			}
+		}
+
+		.mco_download-app {
+			margin-left: 14px;
+			// line-height: 21px;
+		}
+	}
+
+	// 매장문의
+	&-store {
+		margin-left: -5px;
+		padding: 0 23px;
+		width: 100%;
+		height: 48px;
+		background-color: #fafafa;
+		border-top: 1px solid #eaeaea;
+		text-align: center;
+
+		ul {
+			@include mixin.font('0' center, nowrap);
+
+			li {
+				display: inline-block;
+				position: relative;
+
+				&:not(:first-child)::after {
+					position: absolute;
+					top: 50%;
+					left: 0;
+					margin-top: -1px;
+					width: 2px;
+					height: 2px;
+					border-radius: 100%;
+					background-color: #a3a3a3;
+					content: '';
+				}
+
+				a {
+					padding: 0 30px;
+					@include mixin.font('13px/48px');
+				}
+			}
+		}
+	}
+
+	// 메뉴
+	&-menu {
+		border-top: 1px solid #eaeaea;
+		@include mixin.font(#5c5c5c 300 '13px/46px');
+
+		ul {
+			height: 46px;
+
+			li {
+				position: relative;
+
+				&:nth-child(n+2) {
+					padding-left: 1px;
+
+					&::before {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						margin-top: -4px;
+						height: 8px;
+						border-left: 1px solid #cfcfcf;
+						content: '';
+					}
+				}
+			}
+		}
+	}
+
+	// 정보
+	&-info {
+		padding: 8px 14px 20px;
+
+		.mm_dropdown {
+			@include mixin.font(#5c5c5c '10px/14px');
+
+			> b {
+				@include mixin.font(#5c5c5c '12px');
+			}
+
+			.btn_dropdown {
+				position: absolute;
+				padding: 0 10px;
+				width: auto;
+
+				.mco_dropdown-sm {
+					top: 1px;
+					right: auto;
+					padding-left: 5px;
+					@include mixin.font(#7b7b7b '10px');
+					@include mixin.transform(scale(0.9));
+				}
+			}
+
+			&-item-inner {
+				margin: 8px 0 -2px;
+
+				address {
+					p:not(.text_cs, .text_email) {
+						a {
+							padding: 0 5px 1px;
+
+							b {
+								position: relative;
+
+								&::after {
+									position: absolute;
+									right: 0;
+									bottom: 0;
+									left: 0;
+									border-bottom: 1px solid #5c5c5c;
+									content: '';
+								}
+							}
+						}
+					}
+
+					.text_cs,
+					.text_pay {
+						margin-top: 6px;
+					}
+
+					.text_email {
+						padding-bottom: 2px;
+					}
+				}
+			}
+
+			&.__dropdown-on {
+				.mco_dropdown-sm {
+					top: 0;
+				}
+			}
+		}
+
+		&-terms {
+			margin: 7px 0 0 -4px;
+			@include mixin.font(#7b7b7b '0');
+
+			li {
+				display: inline-block;
+
+				&:nth-child(n+2) {
+					&::before {
+						@include mixin.font('10px/14px');
+						content: 'ㆍ';
+					}
+				}
+
+				a {
+					padding: 2px 3px;
+					font-size: 10px;
+
+					strong {
+						@include mixin.font(#2b2b2b 700);
+					}
+				}
+			}
+		}
+
+		.btn_safety-check {
+			padding: 2px 0;
+			color: #7b7b7b;
+		}
+
+		> dl {
+			position: relative;
+			margin-top: 12px;
+
+			dt {
+				position: absolute;
+
+				.image_isms {
+					width: 42px;
+					height: 38px;
+					@include mixin.background(url('https://img.nstationmall.com/mall/ui/mobile/common/ico_isms.png') '50% 50%/100% auto' no-repeat);
+				}
+			}
+
+			dd {
+				padding-left: 49px;
+				color: #5c5c5c;
+
+				p + p {
+					padding-top: 4px;
+				}
+			}
+		}
+
+		.text_copyright {
+			margin-top: 19px;
+			@include mixin.font(var.$color_point1 '10px');
+		}
+	}
+}
+//> 푸터영역
