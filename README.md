@@ -1,14 +1,12 @@
-# THENATURE.SHOP (admin/mobile/pc)
+# 엔스테이션몰 (admin/mobile/pc)
+_2021.08 ~ 2022.01_
 + 엠몬스타 전체 일정
-	https://docs.google.com/spreadsheets/d/1ZNsKeZrZAr2o6DdYGvnWOHJsOPCGyQJgjerCMU5jhUY/edit#gid=425404578
 + 기획 구글드라이브 경로
-	https://drive.google.com/drive/u/0/folders/1GdFKU-EjVc__viA00YiX4UBsw1fSl1Vk
 + 디자인 구글드라이브 경로
-	https://drive.google.com/drive/u/0/folders/12kDcYpjyskpKdXPBelvy3QH29HWB5mmM
 + 퍼블리싱 작업 리스트
-	- admin https://publish.mmonstar.co.kr/thenature/shop_2021/admin/
-	- mobile https://publish.mmonstar.co.kr/thenature/shop_2021/mobile/
-	- pc https://publish.mmonstar.co.kr/thenature/shop_2021/pc/
+	- admin
+	- mobile
+	- pc
 <br><br>
 
 ## 작업환경
@@ -16,14 +14,12 @@
 	- SFTP의 **sftp.json** 파일설정
 		```
 		"name": "ftp",
-		"host": "1.xxx.xx.x2",
+		"host": "",
 		"protocol": "sftp",
 		"port": 8023,
-		"username": "mmon_publish",
+		"username": "",
 		"password": "비밀번호",
-		"remotePath": "/home/mmon_publish/html/thenature/shop_2021/",(실서버)
-		"remotePath": "/home/mmon_publish/_merge/html/thenature/shop_2021/",(FTP전달용)
-		"remotePath": "/home/mmon_publish/작업자/html/thenature/shop_2021/",(서브 작업자 설정방식)
+		"remotePath": "",
 		"uploadOnSave": true,
 		...
 		"watcher": {
